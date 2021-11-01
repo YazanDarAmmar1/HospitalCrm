@@ -29,7 +29,7 @@ class HospitalImport implements ToModel
             'address' => $row[10],
             'address_ar' => $row[11],
             'website' => $row[12],
-            'category' => $row[13],
+            'category_id' => $row[13],
             'description' => $row[14],
             'description_ar' => $row[15],
             'comment' => $row[16],

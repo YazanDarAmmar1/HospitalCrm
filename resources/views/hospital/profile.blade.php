@@ -176,6 +176,11 @@
                                 <div class=" p-t-10">
                                     <p class="">{{$hospital->address}}</p>
                                 </div>
+
+                                <h4 class="tx-15 text-uppercase text-primary mt-3">Provider Type</h4>
+                                <div class=" p-t-10">
+                                    <td>{{$hospital->Category->category ?? ' '}}</td>
+                                </div>
                                 <hr>
                                 <h4 class="tx-15 text-uppercase text-primary mt-3">Status</h4>
                                 <div class=" p-t-10">
@@ -198,6 +203,8 @@
 
                                     @endif
                                 </div>
+
+
 
                             </div>
                         </div>

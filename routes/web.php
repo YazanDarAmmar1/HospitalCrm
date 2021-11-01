@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\FileDoctorController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,6 +65,13 @@ Route::post('/save_list',[FileDoctorController::class,'store'])->name('save_list
 Route::post('/delete_list',[FileDoctorController::class,'destroy'])->name('delete_list');
 Route::get('/View_file/{id}/{name}',[FileDoctorController::class,'open_file']);
 
+
+//Categories Route
+Route::get('/category',[CategoryController::class,'index'])->name('category');
+Route::post('/category_add',[CategoryController::class,'store'])->name('category_add');
+Route::post('/category_delete',[CategoryController::class,'destroy'])->name('category_delete');
+Route::post('/category_edit',[CategoryController::class,'update'])->name('category_edit');
+Route::post('/category_import',[CategoryController::class,'importCategory'])->name('category_import');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');

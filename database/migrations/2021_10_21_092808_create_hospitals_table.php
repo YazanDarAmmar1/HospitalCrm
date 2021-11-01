@@ -28,8 +28,8 @@ class CreateHospitalsTable extends Migration
             $table->longText('address')->nullable();
             $table->longText('address_ar')->nullable();
             $table->string('website')->nullable();
-            $table->string('category')->nullable();
-            $table->string('category_ar')->nullable();
+            $table->bigInteger('category_id')->nullable()->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
             $table->longText('description')->nullable();
             $table->longText('description_ar')->nullable();
             $table->longText('comment')->nullable();

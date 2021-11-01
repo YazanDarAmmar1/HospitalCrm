@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attachment;
+use App\Category;
 use App\Contract;
 use App\File_doctor;
 use App\Hospital;
@@ -30,7 +31,9 @@ class HospitalController extends Controller
     public function index()
     {
         $hospitals = Hospital::all();
-        return view('hospital.hospital', compact('hospitals'));
+        $category = Category::all();
+        $category1 = Category::all();
+        return view('hospital.hospital', compact('hospitals','category','category1'));
     }
 
 
@@ -84,8 +87,7 @@ class HospitalController extends Controller
             'address' => $request->address,
             'address_ar' => $request->address_ar,
             'website' => $request->website,
-            'category' => $request->category,
-            'category_ar' => $request->category_ar,
+            'category_id' => $request->category,
             'description' => $request->description,
             'description_ar' => $request->description_ar,
             'comment' => $request->comment,
@@ -152,8 +154,7 @@ class HospitalController extends Controller
             'address' => $request->address,
             'address_ar' => $request->address_ar,
             'website' => $request->website,
-            'category' => $request->category,
-            'category_ar' => $request->category_ar,
+            'category_id' => $request->category,
             'description' => $request->description,
             'description_ar' => $request->description_ar,
             'comment' => $request->comment,

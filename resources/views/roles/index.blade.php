@@ -59,9 +59,11 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <div class="col-lg-12 margin-tb">
+                            @can('add-permission')
                             <div class="pull-right">
                                     <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">Add Permission</a>
                             </div>
+                            @endcan
                         </div>
                         <br>
                     </div>
@@ -83,13 +85,17 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>
+                                        @can('delete-permission')
                                             <a class="btn btn-success btn-sm"
                                                href="{{ route('roles.show', $role->id) }}">Show</a>
+                                        @endcan
+                                        @can('edit-permission')
 
-                                            <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-primary btn-sm"
                                                href="{{ route('roles.edit', $role->id) }}">Edit</a>
+                                        @endcan
 
-                                        @if ($role->name !== 'owner')
+                                    @if ($role->name !== 'owner')
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
                                                 $role->id], 'style' => 'display:inline']) !!}
                                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}

@@ -16,9 +16,15 @@ use Illuminate\Database\Seeder;use Spatie\Permission\Models\Permission;class Per
             'add-service',
             'logo',
             'contract',
+            'delete-contract',
             'doctor-list',
 
+            'setting',
+            'type-of-provider',
+            'provider-delete',
+            'provider-edit',
 
+            'users',
             'add-user',
             'edit-user',
             'delete-user',
