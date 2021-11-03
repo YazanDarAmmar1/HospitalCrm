@@ -15,7 +15,7 @@ class User extends Authenticatable
     /*** The attributes that are mass assignable.***
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','roles_name','status'];
+    protected $fillable = ['name', 'email', 'password', 'roles_name', 'status'];
     /*** The attributes that should be hidden for arrays.**
      * @var array
      */
@@ -27,5 +27,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'roles_name' => 'array',
 
-        ];
+    ];
+
+    public function Card()
+    {
+        $this->belongsTo(Card::class, 'agent_id');
+    }
 }

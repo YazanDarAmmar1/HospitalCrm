@@ -17,7 +17,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Setting</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Category</span>
+							<h4 class="content-title mb-0 my-auto">Setting</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Card Type</span>
 						</div>
 					</div>
 
@@ -27,12 +27,6 @@
                                data-toggle="modal" href="#modaldemlo124"><i class="fas fa-plus"></i> </a>
                         </div>
 
-                        <div class="pr-1 mb-3 mb-xl-0">
-
-                            <a class="modal-effect btn btn-outline-danger" data-effect="effect-super-scaled"
-                               data-toggle="modal" href="#modaldemlo12234">Import Type</a>
-
-                        </div>
                     </div>
 				</div>
 				<!-- breadcrumb -->
@@ -43,36 +37,34 @@
                     <div class="col-xl-12">
                         <div class="card">
 
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <div class="table-responsive">
-                                    <table class="table text-md-nowrap" id="example1">
+                                    <table class="table text-md-nowrap" id="example1" style="background-color:#761193;">
                                         <thead>
                                         <tr>
-                                            <th class="wd-15p border-bottom-0">id</th>
-                                            <th class="wd-15p border-bottom-0">name</th>
-                                            <th class="wd-15p border-bottom-0">name-ar</th>
-                                            <th class="wd-20p border-bottom-0">description</th>
-                                            <th class="wd-20p border-bottom-0">process</th>
+                                            <th class="wd-15p border-bottom-0 text-black-50">#</th>
+                                            <th class="wd-15p border-bottom-0 text-white">name</th>
+                                            <th class="wd-20p border-bottom-0 text-white">description</th>
+                                            <th class="wd-20p border-bottom-0 text-white">process</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($category as $c)
+                                        @foreach($cardType as $c)
                                         <tr>
                                             <td>{{$c->id}}</td>
-                                            <td>{{$c->category}}</td>
-                                            <td>{{$c->category_ar}}</td>
+                                            <td>{{$c->name}}</td>
                                             <td>{{$c->description}}</td>
                                             <td>
                                                 @can('provider-delete')
                                                 <a class="modal-effect btn btn-sm btn-danger"
                                                    data-effect="effect-scale"
-                                                   data-id="{{$c->id}}" data-name="{{$c->category}}"
+                                                   data-id="{{$c->id}}" data-name="{{$c->name}}"
                                                    data-toggle="modal"
                                                    href="#modaldem" title="delete"><i class="las la-trash"></i></a>
                                                 @endcan
                                                 @can('provider-edit')
                                                 <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                   data-id="{{$c->id}}" data-name="{{$c->category}}" data-name_ar="{{$c->category_ar}}"
+                                                   data-id="{{$c->id}}" data-name="{{$c->name}}"
                                                    data-description="{{$c->description}}"
                                                    data-toggle="modal"
                                                    href="#modaldemlo1245"
@@ -97,21 +89,16 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content modal-content-demo">
                             <div class="modal-header">
-                                <h6 class="modal-title">Add Type Of Provider</h6>
+                                <h6 class="modal-title">Add Card Type</h6>
                                 <button aria-label="Close" class="close" data-dismiss="modal"
                                         type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
-                            <form action="{{route('category_add')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('show_cardType_add')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body row form-group">
-                                    <div class="col-sm-12 col-md-4 col-lg-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
                                         <label class="label mt-2">Name</label>
                                         <input type="text" class="form-control"  name="name"/>
-                                    </div>
-
-                                    <div class="col-sm-12 col-md-4 col-lg-6">
-                                        <label class="label mt-2">*Arabic*</label>
-                                        <input type="text" class="form-control"  name="name_ar"/>
                                     </div>
 
                                     <div class="col-lg-12">
@@ -140,19 +127,15 @@
                                 <button aria-label="Close" class="close" data-dismiss="modal"
                                         type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
-                            <form action="{{route('category_edit')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('show_cardType_update')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body row form-group">
-                                    <div class="col-sm-12 col-md-4 col-lg-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
                                         <label class="label mt-2">Name</label>
                                         <input type="hidden" class="form-control"  name="id"/>
                                         <input type="text" class="form-control"  name="name"/>
                                     </div>
 
-                                    <div class="col-sm-12 col-md-4 col-lg-6">
-                                        <label class="label mt-2">*Arabic*</label>
-                                        <input type="text" class="form-control"  name="name_ar"/>
-                                    </div>
 
                                     <div class="col-lg-12">
                                         <label class="label mt-2">Description</label>
@@ -175,11 +158,11 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content modal-content-demo">
                             <div class="modal-header">
-                                <h6 class="modal-title">Delete Provider</h6>
+                                <h6 class="modal-title">Delete Card</h6>
                                 <button aria-label="Close" class="close" data-dismiss="modal"
                                         type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
-                            <form action="{{route('category_delete')}}" method="post">
+                            <form action="{{route('show_cardType_delete')}}" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <p>Are you sure of the deleting process ?</p><br>
@@ -196,31 +179,6 @@
                 </div>
 
 
-                {{--import type--}}
-                <div class="modal" id="modaldemlo12234">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content modal-content-demo">
-                            <div class="modal-header">
-                                <h6 class="modal-title">Add File Import</h6>
-                                <button aria-label="Close" class="close" data-dismiss="modal"
-                                        type="button"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <form action="{{route('category_import')}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="col-sm-12 col-md-4 col-lg-12">
-                                        <label class="label mt-2">File Import</label>
-                                        <input type="file" class="dropify" data-height="70" name="import"/>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-danger">Import</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
 
 			</div>
@@ -272,14 +230,12 @@
 
             var id = $(e.relatedTarget).data('id');
             var name = $(e.relatedTarget).data('name');
-            var name_ar = $(e.relatedTarget).data('name_ar');
             var description = $(e.relatedTarget).data('description');
 
 
             $(e.currentTarget).find('input[name="id"]').val(id);
             $(e.currentTarget).find('input[name="name"]').val(name);
-            $(e.currentTarget).find('input[name="name_ar"]').val(name_ar);
-            $(e.currentTarget).find('input[name="description"]').val(description);
+            $(e.currentTarget).find('textarea[name="description"]').val(description);
         });
     </script>
 

@@ -18,6 +18,7 @@ use Illuminate\Database\Seeder;use Spatie\Permission\Models\Permission;class Per
             'contract',
             'delete-contract',
             'doctor-list',
+            'download-doctor',
 
             'setting',
             'type-of-provider',
