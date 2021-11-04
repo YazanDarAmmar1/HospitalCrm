@@ -57,13 +57,13 @@
                                     <td>{{$c->name}}</td>
                                     <td>{{$c->Card->name ?? ' '}}</td>
                                     <td>{{$c->package_prices}}</td>
-                                    <td>
+
                                     @if($c->status == 0)
                                         <td><i style="background-color: red" class="text-white">Offline</i></td>
                                     @else
                                         <td><i style="background-color: blue" class="text-white">Online</i></td>
                                         @endif
-                                        </td>
+
 
                                         <td>
                                             @can('provider-delete')

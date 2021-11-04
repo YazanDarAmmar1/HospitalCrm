@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\CardTypeController;
 use App\Http\Controllers\PackageTypeController;
+use App\Http\Controllers\AllCardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,10 +90,12 @@ Route::post('card/Package/edit',[PackageTypeController::class,'update'])->name('
 Route::post('card/Package/delete',[PackageTypeController::class,'destroy'])->name('show_PackageType_delete');
 
 
-//Cards Route
-Route::get('add_cards',[CardController::class,'index'])->name('show_cards');
+//AddCard Route
+Route::get('add_cards',[CardController::class,'index'])->name('add_cards');
 Route::post('add_cards_user',[CardController::class,'store'])->name('add_cards_user');
 
+//AllCard Route
+Route::get('show_cards',[AllCardController::class,'index'])->name('show_cards');
 
 
 Route::group(['middleware' => ['auth']], function() {

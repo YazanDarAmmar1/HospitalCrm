@@ -10,6 +10,11 @@ class Card extends Model
 
     public function User()
     {
-        $this->hasMany(User::class, 'agent_id');
+      return  $this->belongsTo(User::class, 'agent_id');
+    }
+
+    public function Package()
+    {
+        return $this->belongsTo(Package_type::class, 'package_type');
     }
 }

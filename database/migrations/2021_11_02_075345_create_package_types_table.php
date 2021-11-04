@@ -31,6 +31,9 @@ class CreatePackageTypesTable extends Migration
      */
     public function down()
     {
+        Schema::table('package_types', function (Blueprint $table) {
+            $table->dropForeign('card_id');
+        });
         Schema::dropIfExists('package_types');
     }
 }

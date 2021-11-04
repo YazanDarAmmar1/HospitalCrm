@@ -31,6 +31,6 @@ class User extends Authenticatable
 
     public function Card()
     {
-        $this->belongsTo(Card::class, 'agent_id');
+       return $this->hasMany(Card::class, 'agent_id');
     }
 }

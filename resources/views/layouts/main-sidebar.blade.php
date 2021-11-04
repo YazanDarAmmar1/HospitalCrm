@@ -50,7 +50,8 @@
                         <span class="side-menu__label">Cards</span><i class="angle fe fe-chevron-down"></i></a>
 
                     <ul class="slide-menu">
-                        <li><a class="slide-item" href="{{ route('show_cards') }}">Add Card</a></li>
+                        <li><a class="slide-item" href="{{ route('add_cards') }}">Add Card</a></li>
+                        <li><a class="slide-item" href="{{ route('show_cards') }}">All Card</a></li>
                     </ul>
                 </li>
 

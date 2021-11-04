@@ -10,6 +10,12 @@ class Package_type extends Model
 
     public function Card()
     {
-      return  $this->belongsTo(Card_type::class,'card_id');
+        return  $this->belongsTo(Card_type::class,'card_id');
+    }
+
+
+    public function ALlCard()
+    {
+        return  $this->hasMany(Card::class,'package_type');
     }
 }
