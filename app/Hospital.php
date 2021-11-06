@@ -28,4 +28,9 @@ class Hospital extends Model
     {
         return $this->hasMany(File_doctor::class, 'id_hospital');
     }
+
+    public function Category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

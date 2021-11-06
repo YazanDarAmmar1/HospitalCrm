@@ -8,6 +8,11 @@ use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\FileDoctorController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\CardTypeController;
+use App\Http\Controllers\PackageTypeController;
+use App\Http\Controllers\AllCardController;
+use App\Http\Controllers\CardProfile;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/m', function () {
-    return view('table-data');
+    return view('editprofile');
 });
 
 //Hospitals Route
@@ -72,6 +77,32 @@ Route::post('/category_add',[CategoryController::class,'store'])->name('category
 Route::post('/category_delete',[CategoryController::class,'destroy'])->name('category_delete');
 Route::post('/category_edit',[CategoryController::class,'update'])->name('category_edit');
 Route::post('/category_import',[CategoryController::class,'importCategory'])->name('category_import');
+
+
+//CardType Route
+Route::get('card/type',[CardTypeController::class,'index'])->name('show_cardType');
+Route::post('card/type/add',[CardTypeController::class,'store'])->name('show_cardType_add');
+Route::post('card/type/update',[CardTypeController::class,'update'])->name('show_cardType_update');
+Route::post('card/type/delete',[CardTypeController::class,'destroy'])->name('show_cardType_delete');
+
+//PackageType Route
+Route::get('card/Package',[PackageTypeController::class,'index'])->name('show_PackageType');
+Route::post('card/Package/add',[PackageTypeController::class,'store'])->name('show_PackageType_add');
+Route::post('card/Package/edit',[PackageTypeController::class,'update'])->name('show_PackageType_edit');
+Route::post('card/Package/delete',[PackageTypeController::class,'destroy'])->name('show_PackageType_delete');
+
+
+//AddCard Route
+Route::get('add_cards',[CardController::class,'index'])->name('add_cards');
+Route::post('add_cards_user',[CardController::class,'store'])->name('add_cards_user');
+
+//AllCard Route
+Route::get('show_cards',[AllCardController::class,'index'])->name('show_cards');
+
+
+//ProfileCard Route
+Route::get('/profile/{id}',[CardProfile::class,'index'])->name('profile_show');
+Route::post('/profile/edit',[CardProfile::class,'update'])->name('profile_update');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');

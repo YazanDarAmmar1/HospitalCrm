@@ -320,17 +320,30 @@
                                                         <td>{{$list->file ?? ' '}}</td>
                                                         <td>
                                                             @if(!(($list->id ?? ' ') == ' '))
+<<<<<<< HEAD
+=======
+                                                                @can('doctor-list')
+>>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
                                                             <a class="modal-effect btn btn-sm btn-danger"
                                                                  data-effect="effect-scale"
                                                                  data-id="{{$list->id ?? ' '}}" data-name="{{$list->file ?? ' '}}"
                                                                  data-toggle="modal"
                                                                  href="#modaldem113" title="delete"><i class="las la-trash"></i></a>
+<<<<<<< HEAD
 
+=======
+                                                                @endcan
+                                                            @can('download-doctor')
+>>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
 
                                                                 <a class="btn btn-outline-primary btn-sm"
                                                                    href="{{ url('View_file') }}/{{ $list->id }}/{{ $list->file }}"
                                                                    role="button"><i class="fas fa-file-download"></i>&nbsp;
                                                                 </a>
+<<<<<<< HEAD
+=======
+                                                                    @endcan
+>>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
                                                             @else
 
                                                             @endif
