@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/m', function () {
-    return view('editprofile');
+    return view('form-elements');
 });
 
 //Hospitals Route
@@ -98,6 +98,8 @@ Route::post('add_cards_user',[CardController::class,'store'])->name('add_cards_u
 
 //AllCard Route
 Route::get('show_cards',[AllCardController::class,'index'])->name('show_cards');
+Route::post('delete/card',[AllCardController::class,'destroy'])->name('delete_card');
+Route::post('status/card/update',[AllCardController::class,'update'])->name('update_status');
 
 
 //ProfileCard Route

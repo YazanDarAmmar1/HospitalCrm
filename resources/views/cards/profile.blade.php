@@ -25,9 +25,21 @@
             <div class="mb-3 mb-xl-0">
 
                     @csrf
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn-outline-indigo">UPDATE</button>
-                    </div>
+                <div class="btn-group">
+                    <a href="{{route('show_cards')}}" class="btn btn-outline-success" title="all card"><i class="far fa-address-card"></i></a>
+                </div>
+
+                <div class="btn-group">
+                    <a href="{{route('add_cards')}}" title="add card" class="btn btn-outline-primary">
+                        <i class="fas fa-user-plus"></i>
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-outline-indigo">UPDATE</button>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -46,6 +58,10 @@
                                 <div class="col-lg-12">
                                     <h5 class="label">Name</h5>
                                     <input type="text" class="form-control" name="name" value="{{$card->name ?? ' '}}">
+
+                                    <label class="label">Relation With | </label>
+                                    <a href="{{url('profile')}}/{{$father_name->id ?? $card->id}}">{{$father_name->name ?? 'himself
+'}}</a>
                                     <input type="hidden" readonly class="form-control" name="id" value="{{$card->id ?? ' '}}">
 
                                 </div>
@@ -277,7 +293,7 @@
                                                 <div class="col-lg-4  mg-t-10 mg-md-t-0">
                                                     <label class="label mb-1">Prices</label>
                                                     <input type="number" name="prices" class="form-control mb-1"
-                                                           value="{{$card->price ?? ' '}}">
+                                                           value="{{$card->price ?? $card->Package->package_prices ?? ' '}}">
                                                 </div>
 
                                                 <div class="col-md-4 mg-t-10 mg-md-t-0">
@@ -334,11 +350,13 @@
 
                                                     </select>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-outline-primary">UPDATE</button>
                             </div>
                         </div>
 
@@ -444,6 +462,7 @@
             </div>
         </div>
     </div>
+
     <!-- row closed -->
     </div>
     <!-- Container closed -->

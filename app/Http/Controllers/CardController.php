@@ -8,6 +8,7 @@ use App\Package_type;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CardController extends Controller
 {
@@ -42,17 +43,17 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
+        $user =Auth::user()->id;
         $request->validate([
             'name' => 'required',
             'cpr' => 'required|unique:cards,cpr_no|max:13',
-            'agent' => 'required',
+
         ], [
             'name.required' => 'Please Add Customer Name',
             'name.unique' => 'Customer Already Exist',
             'cpr.required' => 'Please Add CPR NO. To Customer',
             'cpr.unique' => 'Customer CPR Already Exist',
             'cpr.max' => 'CPR Number Max Value is 13',
-            'agent.required' => 'Please Add Agent',
         ]);
 
         $card = new Card();
@@ -60,7 +61,7 @@ class CardController extends Controller
         $card->cpr_no = $request->cpr;
         $card->email = $request->email;
         $card->date = $request->date;
-        $card->agent_id = $request->agent;
+        $card->agent_id = $user;
         $card->gender = $request->gender;
         $card->mobile = $request->mobile;
         $card->phone = $request->phone;
@@ -76,6 +77,7 @@ class CardController extends Controller
         $card->period = $request->period;
         $card->status = $request->status;
         $card->comment = $request->comment;
+        $card->father_id = $request->id_inp;
         $date_s =  Carbon::createFromFormat('Y-m-d', $request->date);
         if ($request->period == '3Months') {
             $date = 3;

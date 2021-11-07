@@ -8,16 +8,20 @@ use App\Package_type;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CardProfile extends Controller
 {
     public function index($id)
     {
+        $father = DB::table('cards')->where('id',$id)->pluck('father_id')->first();
+        $father_name = Card::where('id',$father)->first();
+
         $card = Card::where('id', $id)->first();
         $user = User::all();
         $card_type = Card_type::all();
         $package = Package_type::all();
-        return view('cards.profile', compact('card', 'user', 'card_type', 'package'));
+        return view('cards.profile', compact('card', 'user', 'card_type', 'package','father_name'));
     }
 
     public function update(Request $request)
