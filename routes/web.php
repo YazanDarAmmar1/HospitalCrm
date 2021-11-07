@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/m', function () {
-    return view('form-elements');
+    return view('dropdown');
 });
 
 //Hospitals Route

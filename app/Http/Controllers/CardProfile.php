@@ -18,10 +18,11 @@ class CardProfile extends Controller
         $father_name = Card::where('id',$father)->first();
 
         $card = Card::where('id', $id)->first();
+        $card_father = Card::where('father_id', $id)->get();
         $user = User::all();
         $card_type = Card_type::all();
         $package = Package_type::all();
-        return view('cards.profile', compact('card', 'user', 'card_type', 'package','father_name'));
+        return view('cards.profile', compact('card', 'user', 'card_type', 'package','father_name','card_father'));
     }
 
     public function update(Request $request)

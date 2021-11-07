@@ -99,20 +99,24 @@
                                            data-id="{{$c->id}}" data-name="{{$c->name}}"
                                            data-toggle="modal"
                                            href="#modaldem" title="delete"><i class="las la-trash"></i> Delete</a>
+                                        @if($c->father_id == null)
 
-                                        <a class="modal-effect btn btn-sm btn-primary"
-                                           data-effect="effect-scale"
-                                           data-id="{{$c->id}}" data-name="{{$c->name}}"
-                                           data-email="{{$c->email}}" data-date="{{$c->date}}"
-                                           data-mobile="{{$c->mobile}}" data-phone="{{$c->phone}}"
-                                           data-house="{{$c->house}}" data-road="{{$c->road}}"
-                                           data-block="{{$c->block}}" data-place="{{$c->place}}"
-                                           data-country="{{$c->country}}" data-card_type="{{$c->card_type_id}}"
-                                           data-payment_method="{{$c->payment_method}}" data-contact_method="{{$c->contact_method}}"
-                                           data-package_type="{{$c->package_type}}"
-                                           data-toggle="modal"
-                                           href="#modaldem2" title="add more"><i class="fas fa-users"></i>  Add More People</a>
-
+                                            <a class="modal-effect btn btn-sm btn-primary"
+                                               data-effect="effect-scale"
+                                               data-id="{{$c->id}}" data-name="{{$c->name}}"
+                                               data-email="{{$c->email}}" data-date="{{$c->date}}"
+                                               data-mobile="{{$c->mobile}}" data-phone="{{$c->phone}}"
+                                               data-house="{{$c->house}}" data-road="{{$c->road}}"
+                                               data-block="{{$c->block}}" data-place="{{$c->place}}"
+                                               data-country="{{$c->country}}" data-card_type="{{$c->card_type_id}}"
+                                               data-payment_method="{{$c->payment_method}}"
+                                               data-contact_method="{{$c->contact_method}}"
+                                               data-package_type="{{$c->package_type}}"
+                                               data-toggle="modal"
+                                               href="#modaldem2" title="add more"><i class="fas fa-users"></i> Add More
+                                                People</a>
+                                        @else
+                                        @endif
                                         <a class="modal-effect btn btn-sm btn-success"
                                            data-effect="effect-scale"
                                            data-id="{{$c->id}}" data-name="{{$c->name}}"
@@ -211,8 +215,8 @@
     </div>
 
     {{--add more people--}}
-    <div class="modal " id="modaldem2" >
-        <div class="modal-dialog modal-dialog-centered modal-lg " role="document" >
+    <div class="modal " id="modaldem2">
+        <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
                     <h6 class="modal-title">Add More People</h6>
