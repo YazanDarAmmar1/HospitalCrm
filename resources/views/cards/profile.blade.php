@@ -50,6 +50,15 @@
                             Print Invoice
                         </a>
                     </div>
+                    @if($card->father_id == '')
+                    <div class="btn-group">
+                        <a href="{{route('profile_invoice_show_all',$card->id)}}" title="print all invoice " class="btn btn-outline-danger">
+                            <i class="fas fa-print"></i>
+                            Print All
+                        </a>
+                    </div>
+                    @else
+                    @endif
                     @if($card->father_id == null)
                     <div class="btn-group">
                         <a class="modal-effect btn  btn-outline-indigo"
@@ -69,7 +78,7 @@
                     @endif
 
                     <div class="btn-group">
-                        <button type="submit" class="btn btn-outline-dark">UPDATE</button>
+                        <button type="submit" title="update" class="btn btn-outline-dark"><i class="far fa-edit"></i></button>
                     </div>
 
 
@@ -416,7 +425,7 @@
                                                         <div class="col-lg-3  mg-t-10 mg-md-t-0">
                                                             <label class="label mb-1">Balance Due</label>
                                                             <input type="text" name="balance" id="total" class="form-control mb-1"
-                                                                   value="{{$card->total ?? ' '}}"    >
+                                                                   value="{{$card->balance ?? ' '}}"    >
                                                         </div>
                                                     </div>
                                                 </div>

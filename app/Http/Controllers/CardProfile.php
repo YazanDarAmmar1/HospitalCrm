@@ -101,7 +101,14 @@ class CardProfile extends Controller
 
     public function invoice_index($id)
     {
-        $invoice = Card::where('id',$id)->first();
-        return view('cards.invoice',compact('invoice'));
+        $invoice = Card::where('id', $id)->first();
+        return view('cards.invoice', compact('invoice'));
+    }
+
+    public function all_invoice_index($id)
+    {
+        $invoice = Card::where('id', $id)->first();
+        $invoice1 = Card::where('father_id', $id)->get();
+        return view('cards.invoice', compact('invoice','invoice1'));
     }
 }

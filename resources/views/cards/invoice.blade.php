@@ -71,7 +71,6 @@
 											<thead>
 												<tr>
 													<th class="wd-20p">Type</th>
-													<th class="wd-40p">Description</th>
 													<th class="wd-20p">Policy No.</th>
 													<th class="tx-center">QNTY</th>
 													<th class="tx-right">Unit Price</th>
@@ -80,36 +79,47 @@
 											<tbody>
 												<tr>
 													<td>{{$invoice->Type->name ?? ' '}}</td>
-													<td class="tx-12">{{$invoice->Type->description ?? '---'}}</td>
 													<td class="tx-12">SHC222 - {{$invoice->id}}</td>
 													<td class="tx-center">1</td>
 													<td class="tx-right">{{$invoice->price}} BD</td>
 												</tr>
+                                                @if(isset($invoice1))
+                                                    @foreach($invoice1 as $invoice1)
 												<tr>
-													<td class="valign-middle" colspan="2" rowspan="4">
-													<!-- invoice-notes -->
-													</td>
+                                                    <td>{{$invoice1->Type->name ?? ' '}}</td>
+                                                    <td class="tx-12">SHC222 - {{$invoice1->id}}</td>
+                                                    <td class="tx-center">1</td>
+                                                    <td class="tx-right">{{$invoice1->price}} BD</td>
+                                                </tr>
+                                                    @endforeach
+                                                @else
+                                                @endif
 
-												</tr>
-												<tr>
-													<td class="tx-right">Delivery</td>
-													<td class="tx-right" colspan="2">{{$invoice->delivery}} BD</td>
-												</tr>
-
-												<tr>
-                                                    <td class="tx-right "><b>Total</b></td>
-													<td class="tx-right" colspan="2">
-														<h5 class="tx-primary ">{{$invoice->total}} BD</h5>
-													</td>
-												</tr>
-                                            <tr>
-                                                <td class="tx-right text-danger tx-uppercase tx-bold tx-inverse"><h4><b>Balance</b></h4></td>
-                                                <td class="tx-right text-danger " colspan="2"><h4><b>{{$invoice->balance}} BD</b></h4></td>
-                                            </tr>
 
 											</tbody>
 										</table>
 									</div>
+
+                                    <div class="table-responsive mg-t-40">
+										<table class="table table-invoice border text-md-nowrap mb-0">
+											<thead>
+												<tr>
+													<th class="wd-20p" style="font-weight: bold;font-size: 20px;color: black">Delivery</th>
+													<th class="wd-20p tx-dark" style="font-weight: bold;font-size: 20px;color: black">Total</th>
+													<th class="wd-20p" style="font-weight: bold;font-size: 20px;color: black">Balance</th>
+
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+                                                    <td class="tx-bold" style="font-weight: bold;font-size: 19px;color: black;text-decoration: underline;text-decoration-style:solid;text-decoration-thickness:0.2em;  "><b>{{$invoice->delivery  ?? ' '}} BD</b></td>
+													<td class="" style="font-weight: bold;font-size: 19px;color: black;text-decoration: underline;text-decoration-style:solid;text-decoration-thickness:0.2em;  ">{{$invoice->total ?? ' '}} BD</td>
+													<td class="" style="font-weight: bold;font-size: 19px;color: black;text-decoration: underline;text-decoration-style:solid;text-decoration-thickness:0.2em;  ">{{$invoice->balance}} BD</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+
                                     <button class="btn btn-outline-info float-right mt-3 mr-2" style="color: black">
                                         <b style="font-size: 21px" class="tx-uppercase">
                                         Payment Method : {{$invoice->payment_method}}

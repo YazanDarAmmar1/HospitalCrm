@@ -106,6 +106,7 @@ Route::post('status/card/update',[AllCardController::class,'update'])->name('upd
 Route::get('/profile/{id}',[CardProfile::class,'index'])->name('profile_show');
 Route::post('/profile/edit',[CardProfile::class,'update'])->name('profile_update');
 Route::get('/profile/invoice/{id}',[CardProfile::class,'invoice_index'])->name('profile_invoice_show');
+Route::get('/profile/invoice/all/{id}',[CardProfile::class,'all_invoice_index'])->name('profile_invoice_show_all');
 
 
 Route::group(['middleware' => ['auth']], function() {
