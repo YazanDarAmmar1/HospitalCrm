@@ -29,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::get('/m', function () {
-    return view('dropdown');
+    return view('icons');
 });
 
 //Hospitals Route
@@ -105,6 +105,8 @@ Route::post('status/card/update',[AllCardController::class,'update'])->name('upd
 //ProfileCard Route
 Route::get('/profile/{id}',[CardProfile::class,'index'])->name('profile_show');
 Route::post('/profile/edit',[CardProfile::class,'update'])->name('profile_update');
+Route::get('/profile/invoice/{id}',[CardProfile::class,'invoice_index'])->name('profile_invoice_show');
+
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');

@@ -151,7 +151,7 @@
                                 <div class="col-md-3 mg-t-10 mg-md-t-0">
                                     <label class="label">Country</label>
                                     <input class="form-control mb-1" placeholder="Enter your country" name="country"
-                                           type="text">
+                                           type="text" value="Bahrain">
                                 </div>
 
 

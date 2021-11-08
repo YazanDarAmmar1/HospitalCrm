@@ -14,15 +14,15 @@ class CardProfile extends Controller
 {
     public function index($id)
     {
-        $father = DB::table('cards')->where('id',$id)->pluck('father_id')->first();
-        $father_name = Card::where('id',$father)->first();
+        $father = DB::table('cards')->where('id', $id)->pluck('father_id')->first();
+        $father_name = Card::where('id', $father)->first();
 
         $card = Card::where('id', $id)->first();
         $card_father = Card::where('father_id', $id)->get();
         $user = User::all();
         $card_type = Card_type::all();
         $package = Package_type::all();
-        return view('cards.profile', compact('card', 'user', 'card_type', 'package','father_name','card_father'));
+        return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father'));
     }
 
     public function update(Request $request)
@@ -62,7 +62,10 @@ class CardProfile extends Controller
         $new->status = $request->status;
         $new->comment = $request->comment;
         $new->price = $request->prices;
-        $date_s =  Carbon::createFromFormat('Y-m-d', $request->date);
+        $new->delivery = $request->delivery;
+        $new->total = $request->total;
+        $new->balance = $request->balance;
+        $date_s = Carbon::createFromFormat('Y-m-d', $request->date);
         if ($request->period == '3Months') {
             $date = 3;
             $date_new = $date_s->addMonth($date);
@@ -76,23 +79,29 @@ class CardProfile extends Controller
             $date = 5;
             $date_new = $date_s->addMonth($date);
             $new->expiry = $date_new;
-        }elseif ($request->period == '1Year'){
+        } elseif ($request->period == '1Year') {
             $date = 1;
             $date_new = $date_s->addYear($date);
             $new->expiry = $date_new;
-        }elseif ($request->period == '2Years'){
+        } elseif ($request->period == '2Years') {
             $date = 2;
             $date_new = $date_s->addYear($date);
             $new->expiry = $date_new;
-        }elseif ($request->period == '5Years'){
+        } elseif ($request->period == '5Years') {
             $date = 5;
             $date_new = $date_s->addYear($date);
             $new->expiry = $date_new;
-        }else{
+        } else {
             session()->flash('error', 'Data has been Error');
         }
         $new->update();
         session()->flash('add', 'Data has been updated successfully');
-        return redirect('/profile/'.$new->id);
+        return redirect('/profile/' . $new->id);
+    }
+
+    public function invoice_index($id)
+    {
+        $invoice = Card::where('id',$id)->first();
+        return view('cards.invoice',compact('invoice'));
     }
 }

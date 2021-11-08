@@ -41,6 +41,9 @@ class CreateCardsTable extends Migration
             $table->string('img')->nullable();
             $table->string('price')->nullable();
             $table->string('father_id')->nullable()->default('No Father');
+            $table->string('delivery')->nullable();
+            $table->string('total')->nullable();
+            $table->string('balance')->nullable();
             $table->longText('comment')->nullable();
             $table->timestamps();
         });

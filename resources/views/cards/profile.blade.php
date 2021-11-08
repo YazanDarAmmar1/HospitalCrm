@@ -43,6 +43,13 @@
                             <i class="fas fa-user-plus"></i>
                         </a>
                     </div>
+
+                    <div class="btn-group">
+                        <a href="{{route('profile_invoice_show',$card->id)}}" title="print invoice" class="btn btn-outline-danger">
+                            <i class="fas fa-print"></i>
+                            Print Invoice
+                        </a>
+                    </div>
                     @if($card->father_id == null)
                     <div class="btn-group">
                         <a class="modal-effect btn  btn-outline-indigo"
@@ -330,13 +337,9 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="col-lg-4  mg-t-10 mg-md-t-0">
-                                                            <label class="label mb-1">Prices</label>
-                                                            <input type="number" name="prices" class="form-control mb-1"
-                                                                   value="{{$card->price ?? $card->Package->package_prices ?? ' '}}">
-                                                        </div>
 
-                                                        <div class="col-md-4 mg-t-10 mg-md-t-0">
+
+                                                        <div class="col-md-6 mg-t-10 mg-md-t-0">
                                                             <label class="label">Period</label>
                                                             <select class="form-control select1 mb-1" name="period">
                                                                 <option selected value="{{$card->period ?? ' '}}">
@@ -363,7 +366,7 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="col-md-4 mg-t-10 mg-md-t-0">
+                                                        <div class="col-md-6 mg-t-10 mg-md-t-0">
                                                             <label class="label">Status</label>
                                                             <select class="form-control select1 mb-1" name="status">
                                                                 <option selected value="{{$card->status ?? ' '}}">
@@ -389,6 +392,31 @@
                                                                 </option>
 
                                                             </select>
+                                                        </div>
+
+                                                        <div class="col-lg-3  mg-t-10 mg-md-t-0">
+                                                            <label class="label mb-1">Prices-Card</label>
+                                                            <input type="text" onchange="sum();" name="prices" id="prices" class="form-control mb-1"
+                                                                   value="{{$card->price ?? $card->Package->package_prices ?? ' '}}">
+                                                        </div>
+
+                                                        <div class="col-lg-3  mg-t-10 mg-md-t-0">
+                                                            <label class="label mb-1">Delivery-Charge</label>
+                                                            <input type="text" onchange="sum();" name="delivery" id="delivery" class="form-control mb-1"
+                                                                   value="{{$card->delivery ??  ' '}}">
+                                                        </div>
+
+
+                                                        <div class="col-lg-3  mg-t-10 mg-md-t-0">
+                                                            <label class="label mb-1">Total</label>
+                                                            <input type="text" name="total" id="total" class="form-control mb-1"
+                                                                   value="{{$card->total ?? ' '}}"    >
+                                                        </div>
+
+                                                        <div class="col-lg-3  mg-t-10 mg-md-t-0">
+                                                            <label class="label mb-1">Balance Due</label>
+                                                            <input type="text" name="balance" id="total" class="form-control mb-1"
+                                                                   value="{{$card->total ?? ' '}}"    >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -450,7 +478,7 @@
                                                                 <div class="dropdown dropup">
                                                                     <button aria-expanded="false" aria-haspopup="true"
                                                                             class="btn ripple btn-purple btn-sm"
-                                                                            data-toggle="dropdown" type="button">Action
+                                                                            data-toggle="dropdown" type="button">Action  &downarrow;
                                                                     </button>
                                                                     <div class="dropdown-menu tx-13">
 
@@ -463,15 +491,18 @@
                                                                            data-effect="effect-scale"
                                                                            data-id="{{$c->id}}" data-name="{{$c->name}}"
                                                                            data-toggle="modal"
-                                                                           href="#modaldem" title="delete"><i
-                                                                                class="las la-trash"></i> Delete</a>
+                                                                           href="#modaldem1" title="status"><i class="fe fe-refresh-cw"></i>
 
-                                                                        <a class="modal-effect dropdown-item "
+                                                                            Status</a>
+
+                                                                        <a class="modal-effect dropdown-item text-danger "
                                                                            data-effect="effect-scale"
                                                                            data-id="{{$c->id}}" data-name="{{$c->name}}"
                                                                            data-toggle="modal"
-                                                                           href="#modaldem1" title="status"><i
-                                                                                class="fas fa-sync"></i> Status</a>
+                                                                           href="#modaldem" title="delete"><i
+                                                                                class="las la-trash"></i> Delete</a>
+
+
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -862,6 +893,16 @@
             $(e.currentTarget).find('input[id="id_inp"]').val(id);
             $(e.currentTarget).find('input[id="name_inp"]').val(name);
         });
+    </script>
+
+    <script>
+        function sum() {
+            var prices = parseFloat(document.getElementById('prices').value);
+            var delivery = parseFloat(document.getElementById('delivery').value);
+            total2 = prices + delivery;
+             document.getElementById('total').value=total2;
+
+        }
     </script>
 
     {{--status--}}
