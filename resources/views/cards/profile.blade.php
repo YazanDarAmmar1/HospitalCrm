@@ -17,6 +17,15 @@
     <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <style>
+        @media print {
+            #print_Button {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 
 @endsection
 @section('page-header')
@@ -162,22 +171,46 @@
                                 <ul class="nav nav-tabs profile navtab-custom panel-tabs">
                                     <li class="active">
                                         <a href="#home" data-toggle="tab" aria-expanded="true"> <span
-                                                class="visible-xs"><i
-                                                    class="las la-user-circle tx-16 mr-1"></i></span> <span
+                                                class="visible-xs"><i class="fas fa-user-check text-purple"></i></span> <span
                                                 class="hidden-xs">ABOUT CUSTOMER</span>
                                         </a>
                                     </li>
                                     @if($card->father_id == null)
                                     <li class="">
                                         <a href="#profile" data-toggle="tab" aria-expanded="false"> <span
-                                                class="visible-xs"><i
-                                                    class="las la-images tx-15 mr-1"></i></span> <span
+                                                class="visible-xs"><i class="fas fa-users"></i></span> <span
                                                 class="hidden-xs">MEMBER SHIP</span> </a>
                                     </li>
                                     @else
 
                                     @endif
 
+                                    <li class="">
+                                        <a href="#card" data-toggle="tab" aria-expanded="false"> <span
+                                                class="visible-xs"><i class="fas fa-id-badge"></i></span> <span
+                                                class="hidden-xs">Card</span> </a>
+                                    </li>
+                                    @if($card->father_id == null)
+
+                                        <li class="">
+                                            <a href="#allcard" data-toggle="tab" aria-expanded="false"> <span
+                                                    class="visible-xs"><i class="fas fa-id-card"></i></span> <span
+                                                    class="hidden-xs">All Cards</span> </a>
+                                        </li>
+                                    @else
+
+                                    @endif
+
+                                    @if($card->father_id == null)
+
+                                        <li class="">
+                                            <a href="#allcarddesing" data-toggle="tab" aria-expanded="false"> <span
+                                                    class="visible-xs"><i class="fas fa-drafting-compass"></i></span> <span
+                                                    class="hidden-xs">All Design</span> </a>
+                                        </li>
+                                    @else
+
+                                    @endif
                                 </ul>
                             </div>
                             <div class="tab-content border-left border-bottom border-right border-top-0 p-4"
@@ -432,8 +465,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="btn-group">
-                                        <button type="submit" class="btn btn-outline-primary">UPDATE</button>
+                                    <div class="btn-group float-right">
+                                        <button type="submit" class="btn btn-outline-indigo">UPDATE</button>
                                     </div>
                                 </div>
 
@@ -523,6 +556,136 @@
                                         </div>
 
                                     </div>
+                                </div>
+
+                                {{--card--}}
+                                <div class="tab-pane" id="card">
+                                    <div class="row" id="print">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-8" style="background-color:white" >
+
+                                            <div class="row" style="height:330px;">
+                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-8" style="margin-top: 18.5%;height: 180px;">
+                                                    <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span> </p>
+                                                    <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/> </p>
+                                                    <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$card->id ?? ''}}<br/> </p>
+                                                    <p class="mb-3 tx-bold">   Expiry Date  : {{$card->expiry ?? ''}}<br/> </p>
+                                                    <p class="tx-lg-bold"> This is Not Insurance Card </p>
+                                                </div>
+                                                <div class="col-lg-1"></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <a href="" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                                <i class="mdi mdi-printer ml-1"></i>Print
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <br/>
+                                    <br/>
+
+
+                                    <div class="row" id="print">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-8" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:cover; " >
+
+                                            <div class="row" style="height:330px;">
+                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-8" style="margin-top: 18.5%;height: 180px;">
+                                                    <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span> </p>
+                                                    <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/> </p>
+                                                    <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$card->id ?? ''}}<br/> </p>
+                                                    <p class="mb-3 tx-bold">   Expiry Date  : {{$card->expiry ?? ''}}<br/> </p>
+                                                   <p class="tx-lg-bold"> This is Not Insurance Card </p>
+
+                                                </div>
+                                                <div class="col-lg-1"></div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <a href="" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                                <i class="mdi mdi-printer ml-1"></i>Print
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                {{--Allcard--}}
+                                <div class="tab-pane" id="allcard">
+                                    @foreach($card_father as $f)
+
+                                    <div class="row" id="print">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-8" style="background-color: white" >
+
+                                            <div class="row" style="height:330px;">
+                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-8" style="margin-top: 18.5%;height: 180px;">
+                                                    <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$f->name ?? ''}}<br/> </span> </p>
+                                                    <p class="mb-1 tx-bold"> CPR : {{$f->cpr_no ?? ''}}<br/> </p>
+                                                    <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$f->id ?? ''}}<br/> </p>
+                                                    <p class="mb-3 tx-bold">   Expiry Date  : {{$f->expiry ?? ''}}<br/> </p>
+                                                    <p class="tx-lg-bold"> This is Not Insurance Card </p>
+
+                                                </div>
+                                                <div class="col-lg-1"></div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <a href="" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                                <i class="mdi mdi-printer ml-1"></i>Print
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                        <br/>
+                                        <br/>
+                                    @endforeach
+                                </div>
+
+                                {{--Allcarddesing--}}
+                                <div class="tab-pane" id="allcarddesing">
+                                    @foreach($card_father as $f)
+
+                                    <div class="row" id="print">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-8" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:cover;">
+
+                                            <div class="row" style="height:330px;">
+                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-8" style="margin-top: 18.5%;height: 180px;">
+                                                    <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$f->name ?? ''}}<br/> </span> </p>
+                                                    <p class="mb-1 tx-bold"> CPR : {{$f->cpr_no ?? ''}}<br/> </p>
+                                                    <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$f->id ?? ''}}<br/> </p>
+                                                    <p class="mb-3 tx-bold">   Expiry Date  : {{$f->expiry ?? ''}}<br/> </p>
+                                                    <p class="tx-lg-bold"> This is Not Insurance Card </p>
+
+                                                </div>
+                                                <div class="col-lg-1"></div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <a href="" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                                <i class="mdi mdi-printer ml-1"></i>Print
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                        <br/>
+                                        <br/>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -891,6 +1054,7 @@
     <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 
+
     {{--delete--}}
     <script type="text/javascript">
         $('#modaldem').on('show.bs.modal', function (e) {
@@ -956,6 +1120,8 @@
             $(e.currentTarget).find('input[name="country"]').val(country);
         });
     </script>
+
+
     @if (Session::has('add'))
         <script>
             notif({

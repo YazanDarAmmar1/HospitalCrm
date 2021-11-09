@@ -9,6 +9,8 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class CardProfile extends Controller
 {
@@ -68,28 +70,28 @@ class CardProfile extends Controller
         $date_s = Carbon::createFromFormat('Y-m-d', $request->date);
         if ($request->period == '3Months') {
             $date = 3;
-            $date_new = $date_s->addMonth($date);
+            $date_new = $date_s->addMonth($date)->toDateString();
             $new->expiry = $date_new;
 
         } elseif ($request->period == '4Months') {
             $date = 4;
-            $date_new = $date_s->addMonth($date);
+            $date_new = $date_s->addMonth($date)->toDateString();
             $new->expiry = $date_new;
         } elseif ($request->period == '5Months') {
             $date = 5;
-            $date_new = $date_s->addMonth($date);
+            $date_new = $date_s->addMonth($date)->toDateString();
             $new->expiry = $date_new;
         } elseif ($request->period == '1Year') {
             $date = 1;
-            $date_new = $date_s->addYear($date);
+            $date_new = $date_s->addYear($date)->toDateString();
             $new->expiry = $date_new;
         } elseif ($request->period == '2Years') {
             $date = 2;
-            $date_new = $date_s->addYear($date);
+            $date_new = $date_s->addYear($date)->toDateString();
             $new->expiry = $date_new;
         } elseif ($request->period == '5Years') {
             $date = 5;
-            $date_new = $date_s->addYear($date);
+            $date_new = $date_s->addYear($date)->toDateString();
             $new->expiry = $date_new;
         } else {
             session()->flash('error', 'Data has been Error');
@@ -110,5 +112,14 @@ class CardProfile extends Controller
         $invoice = Card::where('id', $id)->first();
         $invoice1 = Card::where('father_id', $id)->get();
         return view('cards.invoice', compact('invoice','invoice1'));
+    }
+
+    public function exportPdf() {
+        $pdf = PDF::loadView('index'); // <--- load your view into theDOM wrapper;
+        $path = public_path('pdf_docs/'); // <--- folder to store the pdf documents into the server;
+        $fileName =  time().'.'. 'pdf' ; // <--giving the random filename,
+        $pdf->save($path . '/' . $fileName);
+        $generated_pdf_link = url('pdf_docs/'.$fileName);
+        return response()->json($generated_pdf_link);
     }
 }

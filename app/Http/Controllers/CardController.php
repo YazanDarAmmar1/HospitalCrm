@@ -86,23 +86,23 @@ class CardController extends Controller
 
         } elseif ($request->period == '4Months') {
             $date = 4;
-            $date_new = $date_s->addMonth($date);
+            $date_new = $date_s->addMonth($date)->toDateString();
             $card->expiry = $date_new;
         } elseif ($request->period == '5Months') {
             $date = 5;
-            $date_new = $date_s->addMonth($date);
+            $date_new = $date_s->addMonth($date)->toDateString();
             $card->expiry = $date_new;
         }elseif ($request->period == '1Year'){
             $date = 1;
-            $date_new = $date_s->addYear($date);
+            $date_new = $date_s->addYear($date)->toDateString();
             $card->expiry = $date_new;
         }elseif ($request->period == '2Years'){
             $date = 2;
-            $date_new = $date_s->addYear($date);
+            $date_new = $date_s->addYear($date)->toDateString();
             $card->expiry = $date_new;
         }elseif ($request->period == '5Years'){
             $date = 5;
-            $date_new = $date_s->addYear($date);
+            $date_new = $date_s->addYear($date)->toDateString();
             $card->expiry = $date_new;
         }else{
             session()->flash('error', 'Data has been Error');
