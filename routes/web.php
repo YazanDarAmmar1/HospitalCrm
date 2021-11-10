@@ -13,6 +13,7 @@ use App\Http\Controllers\CardTypeController;
 use App\Http\Controllers\PackageTypeController;
 use App\Http\Controllers\AllCardController;
 use App\Http\Controllers\CardProfile;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,8 +30,9 @@ Route::get('/', function () {
 });
 
 Route::get('/m', function () {
-    return view('tabs');
+    return view('cards.single_card');
 });
+
 
 //Hospitals Route
 Route::get('hospital',[HospitalController::class,'index'])->name('show');
@@ -108,6 +110,7 @@ Route::post('/profile/edit',[CardProfile::class,'update'])->name('profile_update
 Route::get('/profile/invoice/{id}',[CardProfile::class,'invoice_index'])->name('profile_invoice_show');
 Route::get('/profile/invoice/all/{id}',[CardProfile::class,'all_invoice_index'])->name('profile_invoice_show_all');
 Route::get('/export-pdf', [CardProfile::class, 'exportPdf'])->name('pdf');
+Route::get('/single/card/{id}', [CardProfile::class, 'printToPDF'])->name('single_card');
 
 
 Route::group(['middleware' => ['auth']], function() {

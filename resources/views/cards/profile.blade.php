@@ -562,11 +562,11 @@
                                 <div class="tab-pane" id="card">
                                     <div class="row" id="print">
                                         <div class="col-lg-2"></div>
-                                        <div class="col-lg-8" style="background-color:white" >
+                                        <div class="col-lg-8 col-md-12" style="background-color:white" >
 
                                             <div class="row" style="height:330px;">
                                                 <div class="col-lg-3"></div>
-                                                <div class="col-lg-8" style="margin-top: 18.5%;height: 180px;">
+                                                <div class="col-lg-12 ml-lg-5 pl-lg-5" style="margin-top: 16%;height: 180px;">
                                                     <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span> </p>
                                                     <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/> </p>
                                                     <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$card->id ?? ''}}<br/> </p>
@@ -578,7 +578,7 @@
 
                                         </div>
                                         <div class="col-lg-2">
-                                            <a href="" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                            <a href="{{route('single_card',$card->id)}}"  class="btn btn-danger float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print
                                             </a>
                                         </div>
@@ -591,11 +591,11 @@
 
                                     <div class="row" id="print">
                                         <div class="col-lg-2"></div>
-                                        <div class="col-lg-8" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:cover; " >
+                                        <div class="col-lg-8 col-md-12" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:cover; " >
 
                                             <div class="row" style="height:330px;">
                                                 <div class="col-lg-3"></div>
-                                                <div class="col-lg-8" style="margin-top: 18.5%;height: 180px;">
+                                                <div class="col-lg-12 ml-lg-5 pl-lg-5" style="margin-top: 16%;height: 180px;">
                                                     <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span> </p>
                                                     <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/> </p>
                                                     <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$card->id ?? ''}}<br/> </p>
@@ -608,7 +608,7 @@
 
                                         </div>
                                         <div class="col-lg-2">
-                                            <a href="" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                            <a href="{{route('single_card',$card->id)}}" onclick="" class="btn btn-danger float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print
                                             </a>
                                         </div>
@@ -628,7 +628,7 @@
 
                                             <div class="row" style="height:330px;">
                                                 <div class="col-lg-3"></div>
-                                                <div class="col-lg-8" style="margin-top: 18.5%;height: 180px;">
+                                                <div class="col-lg-12 ml-lg-5 pl-lg-5" style="margin-top: 16%;height: 180px;">
                                                     <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$f->name ?? ''}}<br/> </span> </p>
                                                     <p class="mb-1 tx-bold"> CPR : {{$f->cpr_no ?? ''}}<br/> </p>
                                                     <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$f->id ?? ''}}<br/> </p>
@@ -663,7 +663,7 @@
 
                                             <div class="row" style="height:330px;">
                                                 <div class="col-lg-3"></div>
-                                                <div class="col-lg-8" style="margin-top: 18.5%;height: 180px;">
+                                                <div class="col-lg-12 ml-lg-5 pl-lg-5" style="margin-top: 16%;height: 180px;">
                                                     <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$f->name ?? ''}}<br/> </span> </p>
                                                     <p class="mb-1 tx-bold"> CPR : {{$f->cpr_no ?? ''}}<br/> </p>
                                                     <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$f->id ?? ''}}<br/> </p>

@@ -27,6 +27,18 @@ class CardProfile extends Controller
         return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father'));
     }
 
+
+
+        public function printToPDF($id)
+        {
+            $card = Card::where('id', $id)->first();
+            $pdf = PDF::loadView('cards.single_card',compact('card'));
+            $pdf->setPaper(array(30,-30,450,240));
+            return $pdf->download($id.'.pdf');
+        }
+
+
+
     public function update(Request $request)
     {
         $request->validate([
@@ -114,12 +126,4 @@ class CardProfile extends Controller
         return view('cards.invoice', compact('invoice','invoice1'));
     }
 
-    public function exportPdf() {
-        $pdf = PDF::loadView('index'); // <--- load your view into theDOM wrapper;
-        $path = public_path('pdf_docs/'); // <--- folder to store the pdf documents into the server;
-        $fileName =  time().'.'. 'pdf' ; // <--giving the random filename,
-        $pdf->save($path . '/' . $fileName);
-        $generated_pdf_link = url('pdf_docs/'.$fileName);
-        return response()->json($generated_pdf_link);
-    }
 }

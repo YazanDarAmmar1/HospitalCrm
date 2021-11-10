@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -235,9 +235,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        Barryvdh\DomPDF\Facade::class,
-
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
 
     ],

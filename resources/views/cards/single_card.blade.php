@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <style>
+
+
+        body {
+            font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ;
+                   }
+
+        .sema-card {
+            /*border-radius: 40px;*/
+            background-color: transparent;
+            background-position: center !important;
+            background-size: cover !important;
+            background-repeat: no-repeat;
+            position: fixed;
+            height: 350px;
+            width: 550px;
+            /*margin:20px auto;*/
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div class="row" id="print">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-12 col-md-12 sema-card" style="background-image: url({{public_path('assets/img/sama_card.jpg')}});background-size:cover; " >
+
+        <div class="row">
+            <div class="col-lg-4 header" style="margin-top: 95px;"></div>
+            <div class="col-lg-12" style="margin-left:120px; ">
+                <b>
+                <table style="font-size: 19px">
+                    <tr><td><b>Name </b></td><td><b>: {{$card->name ?? ''}}</b></td></tr>
+                    <tr><td><b>CPR No.</b></td><td>: {{$card->cpr_no ?? ''}}</td></tr>
+                    <tr><td><b>ID No. </b></td><td>: SHC222 - {{$card->id ?? ''}}</td></tr>
+                    <tr><td><b>Valid till </b></td><td>: {{$card->expiry ?? ''}}</td></tr>
+                </table>
+                </b>
+
+                <h2 style="margin-top: 12px">This is Not Insurance Card</h2>
+            </div>
+
+            <div class="col-lg-4"></div>
+        </div>
+
+    </div>
+    <div class="col-lg-4"></div>
+
+</div>
+</body>
+</html>
