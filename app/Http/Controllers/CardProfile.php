@@ -29,10 +29,12 @@ class CardProfile extends Controller
 
 
 
-        public function printToPDF($id)
+        public function printToPDF($id,$id2)
         {
+            $desin= $id2;
+            $card_father = Card::where('father_id', $id)->get();
             $card = Card::where('id', $id)->first();
-            $pdf = PDF::loadView('cards.single_card',compact('card'));
+            $pdf = PDF::loadView('cards.single_card',compact('card','desin','card_father'));
             $pdf->setPaper(array(30,-30,450,240));
             return $pdf->download($id.'.pdf');
         }

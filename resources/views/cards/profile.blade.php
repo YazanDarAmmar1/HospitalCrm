@@ -578,7 +578,7 @@
 
                                         </div>
                                         <div class="col-lg-2">
-                                            <a href="{{route('single_card',$card->id)}}"  class="btn btn-danger float-left mt-3 mr-2">
+                                            <a href="{{route('single_card',['id'=>$card->id,'id2'=>0])}}"  class="btn btn-danger float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print
                                             </a>
                                         </div>
@@ -608,7 +608,7 @@
 
                                         </div>
                                         <div class="col-lg-2">
-                                            <a href="{{route('single_card',$card->id)}}" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                            <a href="{{route('single_card',['id'=>$card->id,'id2'=>1])}}" onclick="" class="btn btn-danger float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print
                                             </a>
                                         </div>
@@ -620,6 +620,14 @@
 
                                 {{--Allcard--}}
                                 <div class="tab-pane" id="allcard">
+                                    <div class="row">
+                                        <div class="col-lg-4"><a href="{{route('single_card',['id'=>$card->id,'id2'=>2])}}"  class="btn btn-primary float-left mt-3 mr-2">
+                                            <i class="mdi mdi-printer ml-1"></i>Print All
+                                        </a>
+                                    </div>
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4"></div>
+                                    </div>
                                     @foreach($card_father as $f)
 
                                     <div class="row" id="print">
@@ -627,7 +635,8 @@
                                         <div class="col-lg-8" style="background-color: white" >
 
                                             <div class="row" style="height:330px;">
-                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-3">
+                                                </div>
                                                 <div class="col-lg-12 ml-lg-5 pl-lg-5" style="margin-top: 16%;height: 180px;">
                                                     <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$f->name ?? ''}}<br/> </span> </p>
                                                     <p class="mb-1 tx-bold"> CPR : {{$f->cpr_no ?? ''}}<br/> </p>
@@ -642,7 +651,7 @@
                                         </div>
 
                                         <div class="col-lg-2">
-                                            <a href="" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                            <a href="{{route('single_card',['id'=>$f->id,'id2'=>0])}}"  class="btn btn-danger float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print
                                             </a>
                                         </div>
@@ -655,6 +664,14 @@
 
                                 {{--Allcarddesing--}}
                                 <div class="tab-pane" id="allcarddesing">
+                                    <div class="row">
+                                        <div class="col-lg-4"><a href="{{route('single_card',['id'=>$card->id,'id2'=>3])}}"  class="btn btn-primary float-left mt-3 mr-2">
+                                                <i class="mdi mdi-printer ml-1"></i>Print All
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4"></div>
+                                    </div>
                                     @foreach($card_father as $f)
 
                                     <div class="row" id="print">
@@ -677,7 +694,7 @@
                                         </div>
 
                                         <div class="col-lg-2">
-                                            <a href="" onclick="" class="btn btn-danger float-left mt-3 mr-2">
+                                            <a href="{{route('single_card',['id'=>$f->id,'id2'=>1])}}"  class="btn btn-danger float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print
                                             </a>
                                         </div>
