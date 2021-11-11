@@ -81,6 +81,15 @@ class CardProfile extends Controller
         $new->delivery = $request->delivery;
         $new->total = $request->total;
         $new->balance = $request->balance;
+        if (!($request->customer_img == null)) {
+            $image = $request->customer_img;
+            $file_name = $image->getClientOriginalName();
+
+            $new->img = $file_name;
+            // move pic
+            $imageName = $request->customer_img->getClientOriginalName();
+            $request->customer_img->move(public_path('customer_img/' . $request->cpr), $imageName);
+        }
         $date_s = Carbon::createFromFormat('Y-m-d', $request->date);
         if ($request->period == '3Months') {
             $date = 3;

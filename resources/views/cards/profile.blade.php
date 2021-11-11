@@ -9,6 +9,8 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
     <!--Internal  treeview -->
     <link href="{{URL::asset('assets/plugins/treeview/treeview.css')}}" rel="stylesheet" type="text/css"/>
+    <!---Internal Fileupload css-->
+    <link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
 
     <!-- Internal Data table css -->
     <link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet"/>
@@ -460,6 +462,12 @@
                                                             <input type="text" name="balance" id="total" class="form-control mb-1"
                                                                    value="{{$card->balance ?? ' '}}"    >
                                                         </div>
+                                                        <div class="col-lg-12 mg-t-10 mg-md-t-0">
+                                                            <label class="label">Image</label>
+                                                            <input type="file" id="id_service_image" class="dropify" name="customer_img"
+                                                                   data-height="90" data-default-file="{{ URL::to('customer_img')}}/{{$card->cpr_no ?? ''}}/{{$card->img ?? ''}}"/>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -590,12 +598,16 @@
 
 
                                     <div class="row" id="print">
-                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-2">
+
+
+                                        </div>
                                         <div class="col-lg-8 col-md-12" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:cover; " >
 
                                             <div class="row" style="height:330px;">
                                                 <div class="col-lg-3"></div>
                                                 <div class="col-lg-12 ml-lg-5 pl-lg-5" style="margin-top: 16%;height: 180px;">
+
                                                     <p class="mb-1 tx-bold " > Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span> </p>
                                                     <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/> </p>
                                                     <p class="mb-1 tx-bold">  ID No. : SHC222 - {{$card->id ?? ''}}<br/> </p>
@@ -799,7 +811,7 @@
                     <button aria-label="Close" class="close" data-dismiss="modal"
                             type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{{route('add_cards_user')}}" method="post">
+                <form action="{{route('add_cards_user')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body" style="background-color: whitesmoke">
                         <input type="hidden" readonly name="id_inp" id="id_inp">
@@ -1015,6 +1027,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-12 mg-t-10 mg-md-t-0">
+                                <label class="label">Image</label>
+                                <input type="file"  class="dropify" name="customer_img"
+                                       data-height="90"/>
+                            </div>
 
                             <div class="col-md-12 mb-4 ">
                                 <label class="label">Comment</label>
@@ -1059,6 +1076,9 @@
     <!--Internal  Form-elements js-->
     <script src="{{URL::asset('assets/js/advanced-form-elements.js')}}"></script>
     <script src="{{URL::asset('assets/js/select2.js')}}"></script>
+    <!--Internal Fileuploads js-->
+    <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
 
     <!-- SWEET Alert-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"

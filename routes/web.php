@@ -29,7 +29,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/m', function () {
+Route::get('/m/{id}', function () {
     return view('cards.single_card');
 });
 
@@ -102,6 +102,7 @@ Route::post('add_cards_user',[CardController::class,'store'])->name('add_cards_u
 Route::get('show_cards',[AllCardController::class,'index'])->name('show_cards');
 Route::post('delete/card',[AllCardController::class,'destroy'])->name('delete_card');
 Route::post('status/card/update',[AllCardController::class,'update'])->name('update_status');
+Route::post('card/import/customer',[AllCardController::class,'importCustomer'])->name('card_customer_import');
 
 
 //ProfileCard Route

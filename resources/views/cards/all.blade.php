@@ -7,6 +7,10 @@
     <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <!---Internal Fileupload css-->
+    <link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
+    <!---Internal Fancy uploader css-->
+    <link href="{{URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -19,6 +23,11 @@
         <div class="d-flex my-xl-auto right-content">
             <div class="mb-3 mb-xl-0">
                 <div class="btn-group">
+
+                    <a class="modal-effect btn btn-outline-danger btn-block" data-effect="effect-super-scaled"
+                       data-toggle="modal" href="#modaldemlo12234"><i class="fas fa-file-import"></i></a>
+                </div>
+                <div class="btn-group">
                     <a href="{{route('add_cards')}}" class="btn btn-outline-primary" title="add card">
                         <i class="fas fa-user-plus"></i>
                     </a>
@@ -26,7 +35,7 @@
 
                 <div class="btn-group dropdown">
                     <button type="button" class="btn text-white"
-                            style="background-color:#761193;">{{date('Y-M-d')}}</button>
+                            style="background-color:#761193;">{{date('d-M-Y')}}</button>
                 </div>
 
 
@@ -457,6 +466,32 @@
             </div>
         </div>
     </div>
+    {{--contract--}}
+    <div class="modal" id="modaldemlo12234">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">Add File Import</h6>
+                    <button aria-label="Close" class="close" data-dismiss="modal"
+                            type="button"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="{{route('card_customer_import')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="col-sm-12 col-md-4 col-lg-12">
+                            <label class="label mt-2">File Import</label>
+                            <input type="file" class="dropify" data-height="70" name="import"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 
 @endsection
 @section('js')
@@ -477,6 +512,9 @@
     <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
+    <!--Internal Fileuploads js-->
+    <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <!--Internal  Datatable js -->
     <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 

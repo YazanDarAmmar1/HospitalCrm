@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
 use App\Card;
 use App\Card_type;
 use App\Package_type;
@@ -43,7 +44,7 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        $user =Auth::user()->id;
+        $user = Auth::user()->id;
         $request->validate([
             'name' => 'required',
             'cpr' => 'required|unique:cards,cpr_no|max:13',
@@ -78,7 +79,17 @@ class CardController extends Controller
         $card->status = $request->status;
         $card->comment = $request->comment;
         $card->father_id = $request->id_inp;
-        $date_s =  Carbon::createFromFormat('Y-m-d', $request->date);
+        if (!($request->customer_img == null)) {
+            $image = $request->customer_img;
+            $file_name = $image->getClientOriginalName();
+
+            $card->img = $file_name;
+            // move pic
+            $imageName = $request->customer_img->getClientOriginalName();
+            $request->customer_img->move(public_path('customer_img/' . $request->cpr), $imageName);
+        }
+
+        $date_s = Carbon::createFromFormat('Y-m-d', $request->date);
         if ($request->period == '3Months') {
             $date = 3;
             $date_new = $date_s->addMonth($date);
@@ -92,24 +103,24 @@ class CardController extends Controller
             $date = 5;
             $date_new = $date_s->addMonth($date)->toDateString();
             $card->expiry = $date_new;
-        }elseif ($request->period == '1Year'){
+        } elseif ($request->period == '1Year') {
             $date = 1;
             $date_new = $date_s->addYear($date)->toDateString();
             $card->expiry = $date_new;
-        }elseif ($request->period == '2Years'){
+        } elseif ($request->period == '2Years') {
             $date = 2;
             $date_new = $date_s->addYear($date)->toDateString();
             $card->expiry = $date_new;
-        }elseif ($request->period == '5Years'){
+        } elseif ($request->period == '5Years') {
             $date = 5;
             $date_new = $date_s->addYear($date)->toDateString();
             $card->expiry = $date_new;
-        }else{
+        } else {
             session()->flash('error', 'Data has been Error');
         }
         $card->save();
         session()->flash('add', 'Data has been added successfully');
-        return redirect('/profile/'.$card->id);
+        return redirect('/profile/' . $card->id);
     }
 
     /**

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use App\Card_type;
+use App\Imports\CustomerImport;
+use App\Imports\HospitalImport;
 use App\Package_type;
 use App\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AllCardController extends Controller
 {
@@ -37,5 +40,21 @@ class AllCardController extends Controller
         Card::destroy($id);
         session()->flash('add', 'Data has been deleted successfully');
         return back();
+    }
+
+    public function importCustomer(Request $request)
+    {
+        $request->validate([
+            'import' => 'required|mimes:xlsx'
+        ], [
+            'import.required' => 'Please Add File Import',
+            'import.mimes' => 'Attachment format should be just xlsx',
+        ]);
+        $file = $request->file('import');
+        Excel::import(new CustomerImport(), $file);
+        session()->flash('add', 'Data has been added successfully');
+        return back();
+
+
     }
 }

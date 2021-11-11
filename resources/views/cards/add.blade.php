@@ -285,7 +285,7 @@
                                                             </div>
                                                             <div class="col-md-6 mg-t-10 mg-md-t-0">
                                                                 <label class="label">Image</label>
-                                                                <input type="file" disabled class="dropify" name="logo"
+                                                                <input type="file"  class="dropify" name="customer_img"
                                                                        data-height="90"/>
                                                             </div>
                                                         </div>
