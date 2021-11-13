@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use App\Card_type;
+use App\Notifications\CardEmail;
 use App\Package_type;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
-
-
+use App\Notifications\AgendamentoPendente;
+use Illuminate\Support\Facades\Mail;
+use Storage;
 class CardProfile extends Controller
 {
     public function index($id)
@@ -28,17 +30,36 @@ class CardProfile extends Controller
     }
 
 
+    public function printToPDF1($id, $id2)
+    {
+        $desin = $id2;
+        $card_father = Card::where('father_id', $id)->get();
+        $card = Card::where('id', $id)->first();
+        $pdf = PDF::loadView('cards.single_card', compact('card', 'desin', 'card_father'));
+        $pdf->setPaper(array(30, -30, 450, 240));
+        $pdf->save(public_path('card/').$card->cpr_no.'.pdf');
+        return $pdf->download($id.'.pdf');
 
-        public function printToPDF($id,$id2)
-        {
-            $desin= $id2;
-            $card_father = Card::where('father_id', $id)->get();
-            $card = Card::where('id', $id)->first();
-            $pdf = PDF::loadView('cards.single_card',compact('card','desin','card_father'));
-            $pdf->setPaper(array(30,-30,450,240));
-            return $pdf->download($id.'.pdf');
-        }
+    }
 
+    public function printToPDF($id,$id2){
+        $desin = $id2;
+        $card_father = Card::where('father_id', $id)->get();
+        $card = Card::where('id', $id)->first();
+
+        $data["email"] =$card->email;
+        $data["title"] = "From SAMA CARDS BAHRAIN";
+        $data["body"] = "This is Demo";
+        $pdf = PDF::loadView('cards.single_card', compact('card', 'desin', 'card_father'));
+        $pdf->setPaper(array(30, -30, 450, 240));
+        Mail::send('cards.single_invoices', $data, function($message)use($data, $pdf) {
+            $message->to($data["email"], $data["email"])
+                ->subject($data["title"])
+                ->attachData($pdf->output(), "Card.pdf");
+        });
+
+        return $pdf->download($id.'.pdf');
+    }
 
 
     public function update(Request $request)
@@ -82,7 +103,7 @@ class CardProfile extends Controller
         $new->total = $request->total;
         $new->balance = $request->balance;
         if (!($request->customer_img == null)) {
-            $image = $request->customer_img;
+            $image = $request->file('customer_img');
             $file_name = $image->getClientOriginalName();
 
             $new->img = $file_name;
@@ -90,6 +111,8 @@ class CardProfile extends Controller
             $imageName = $request->customer_img->getClientOriginalName();
             $request->customer_img->move(public_path('customer_img/' . $request->cpr), $imageName);
         }
+
+
         $date_s = Carbon::createFromFormat('Y-m-d', $request->date);
         if ($request->period == '3Months') {
             $date = 3;
@@ -134,7 +157,7 @@ class CardProfile extends Controller
     {
         $invoice = Card::where('id', $id)->first();
         $invoice1 = Card::where('father_id', $id)->get();
-        return view('cards.invoice', compact('invoice','invoice1'));
+        return view('cards.invoice', compact('invoice', 'invoice1'));
     }
 
 }

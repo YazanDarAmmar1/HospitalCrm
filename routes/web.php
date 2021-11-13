@@ -112,6 +112,7 @@ Route::get('/profile/invoice/{id}',[CardProfile::class,'invoice_index'])->name('
 Route::get('/profile/invoice/all/{id}',[CardProfile::class,'all_invoice_index'])->name('profile_invoice_show_all');
 Route::get('/export-pdf', [CardProfile::class, 'exportPdf'])->name('pdf');
 Route::get('/single/card/{id}{id2}', [CardProfile::class, 'printToPDF'])->name('single_card');
+Route::get('/send/card/{id}{id2}', [CardProfile::class, 'sendMail'])->name('sendMail');
 
 
 Route::group(['middleware' => ['auth']], function() {
