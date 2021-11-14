@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('css')
 <!--  Owl-carousel css-->
@@ -13,23 +12,7 @@
 					<div class="left-content">
 						<div>
 						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Hi, welcome back!</h2>
-						  <p class="mg-b-0">Sales monitoring dashboard template.</p>
-						</div>
-					</div>
-					<div class="main-dashboard-header-right">
-						<div>
-							<label class="tx-13">Customer Ratings</label>
-							<div class="main-star">
-								<i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star"></i> <span>(14,873)</span>
-							</div>
-						</div>
-						<div>
-							<label class="tx-13">Online Sales</label>
-							<h5>563,275</h5>
-						</div>
-						<div>
-							<label class="tx-13">Offline Sales</label>
-							<h5>783,675</h5>
+						  <p class="mg-b-0">SAMA BAHREAIN CARD DASHBOARD .</p>
 						</div>
 					</div>
 				</div>
@@ -40,92 +23,195 @@
 				<div class="row row-sm">
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-primary-gradient">
+                            <a href="">
 							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TODAY ORDERS</h6>
+									<h6 class="mb-3 tx-12 text-white">All Created Cards</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$5,74.12</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::count()}}</h4>
+											<p class="mb-0 tx-12 text-white op-7">Total of sum all cards</p>
 										</div>
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> +427</span>
+											<span class="text-white op-7">
+                                                {{number_format(\App\Card::sum('total'),2)}}
+                                            </span>
 										</span>
 									</div>
 								</div>
 							</div>
-							<span id="compositeline" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
+                            </a>
+
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-danger-gradient">
 							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TODAY EARNINGS</h6>
+									<h6 class="mb-3 tx-12 text-white">Total Draft Cards</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$1,230.17</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
-										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-down text-white"></i>
-											<span class="text-white op-7"> -23.09%</span>
-										</span>
-									</div>
-								</div>
-							</div>
-							<span id="compositeline2" class="pt-1">3,2,4,6,12,14,8,7,14,16,12,7,8,4,3,2,2,5,6,7</span>
-						</div>
-					</div>
-					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-						<div class="card overflow-hidden sales-card bg-success-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TOTAL EARNINGS</h6>
-								</div>
-								<div class="pb-0 mt-0">
-									<div class="d-flex">
-										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$7,125.70</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where('status','draft')->count()}}</h4>
+											<p class="mb-0 tx-12 text-white op-7">Total of sum all draft cards</p>
 										</div>
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> 52.09%</span>
+											<span class="text-white op-7"> {{number_format(\App\Card::where('status','draft')->sum('total'),2)}}</span>
 										</span>
 									</div>
 								</div>
 							</div>
-							<span id="compositeline3" class="pt-1">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span>
+
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+						<div class="card overflow-hidden sales-card bg-purple-gradient">
+							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+								<div class="">
+									<h6 class="mb-3 tx-12 text-white">Total Pending Cards</h6>
+								</div>
+								<div class="pb-0 mt-0">
+									<div class="d-flex">
+										<div class="">
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where('status','pending')->count()}}</h4>
+											<p class="mb-0 tx-12 text-white op-7">Total of sum all pending cards</p>
+										</div>
+										<span class="float-right my-auto mr-auto">
+											<i class="fas fa-arrow-circle-up text-white"></i>
+											<span class="text-white op-7">{{number_format(\App\Card::where('status','pending')->sum('total'),2)}}</span>
+										</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                        <div class="card overflow-hidden sales-card bg-warning-gradient">
+                            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+                                <div class="">
+                                    <h6 class="mb-3 tx-12 text-white">Total Done Cards</h6>
+                                </div>
+                                <div class="pb-0 mt-0">
+                                    <div class="d-flex">
+                                        <div class="">
+                                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where('status','done')->count()}}</h4>
+                                            <p class="mb-0 tx-12 text-white op-7">Total of sum all done cards</p>
+                                        </div>
+                                        <span class="float-right my-auto mr-auto">
+											<i class="fas fa-arrow-circle-up text-white"></i>
+											<span class="text-white op-7"> {{number_format(\App\Card::where('status','done')->sum('total'),2)}}</span>
+										</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+				</div>
+				<!-- row closed -->
+
+                <!-- row 2 -->
+				<div class="row row-sm">
+					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+						<div class="card overflow-hidden sales-card bg-purple-gradient">
+                            <a href="">
+							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+								<div class="">
+									<h6 class="mb-3 tx-12 text-white">Total Paid Cards</h6>
+								</div>
+								<div class="pb-0 mt-0">
+									<div class="d-flex">
+										<div class="">
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where('status','paid')->count()}}</h4>
+											<p class="mb-0 tx-12 text-white op-7">Total of sum all paid cards</p>
+										</div>
+										<span class="float-right my-auto mr-auto">
+											<i class="fas fa-arrow-circle-up text-white"></i>
+											<span class="text-white op-7">
+                                                {{number_format(\App\Card::where('status','paid')->sum('total'),2)}}
+                                            </span>
+										</span>
+
+									</div>
+								</div>
+
+							</div>
+                            </a>
+
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-warning-gradient">
 							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">PRODUCT SOLD</h6>
+									<h6 class="mb-3 tx-12 text-white">Total Expired Cards</h6>
 								</div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$4,820.50</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where('status','expired')->count()}}</h4>
+											<p class="mb-0 tx-12 text-white op-7">Total of sum all expired cards</p>
 										</div>
 										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-down text-white"></i>
-											<span class="text-white op-7"> -152.3</span>
+											<i class="fas fa-arrow-circle-up text-white"></i>
+											<span class="text-white op-7"> {{number_format(\App\Card::where('status','expired')->sum('total'),2)}}</span>
 										</span>
 									</div>
 								</div>
 							</div>
-							<span id="compositeline4" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
+
 						</div>
 					</div>
+					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+						<div class="card overflow-hidden sales-card bg-primary-gradient">
+							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+								<div class="">
+									<h6 class="mb-3 tx-12 text-white">Total Renewal Cards</h6>
+								</div>
+								<div class="pb-0 mt-0">
+									<div class="d-flex">
+										<div class="">
+											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where('status','expired')->count()}}</h4>
+											<p class="mb-0 tx-12 text-white op-7">Total of sum all pending cards</p>
+										</div>
+										<span class="float-right my-auto mr-auto">
+											<i class="fas fa-arrow-circle-up text-white"></i>
+											<span class="text-white op-7">{{number_format(\App\Card::where('status','expired')->sum('total'),2)}}</span>
+										</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                        <div class="card overflow-hidden sales-card bg-success-gradient">
+                            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+                                <div class="">
+                                    <h6 class="mb-3 tx-12 text-white">Total Today Sales Cards</h6>
+                                </div>
+                                <div class="pb-0 mt-0">
+                                    <div class="d-flex">
+                                        <div class="">
+                                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where([['date',date('Y-m-d')],['status','paid']])->count()}}</h4>
+                                            <p class="mb-0 tx-12 text-white op-7">Total of sum today sales cards</p>
+                                        </div>
+                                        <span class="float-right my-auto mr-auto">
+											<i class="fas fa-arrow-circle-up text-white"></i>
+											<span class="text-white op-7"> {{number_format(\App\Card::where([['date',date('Y-m-d')],['status','paid']])->sum('total'),2)}}</span>
+										</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
 				</div>
 				<!-- row closed -->
 
