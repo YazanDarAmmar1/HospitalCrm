@@ -5,7 +5,6 @@
     <meta name="author" content="https://www.themetechmount.com/" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Sama Card &#8211; Medical, Health and Hospital Card</title>
-
     <!-- favicon icon -->
     <link rel="shortcut icon" href="{{URL::asset('assets/home/images/favicon.png')}}" />
 
@@ -48,4 +47,5 @@
 
     <!-- responsive -->
     <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/home/css/responsive.css')}}"/>
+    @yield('css')
 

@@ -29,9 +29,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/pdf', function () {
-    return view('cards.invoice_pdf');
-});
 
 
 //Hospitals Route
@@ -119,6 +116,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
 });
+
+//Localization
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+    Route::get('/', function()
+    {
+        return View::make('home');
+    });
+});
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('index');
