@@ -15,7 +15,16 @@
 						  <p class="mg-b-0">SAMA BAHREAIN CARD DASHBOARD .</p>
 						</div>
 					</div>
-				</div>
+                    <div class="d-flex my-xl-auto right-content">
+                        <div class="pr-1 mb-3 mb-xl-0">
+                            <a class="  btn btn-primary-gradient btn-block" href="{{ route('add_cards') }}" title="card register" ><i class="fas fa-user-plus"></i> Card Register</a>
+                        </div>
+
+                        <div class="pr-1 mb-3 mb-xl-0">
+                            <a class="  btn btn-danger-gradient btn-block" href="{{ route('show') }}" title="hospital register" ><i class="fas fa-hospital"></i> Provider Register</a>
+                        </div>
+                    </div>
+                    </div>
 				<!-- /breadcrumb -->
 @endsection
 @section('content')
@@ -147,28 +156,6 @@
 						</div>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-						<div class="card overflow-hidden sales-card bg-warning-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-								<div class="">
-									<h6 class="mb-3 tx-12 text-white">Total Expired Cards</h6>
-								</div>
-								<div class="pb-0 mt-0">
-									<div class="d-flex">
-										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where('status','expired')->count()}}</h4>
-											<p class="mb-0 tx-12 text-white op-7">Total of sum all expired cards</p>
-										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> {{number_format(\App\Card::where('status','expired')->sum('total'),2)}}</span>
-										</span>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-primary-gradient">
 							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
@@ -201,6 +188,29 @@
                                         <div class="">
                                             <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where([['date',date('Y-m-d')],['status','paid']])->count()}}</h4>
                                             <p class="mb-0 tx-12 text-white op-7">Total of sum today sales cards</p>
+                                        </div>
+                                        <span class="float-right my-auto mr-auto">
+											<i class="fas fa-arrow-circle-up text-white"></i>
+											<span class="text-white op-7"> {{number_format(\App\Card::where([['date',date('Y-m-d')],['status','paid']])->sum('total'),2)}}</span>
+										</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+                        <div class="card overflow-hidden sales-card bg-danger-gradient">
+                            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+                                <div class="">
+                                    <h6 class="mb-3 tx-12 text-white">Total Online Cards</h6>
+                                </div>
+                                <div class="pb-0 mt-0">
+                                    <div class="d-flex">
+                                        <div class="">
+                                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where([['date',date('Y-m-d')],['status','paid']])->count()}}</h4>
+                                            <p class="mb-0 tx-12 text-white op-7">Total of sum online cards</p>
                                         </div>
                                         <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>

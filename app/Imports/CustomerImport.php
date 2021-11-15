@@ -36,6 +36,7 @@ class CustomerImport implements ToModel
             'status' => $row[18],
             'father_id' => $row[19],
             'comment' => $row[20],
+            'price' => $row[21],
         ]);
     }
 }

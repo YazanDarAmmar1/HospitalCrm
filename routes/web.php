@@ -29,8 +29,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/m/{id}', function () {
-    return view('cards.single_card');
+Route::get('/pdf', function () {
+    return view('cards.invoice_pdf');
 });
 
 
@@ -112,7 +112,7 @@ Route::get('/profile/invoice/{id}',[CardProfile::class,'invoice_index'])->name('
 Route::get('/profile/invoice/all/{id}',[CardProfile::class,'all_invoice_index'])->name('profile_invoice_show_all');
 Route::get('/export-pdf', [CardProfile::class, 'exportPdf'])->name('pdf');
 Route::get('/single/card/{id}{id2}', [CardProfile::class, 'printToPDF'])->name('single_card');
-Route::get('/send/card/{id}{id2}', [CardProfile::class, 'sendMail'])->name('sendMail');
+Route::get('/single/card/invoices/{id}', [CardProfile::class, 'printToPDF_invoices'])->name('single_invoice_pdf');
 
 
 Route::group(['middleware' => ['auth']], function() {

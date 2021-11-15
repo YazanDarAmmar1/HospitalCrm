@@ -56,12 +56,6 @@
             </div>
 
             <div class="btn-group">
-                <a href="{{route('sendMail',['id'=>$card->id,'id2'=>$card->email])}}" title="add card" class="btn btn-outline-primary">
-                    Send Card
-                </a>
-            </div>
-
-            <div class="btn-group">
                 <a href="{{route('profile_invoice_show',$card->id)}}" title="print invoice" class="btn btn-outline-danger">
                     <i class="fas fa-print"></i>
                     Print Invoice

@@ -130,6 +130,11 @@
                                     <button onclick="printDiv();" id="print_Button" class="btn btn-danger float-left mt-3 mr-2">
                                         <i class="mdi mdi-printer ml-1"></i>Print
                                     </button>
+                                    <a href="{{route('single_invoice_pdf',$invoice->id)}}">
+                                    <button  id="print_Button" class="btn btn-primary float-left mt-3 mr-2">
+                                        Send To Email
+                                    </button>
+                                    </a>
 
                                     <br/>
                                     <br/>

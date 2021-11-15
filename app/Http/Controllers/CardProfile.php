@@ -48,17 +48,46 @@ class CardProfile extends Controller
         $card = Card::where('id', $id)->first();
 
         $data["email"] =$card->email;
-        $data["title"] = "From SAMA CARDS BAHRAIN";
-        $data["body"] = "This is Demo";
+        $data["title"] = "From SAMA CARDS";
+        $data["body"] = "To add more members, please click below";
+        $data["name"] = $card->name;
         $pdf = PDF::loadView('cards.single_card', compact('card', 'desin', 'card_father'));
         $pdf->setPaper(array(30, -30, 450, 240));
-        Mail::send('cards.single_invoices', $data, function($message)use($data, $pdf) {
-            $message->to($data["email"], $data["email"])
-                ->subject($data["title"])
-                ->attachData($pdf->output(), "Card.pdf");
-        });
+        if ($card->status == 'paid') {
+            Mail::send('cards.email_desing', $data, function ($message) use ($data, $pdf) {
+                $message->to($data["email"], $data["email"])
+                    ->subject($data["title"])
+                    ->attachData($pdf->output(), "Your Card.pdf");
+            });
+        }else{
+
+        }
 
         return $pdf->download($id.'.pdf');
+    }
+
+    public function printToPDF_invoices($id){
+        $invoice = Card::where('id', $id)->first();
+        $invoice1 = Card::where('father_id', $id)->get();
+
+
+        $data["email"] =$invoice->email;
+        $data["title"] = "From SAMA CARDS";
+        $data["body"] = "To Add More Members, Please Click Below";
+        $data["name"] = $invoice->name;
+        $pdf = PDF::loadView('cards.invoice_pdf', compact('invoice','invoice1'));
+        $pdf->setPaper("A3", "portrait");
+
+
+        if ($invoice->status == 'paid') {
+            Mail::send('cards.email_desing2', $data, function ($message) use ($data, $pdf) {
+                $message->to($data["email"], $data["email"])
+                    ->subject($data["title"])
+                   ->attachData($pdf->output(), "Your invoice.pdf");
+            });
+        }else{
+       }
+        return back();
     }
 
 
