@@ -38,7 +38,10 @@ return [
     'Surgical2' => 'All kinds of surgeries',
     'hesitate' => 'Don’t hesitate, contact us for better help and services',
     'started' => 'Let’s get started',
-
+    'about2' => 'The Healthsaver card is an annual membership which allows the patient to access in a wide range of private hospitals and to get immediate discount in all medical and cosmetic services.',
+    'aboutsama' =>'About Sama',
+    'our' =>'Our Services',
+    'Quick' =>'Quick Links',
     'High-quality' => 'Sama Bahrain Card Services',
     'Hospital' => 'Our Of Some Hospitals',
     'Bahrain' => 'Bahrain Specialist Hospital',

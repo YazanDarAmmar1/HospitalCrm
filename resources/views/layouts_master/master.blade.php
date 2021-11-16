@@ -15,7 +15,9 @@
 
 
 <!-- container -->
+@include('layouts_master.header')
 @yield('content')
+@include('layouts_master.footer')
 @yield('js')
 <script src="{{URL::asset('assets/home/js/jquery.min.js')}}"></script>
 <script src="{{URL::asset('assets/home/js/tether.min.js')}}"></script>

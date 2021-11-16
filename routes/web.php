@@ -127,6 +127,11 @@ Route::group(
     {
         return View::make('home');
     });
+
+    Route::get('/apply', function()
+    {
+        return View::make('apply_card');
+    });
 });
 
 
