@@ -16,7 +16,7 @@ class Hospital extends Model
 
     public function Attachment()
     {
-        return $this->hasMany(Attachment::class, 'hospital_id');
+        return $this->hasOne(Attachment::class, 'hospital_id');
     }
 
     public function Contract()

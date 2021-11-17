@@ -13,6 +13,7 @@ use App\Http\Controllers\CardTypeController;
 use App\Http\Controllers\PackageTypeController;
 use App\Http\Controllers\AllCardController;
 use App\Http\Controllers\CardProfile;
+use App\Http\Controllers\HospitalDirectoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ Route::post('hospital/delete',[HospitalController::class,'destroy'])->name('hosp
 Route::post('hospital/delete/all',[HospitalController::class,'hospital_delete_checked'])->name('delete_all');
 Route::post('hospital/edit_status',[HospitalController::class,'edit_status'])->name('edit_status');
 Route::post('hospital/edit_status_online',[HospitalController::class,'edit_status_online'])->name('edit_status_online');
-Route::get('profile/{id}',[HospitalController::class,'index_profile'])->name('hospital_profile');
+Route::get('profile_hospital/{id}',[HospitalController::class,'index_profile'])->name('hospital_profile');
 Route::post('hospital/import',[HospitalController::class,'importHospital'])->name('hospital_import');
 Route::post('services/import',[HospitalController::class,'importServices'])->name('services_import');
 
@@ -132,6 +133,7 @@ Route::group(
     {
         return View::make('apply_card');
     });
+    Route::get('hospital/directory',[HospitalDirectoryController::class,'index'])->name('hospital.directory');
 });
 
 

@@ -82,7 +82,7 @@
                             <tbody>
                             @foreach($hospitals as $h)
                                 <tr id="pos{{$h->id}}">
-                                    <td><a href="{{url('profile')}}/{{$h->id}}">{{$h->name}}</a></td>
+                                    <td><a href="{{url('profile_hospital')}}/{{$h->id}}">{{$h->name}}</a></td>
                                     <td>{{$h->expiry_date}}</td>
                                     <td>{{$h->email}}</td>
                                     <td>{{$h->comment}}</td>
