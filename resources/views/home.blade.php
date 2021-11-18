@@ -516,14 +516,7 @@
 
         <!--cta-section-->
 
-
-
     </div><!--site-main end-->
-
-
-
-    <!--footer end-->
-
 
 </div><!-- page end -->
 @endsection

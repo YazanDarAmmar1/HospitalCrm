@@ -13,6 +13,7 @@ use App\Http\Controllers\CardTypeController;
 use App\Http\Controllers\PackageTypeController;
 use App\Http\Controllers\AllCardController;
 use App\Http\Controllers\CardProfile;
+use App\Http\Controllers\ApplyCardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,10 +129,8 @@ Route::group(
         return View::make('home');
     });
 
-    Route::get('/apply', function()
-    {
-        return View::make('apply_card');
-    });
+    Route::get('public/apply',[ApplyCardController::class,'index'])->name('apply.view');
+    Route::post('public/apply/add',[ApplyCardController::class,'store'])->name('apply.add');
 });
 
 
