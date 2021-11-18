@@ -10,8 +10,8 @@ class ApplyCardController extends Controller
 {
     public function index()
     {
-        $package = Package_type::where('status',1)->get();
-        return view('apply_card',compact('package'));
+        $package = Package_type::where('status', 1)->get();
+        return view('apply_card', compact('package'));
     }
 
     public function store(Request $request)
@@ -20,11 +20,12 @@ class ApplyCardController extends Controller
             'name' => 'required',
             'cpr' => 'required|unique:cards,cpr_no',
         ]);
-        foreach ($request->input('name') as $key => $name){
+        foreach ($request->input('name') as $key => $name) {
+
 
             $card = new Card();
-            $card->name =  $request->input('name')[$key];
-            $card->cpr_no =  $request->input('cpr')[$key];
+            $card->name = $request->input('name')[$key];
+            $card->cpr_no = $request->input('cpr')[$key];
             $card->gender = $request->input('gender')[$key];
             $card->email = $request->input('email')[$key];
             $card->phone = $request->input('phone')[$key];
@@ -38,6 +39,10 @@ class ApplyCardController extends Controller
             $card->comment = $request->input('note');
             $card->father_id = $request->input('cpr')[0];
             $card->status = 'draft';
+            $card->online = 1;
+            $card->date = date('Y-m-d');
+            $card->card_type_id = 1;
+            $card->agent_id = 1;
             $card->save();
 
         }

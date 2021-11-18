@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="title-box ttm-textcolor-white">
                         <div class="page-title-heading">
-                            <h1 class="title">{{trans('main_tran.Apply Card')}}</h1>
+                            <h1 class="title">{{trans('main_tran.Search e-Card')}}</h1>
                         </div><!-- /.page-title-captions -->
 
                     </div>
@@ -25,6 +25,8 @@
 
         <!-- sidebar -->
         <div class="sidebar ttm-sidebar-left ttm-bgcolor-white break-991-colum clearfix">
+            <form method="post" action="{{route('search.card.cpr')}}" class="form-group">
+                @csrf
             <div class="container">
                 <!-- row -->
                 <div class="row">
@@ -33,120 +35,73 @@
                         <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
                         <aside class="widget widget-nav-menu">
                             <ul class="widget-menu box-shadow">
-                                <li class="active"><a
+                                <li><a
                                         href="{{route('apply.view')}}">{{trans('main_tran.Apply Card')}}</a></li>
                                 <li><a href="x-ray-rmi-services.html">{{trans('main_tran.Medical Directory')}}</a></li>
-                                <li><a href="{{route('search.card')}}">{{trans('main_tran.Search e-Card')}}</a></li>
+                                <li class="active"><a href="{{route('search.card')}}">{{trans('main_tran.Search e-Card')}}</a></li>
 
                             </ul>
                         </aside>
                     </div>
                     <div class="col-lg-9 content-area" style="background-color: whitesmoke">
                         <!-- ttm-service-single-content-are -->
-                        <div class="ttm-service-single-content-area">
-                            <div class="row">
+                        <div class="row">
 
-                                <div class="col-sm-12">
-                                    <div class="ttm-service-description">
-                                        <h4>Please Fill in All Fields</h4>
+                            <div class="col-lg-12">
+                                <div class="ttm-service-description">
+                                    <h4>Please Fill in Your CPR No.</h4>
 
-                                    </div>
                                 </div>
-                                <form class="form-group"  method="post" action="{{route('apply.add')}}" enctype="multipart/form-data">
-                                    <div class="row">
-                                    @csrf
-
-
-                                <div class="col-lg-6 mb-4">
-                                    <label class="label">Name :</label>
-                                    <input class="form-control" type="text" name="name[]" placeholder="Name" required>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <label class="label">CPR No. :</label>
-                                    <input class="form-control" type="number" name="cpr[]" placeholder="CPR" required>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <label class="label">Gender :</label>
-                                    <select class="form-control" name="gender[]" required>
-                                        <option label="select one"></option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <label class="label">Card Package :</label>
-                                    <select class="form-control" name="package">
-                                        <option label="select one"></option>
-                                        @foreach($package as $p)
-                                        <option value="{{$p->id ?? ''}}">{{$p->name ?? ''}}</option>
-                                        @endforeach
-
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <label class="label">Mobile No. :</label>
-                                    <input class="form-control" type="text" name="mobile" placeholder="Mobile" required>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <label class="label">Phone No. :</label>
-                                    <input class="form-control" type="text" name="phone[]" placeholder="Phone" >
-                                </div>
-                                <div class="col-lg-12 mb-4">
-                                    <label class="label">Email :</label>
-                                    <input class="form-control" type="email" name="email[]" placeholder="Email">
-                                </div>
-
-                                <div class="col-lg-3 mb-4">
-                                    <label class="label">House :</label>
-                                    <input class="form-control" type="text" name="house" placeholder="House" >
-                                </div>
-                                <div class="col-lg-3 mb-4">
-                                    <label class="label">Road :</label>
-                                    <input class="form-control" type="text" name="road" placeholder="Road" >
-                                </div>
-                                <div class="col-lg-3 mb-4">
-                                    <label class="label">Block :</label>
-                                    <input class="form-control" type="text" name="block" placeholder="Block" >
-                                </div>
-                                <div class="col-lg-3 mb-4">
-                                    <label class="label">Place :</label>
-                                    <input class="form-control" type="text" name="place" placeholder="Place" >
-                                </div>
-
-                                <div class="col-lg-6 mb-4">
-                                    <label class="label">Type Of Payment :</label>
-                                    <select class="form-control" name="type">
-                                        <option label="select one"></option>
-                                        <option value="benefit">Benefit</option>
-                                        <option value="cash">Cash On Delivery</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <label class="label">Image Id :</label>
-                                    <input class="form-control" type="file" name="img" >
-                                </div>
-
-                                <div class="col-lg-12 mb-5" id="survey_options">
-                                    <label class="label">Note :</label>
-                                    <textarea class="form-control" row="3" col="30" name="note"></textarea>
-                                </div>
-
-                                <div class="col-lg-6 mb-4">
-                                    <button class="btn btn-outline-primary col-lg-12" type="submit">Apply</button>
-                                </div>
-
-                                <div class="col-lg-6 ">
-                                    <a class="btn btn-outline-danger col-lg-12" id="add_more_fields">Add More People</a>
-                                </div>
-                                    </div>
-                                </form>
                             </div>
-                        </div>
+                            <div class="col-lg-10 ">
+                                <label class="label">CPR No. :</label>
+                                <input class="form-control" type="number" name="cpr" placeholder="CPR No." required>
+                            </div>
+                            <div class="col-lg-2 mt-30 ">
+                                <button class="btn btn-outline-primary form-control" type="submit"><i class="fa fa-search-plus"></i>  Search</button>
+                            </div>
+
+
+
+                            <div class="col-lg-3 col-md-3 col-md-3"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 mt-30" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:contain; background-repeat: no-repeat; height:330px; ">
+                                <div class="row">
+                                    <div class="col-lg-4 header" style="margin-top: 18%;"></div>
+                                    <div class="col-lg-12">
+                                        <b>
+                                            <table  class="table-hover" style="color: black;" >
+                                                <tr>
+                                                    <td><b>Name </b></td>
+                                                    <td><b>: {{$card->name ?? ''}}</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>CPR No.</b></td>
+                                                    <td>: {{$card->cpr_no ?? ''}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>ID No. </b></td>
+                                                    <td>: SHC222 - {{$card->id ?? ''}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Valid till </b></td>
+                                                    <td>: {{$card->expiry ?? ''}}</td>
+                                                </tr>
+
+                                            </table>
+                                        </b>
+
+                                    </div>
+
+                                    <div class="col-lg-4"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-md-3"></div>
                         <!-- ttm-service-single-content-are end -->
                     </div>
                 </div><!-- row end -->
             </div>
         </div>
+            </form>
         <!-- sidebar end -->
 
 

@@ -14,6 +14,7 @@ use App\Http\Controllers\PackageTypeController;
 use App\Http\Controllers\AllCardController;
 use App\Http\Controllers\CardProfile;
 use App\Http\Controllers\ApplyCardController;
+use App\Http\Controllers\SearchCardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,9 +129,12 @@ Route::group(
     {
         return View::make('home');
     });
-
+    // Apply Card
     Route::get('public/apply',[ApplyCardController::class,'index'])->name('apply.view');
     Route::post('public/apply/add',[ApplyCardController::class,'store'])->name('apply.add');
+    // Search Card
+    Route::get('public/search/card',[SearchCardController::class,'index'])->name('search.card');
+    Route::post('public/search/card/cpr',[SearchCardController::class,'search'])->name('search.card.cpr');
 });
 
 

@@ -45,12 +45,12 @@
 
             @csrf
             <div class="btn-group">
-                <a href="{{route('show_cards')}}" class="btn btn-outline-success" title="all card"><i
+                <a href="{{route('show_cards')}}" class="btn btn-outline-success btn-lg" title="all card"><i
                         class="far fa-address-card"></i></a>
             </div>
 
             <div class="btn-group">
-                <a href="{{route('add_cards')}}" title="add card" class="btn btn-outline-primary">
+                <a href="{{route('add_cards')}}" title="add card" class="btn btn-outline-primary btn-lg">
                     <i class="fas fa-user-plus"></i>
                 </a>
             </div>
@@ -61,7 +61,7 @@
                     Print Invoice
                 </a>
             </div>
-            @if($card->father_id == '')
+            @if($card->cpr_no == $card->father_id)
             <div class="btn-group">
                 <a href="{{route('profile_invoice_show_all',$card->id)}}" title="print all invoice " class="btn btn-outline-danger">
                     <i class="fas fa-print"></i>
@@ -70,11 +70,11 @@
             </div>
             @else
             @endif
-            @if($card->father_id == null)
+            @if($card->cpr_no == $card->father_id)
             <div class="btn-group">
                 <a class="modal-effect btn  btn-outline-indigo"
                    data-effect="effect-scale"
-                   data-id="{{$card->id}}" data-name="{{$card->name}}"
+                   data-id="{{$card->cpr_no}}" data-name="{{$card->name}}"
                    data-email="{{$card->email}}" data-date="{{$card->date}}"
                    data-mobile="{{$card->mobile}}" data-phone="{{$card->phone}}"
                    data-house="{{$card->house}}" data-road="{{$card->road}}"
@@ -89,7 +89,7 @@
             @endif
 
             <div class="btn-group">
-                <button type="submit" title="update" class="btn btn-outline-dark"><i class="far fa-edit"></i></button>
+                <button type="submit" title="update" class="btn btn-outline-dark btn-lg"><i class="far fa-edit"></i></button>
             </div>
 
 
@@ -114,7 +114,7 @@
                                            value="{{$card->name ?? ' '}}">
 
                                     <label class="label">Relation With | </label>
-                                    <a href="{{url('profile')}}/{{$father_name->id ?? $card->id}}">{{$father_name->name ?? 'himself
+                                    <a href="{{url('profile')}}/{{$father_name->father_id ?? $card->cpr_no}}">{{$father_name->name ?? 'himself
 '}}</a>
                                     <input type="hidden" readonly class="form-control" name="id"
                                            value="{{$card->id ?? ' '}}">
@@ -177,7 +177,7 @@
                                         class="hidden-xs">ABOUT CUSTOMER</span>
                                 </a>
                             </li>
-                            @if($card->father_id == null)
+                            @if($card->cpr_no == $card->father_id)
                             <li class="">
                                 <a href="#profile" data-toggle="tab" aria-expanded="false"> <span
                                         class="visible-xs"><i class="fas fa-users"></i></span> <span
@@ -192,7 +192,7 @@
                                         class="visible-xs"><i class="fas fa-id-badge"></i></span> <span
                                         class="hidden-xs">Card</span> </a>
                             </li>
-                            @if($card->father_id == null)
+                            @if($card->cpr_no == $card->father_id)
 
                                 <li class="">
                                     <a href="#allcard" data-toggle="tab" aria-expanded="false"> <span
@@ -203,7 +203,7 @@
 
                             @endif
 
-                            @if($card->father_id == null)
+                            @if($card->cpr_no == $card->father_id)
 
                                 <li class="">
                                     <a href="#allcarddesing" data-toggle="tab" aria-expanded="false"> <span
@@ -533,7 +533,7 @@
                                                             <div class="dropdown-menu tx-13">
 
                                                                 <a class="dropdown-item"
-                                                                   href="{{route('profile_show',$c->id)}}"
+                                                                   href="{{route('profile_show',$c->cpr_no)}}"
                                                                    data-effect="effect-scale"
                                                                    title="edit"><i class="far fa-edit"></i> Edit</a>
 
