@@ -183,7 +183,7 @@
                                                     <h5>{{trans('main_tran.Apply Card')}}</h5>
                                                 </div>
                                                 <div class="ttm-di_links">
-                                                    <a href="#" class="di_link">
+                                                    <a href="{{route('apply.view')}}" class="di_link">
                                                         <i class="fa fa-angle-right"></i>
                                                     </a>
                                                 </div>
@@ -225,7 +225,7 @@
                                                 </div>
 
                                                 <div class="ttm-di_links">
-                                                    <a href="#" class="di_link">
+                                                    <a href="{{route('hospital.directory')}}" class="di_link">
                                                         <i class="fa fa-angle-right"></i>
                                                     </a>
                                                 </div>
@@ -247,7 +247,7 @@
                                                 </div>
 
                                                 <div class="ttm-di_links">
-                                                    <a href="#" class="di_link">
+                                                    <a href="{{route('search.card')}}" class="di_link">
                                                         <i class="fa fa-angle-right"></i>
                                                     </a>
                                                 </div>
@@ -516,14 +516,7 @@
 
         <!--cta-section-->
 
-
-
     </div><!--site-main end-->
-
-
-
-    <!--footer end-->
-
 
 </div><!-- page end -->
 @endsection

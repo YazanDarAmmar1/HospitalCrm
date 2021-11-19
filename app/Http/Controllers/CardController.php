@@ -120,7 +120,7 @@ class CardController extends Controller
         }
         $card->save();
         session()->flash('add', 'Data has been added successfully');
-        return redirect('/profile/' . $card->id);
+        return redirect('/profile/' . $card->cpr_no);
     }
 
     /**

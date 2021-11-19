@@ -34,12 +34,12 @@
                             </div>
                             <div class="d-flex justify-content-between mg-b-20">
                                 <div>
-                                    <h5 class="main-profile-name">{{$hospital->name}}</h5>
+                                    <h5 class="main-profile-name">{{$hospital->name ?? ''}}</h5>
                                 </div>
                             </div>
                             <h6>Description</h6>
                             <div class="main-profile-bio">
-                                {{$hospital->description}}
+                                {{$hospital->description ?? ''}}
                             </div><!-- main-profile-bio -->
 
                             <hr class="mg-y-30">
@@ -50,7 +50,7 @@
                                         <i class="icon ion-md-link"></i>
                                     </div>
                                     <div class="media-body">
-                                        <span>Website</span> <a>{{$hospital->website}}/</a>
+                                        <span>Website</span> <a>{{$hospital->website ?? ''}}/</a>
                                     </div>
                                 </div>
                                 <div class="media">
@@ -58,7 +58,7 @@
                                         <i class="icon ion-md-phone-portrait"></i>
                                     </div>
                                     <div class="media-body">
-                                        <span>Contact 1</span> <a>{{$hospital->contact1}}</a>
+                                        <span>Contact 1</span> <a>{{$hospital->contact1 ?? ''}}</a>
                                     </div>
                                 </div>
 
@@ -67,7 +67,7 @@
                                         <i class="icon ion-md-phone-portrait"></i>
                                     </div>
                                     <div class="media-body">
-                                        <span>Contact 2</span> <a>{{$hospital->contact2}}</a>
+                                        <span>Contact 2</span> <a>{{$hospital->contact2 ?? ''}}</a>
                                     </div>
                                 </div>
 
@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="media-body">
                                         <span>Email</span> <a
-                                            href="mailto:{{$hospital->email}}">{{$hospital->email}}</a>
+                                            href="mailto:{{$hospital->email  ?? ' '}}">{{$hospital->email ?? ''}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="mr-auto">
                                     <h5 class="tx-13">Contract Date</h5>
-                                    <h2 class="mb-0 tx-22 mb-1 mt-1">{{$hospital->contract_date}}</h2>
+                                    <h2 class="mb-0 tx-22 mb-1 mt-1">{{$hospital->contract_date ?? ''}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="mr-auto">
                                     <h5 class="tx-13">CR-No</h5>
-                                    <h2 class="mb-0 tx-22 mb-1 mt-1">{{$hospital->cr_no}}</h2>
+                                    <h2 class="mb-0 tx-22 mb-1 mt-1">{{$hospital->cr_no ??' '}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="mr-auto">
                                     <h5 class="tx-13">Expiry Date</h5>
-                                    <h2 class="mb-0 tx-22 mb-1 mt-1">{{$hospital->expiry_date}}</h2>
+                                    <h2 class="mb-0 tx-22 mb-1 mt-1">{{$hospital->expiry_date ??''}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -165,16 +165,16 @@
                     <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
                         <div class="tab-pane active" id="home">
                             <h4 class="tx-15 text-uppercase text-primary mb-3">COMMENT</h4>
-                            <p class="m-b-5">{{$hospital->comment}}</p>
+                            <p class="m-b-5">{{$hospital->comment ??''}}</p>
                             <div class="m-t-30">
                                 <h4 class="tx-15 text-uppercase text-primary mt-3">Place</h4>
                                 <div class=" p-t-10">
-                                    <p class="">{{$hospital->place}}</p>
+                                    <p class="">{{$hospital->place ??''}}</p>
                                 </div>
 
                                 <h4 class="tx-15 text-uppercase text-primary mt-3">Address</h4>
                                 <div class=" p-t-10">
-                                    <p class="">{{$hospital->address}}</p>
+                                    <p class="">{{$hospital->address ??' '}}</p>
                                 </div>
 
                                 <h4 class="tx-15 text-uppercase text-primary mt-3">Provider Type</h4>
@@ -184,9 +184,9 @@
                                 <hr>
                                 <h4 class="tx-15 text-uppercase text-primary mt-3">Status</h4>
                                 <div class=" p-t-10">
-                                    @if($hospital->status == 0)
+                                    @if($hospital->status ??'' == 0)
                                         <td><i class="fas fa-circle" style="color: red"></i>-Draft</td>
-                                    @elseif($hospital->status == 1)
+                                    @elseif($hospital->status ?? '' == 1)
                                         <td><i class="fas fa-circle" style="color: orange"></i>-Pending</td>
                                     @else
                                         <td><i class="fas fa-circle" style="color: #0a47ff"></i>-Done</td>
@@ -196,7 +196,7 @@
 
                                 <h4 class="tx-15 text-uppercase text-primary mt-3">Online-Offline</h4>
                                 <div class=" p-t-10">
-                                    @if($hospital->on_off == 0)
+                                    @if($hospital->on_off ??' ' == 0)
                                         <td><i class="fas fa-circle" style="color: red"></i>-Offline</td>
                                     @else
                                         <td><i class="fas fa-circle" style="color: blue"></i>-Online</td>
@@ -320,30 +320,22 @@
                                                         <td>{{$list->file ?? ' '}}</td>
                                                         <td>
                                                             @if(!(($list->id ?? ' ') == ' '))
-<<<<<<< HEAD
-=======
                                                                 @can('doctor-list')
->>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
                                                             <a class="modal-effect btn btn-sm btn-danger"
                                                                  data-effect="effect-scale"
                                                                  data-id="{{$list->id ?? ' '}}" data-name="{{$list->file ?? ' '}}"
                                                                  data-toggle="modal"
                                                                  href="#modaldem113" title="delete"><i class="las la-trash"></i></a>
-<<<<<<< HEAD
 
-=======
                                                                 @endcan
                                                             @can('download-doctor')
->>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
 
                                                                 <a class="btn btn-outline-primary btn-sm"
                                                                    href="{{ url('View_file') }}/{{ $list->id }}/{{ $list->file }}"
                                                                    role="button"><i class="fas fa-file-download"></i>&nbsp;
                                                                 </a>
-<<<<<<< HEAD
-=======
+
                                                                     @endcan
->>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
                                                             @else
 
                                                             @endif
@@ -372,7 +364,7 @@
                                             <div class="d-flex justify-content-between float-right">
                                                 <a class="modal-effect btn btn-md btn-outline-primary"
                                                    data-effect="effect-scale"
-                                                   data-id="{{$hospital->id}}" data-name="{{$hospital->name}}"
+                                                   data-id="{{$hospital->id ?? ''}}" data-name="{{$hospital->name ??' '}}"
                                                    data-toggle="modal"
                                                    href="#modaldem223" title="Services"><i class="fas fa-plus"></i></a>
                                             </div>

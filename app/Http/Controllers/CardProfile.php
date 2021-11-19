@@ -18,10 +18,10 @@ class CardProfile extends Controller
 {
     public function index($id)
     {
-        $father = DB::table('cards')->where('id', $id)->pluck('father_id')->first();
-        $father_name = Card::where('id', $father)->first();
+        $father = DB::table('cards')->where('cpr_no', $id)->pluck('father_id')->first();
+        $father_name = Card::where('cpr_no', $father)->first();
 
-        $card = Card::where('id', $id)->first();
+        $card = Card::where('cpr_no', $id)->first();
         $card_father = Card::where('father_id', $id)->get();
         $user = User::all();
         $card_type = Card_type::all();
@@ -30,22 +30,10 @@ class CardProfile extends Controller
     }
 
 
-    public function printToPDF1($id, $id2)
-    {
-        $desin = $id2;
-        $card_father = Card::where('father_id', $id)->get();
-        $card = Card::where('id', $id)->first();
-        $pdf = PDF::loadView('cards.single_card', compact('card', 'desin', 'card_father'));
-        $pdf->setPaper(array(30, -30, 450, 240));
-        $pdf->save(public_path('card/').$card->cpr_no.'.pdf');
-        return $pdf->download($id.'.pdf');
-
-    }
-
     public function printToPDF($id,$id2){
         $desin = $id2;
         $card_father = Card::where('father_id', $id)->get();
-        $card = Card::where('id', $id)->first();
+        $card = Card::where('cpr_no', $id)->first();
 
         $data["email"] =$card->email;
         $data["title"] = "From SAMA CARDS";
@@ -173,7 +161,7 @@ class CardProfile extends Controller
         }
         $new->update();
         session()->flash('add', 'Data has been updated successfully');
-        return redirect('/profile/' . $new->id);
+        return redirect('/profile/' . $new->cpr_no);
     }
 
     public function invoice_index($id)

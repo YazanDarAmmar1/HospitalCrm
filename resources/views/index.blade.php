@@ -209,12 +209,12 @@
                                 <div class="pb-0 mt-0">
                                     <div class="d-flex">
                                         <div class="">
-                                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where([['date',date('Y-m-d')],['status','paid']])->count()}}</h4>
+                                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where('online',1)->count()}}</h4>
                                             <p class="mb-0 tx-12 text-white op-7">Total of sum online cards</p>
                                         </div>
                                         <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> {{number_format(\App\Card::where([['date',date('Y-m-d')],['status','paid']])->sum('total'),2)}}</span>
+											<span class="text-white op-7"> {{number_format(\App\Card::where('online',1)->sum('total'),2)}}</span>
 										</span>
                                     </div>
                                 </div>

@@ -24,11 +24,11 @@
             <div class="mb-3 mb-xl-0">
                 <div class="btn-group">
 
-                    <a class="modal-effect btn btn-outline-danger btn-block" data-effect="effect-super-scaled"
+                    <a class="modal-effect btn btn-outline-danger btn-block btn-lg" data-effect="effect-super-scaled"
                        data-toggle="modal" href="#modaldemlo12234"><i class="fas fa-file-import"></i></a>
                 </div>
                 <div class="btn-group">
-                    <a href="{{route('add_cards')}}" class="btn btn-outline-primary" title="add card">
+                    <a href="{{route('add_cards')}}" class="btn btn-outline-primary btn-lg" title="add card">
                         <i class="fas fa-user-plus"></i>
                     </a>
                 </div>
@@ -69,6 +69,7 @@
                                 <th class="border-bottom-0 text-white">Mobile</th>
                                 <th class="border-bottom-0 text-white">Status</th>
                                 <th class="border-bottom-0 text-white">Mem</th>
+                                <th class="border-bottom-0 text-white">Online</th>
                                 <th class="border-bottom-0 text-white">Expiry</th>
                                 <th class="border-bottom-0 text-white">Comment</th>
                                 <th class="border-bottom-0 text-white"></th>
@@ -95,11 +96,23 @@
                                     @else
                                         <td>Print <i class="fas fa-circle" style="color: teal"></i></td>
                                     @endif
-                                    <td>0 people</td>
+
+                                    @if($c->cpr_no == $c->father_id)
+                                        <td>Father  <i class="fas fa-circle" style="color: dodgerblue"></i></td>
+                                    @else
+                                        <td>Child  <i class="fas fa-circle" style="color: black"></i></td>
+                                    @endif
+
+                                    @if($c->online == 1)
+                                        <td>Online  <i class="fas fa-circle" style="color: orangered"></i></td>
+                                    @else
+                                        <td>Manually  <i class="fas fa-circle" style="color: green"></i></td>
+                                    @endif
+
                                     <td>{{$c->expiry}}</td>
                                     <td>{{$c->comment}}</td>
                                     <td>
-                                        <a class=" btn btn-sm btn-info" href="{{route('profile_show',$c->id)}}"
+                                        <a class=" btn btn-sm btn-info" href="{{route('profile_show',$c->cpr_no)}}"
                                            data-effect="effect-scale"
                                            title="edit"><i class="far fa-edit"></i> Edit</a>
 

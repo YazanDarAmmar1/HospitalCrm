@@ -20,6 +20,7 @@ class CreateCardsTable extends Migration
             $table->string('email')->nullable();
             $table->string('date')->nullable();
             $table->string('expiry')->nullable();
+            $table->string('online')->nullable();
             $table->bigInteger('agent_id')->nullable()->unsigned();
             $table->foreign('agent_id')->references('id')->on('users')->nullOnDelete();
             $table->string('gender')->nullable();

@@ -230,10 +230,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- ttm-info-widget end -->
-                    <div class="ttm-contact">
-                        <span class="icon"><i class="fa fa-phone"></i></span>Call Us : +973 77690000
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -14,6 +14,8 @@ use App\Http\Controllers\PackageTypeController;
 use App\Http\Controllers\AllCardController;
 use App\Http\Controllers\CardProfile;
 use App\Http\Controllers\HospitalDirectoryController;
+use App\Http\Controllers\ApplyCardController;
+use App\Http\Controllers\SearchCardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,12 +130,19 @@ Route::group(
     {
         return View::make('home');
     });
-
-    Route::get('/apply', function()
-    {
-        return View::make('apply_card');
-    });
+    // Hospital Directory
     Route::get('hospital/directory',[HospitalDirectoryController::class,'index'])->name('hospital.directory');
+    Route::post('hospital/directory/search',[HospitalDirectoryController::class,'hospital_search'])->name('hospital.directory.search');
+    //search ajax
+    Route::get('/typeahead_autocomplete/action', [HospitalDirectoryController::class, 'action'])->name('typeahead_autocomplete.action');
+    //Hospital Profile
+    Route::get('hospital/directory/profile',[HospitalDirectoryController::class,'hospital_profile'])->name('hospital.directory.profile');
+    // Apply Card
+    Route::get('public/apply',[ApplyCardController::class,'index'])->name('apply.view');
+    Route::post('public/apply/add',[ApplyCardController::class,'store'])->name('apply.add');
+    // Search Card
+    Route::get('public/search/card',[SearchCardController::class,'index'])->name('search.card');
+    Route::post('public/search/card/cpr',[SearchCardController::class,'search'])->name('search.card.cpr');
 });
 
 
