@@ -21,7 +21,7 @@ class HospitalDirectoryController extends Controller
     {
 
         $hospital = $request->search;
-        $hospital_search = Hospital::Where('name', '=', $hospital)->orWhere('name_ar', $hospital)->orWhere('name_ar', $hospital)->orWhere('name_ar', $hospital)->orWhere('name_ar', $hospital)->orWhere('place', $hospital)->orWhere('place_ar', $hospital)->orWhere('contact1', $hospital)->orWhere('contact2', $hospital)->orWhere('email', $hospital)->orWhere('address', $hospital)->orWhere('address_ar', $hospital)->orWhere('website', $hospital)->orWhere('category_id', $hospital)->get();
+        $hospital_search = Hospital::Where('name', 'LIKE', '%' . $hospital . '%')->orWhere('name_ar', 'LIKE', '%' . $hospital . '%' )->orWhere('name_ar', '%' . $hospital . '%')->orWhere('name_ar', '%' . $hospital . '%')->orWhere('name_ar', '%' . $hospital . '%')->orWhere('place', '%' . $hospital . '%')->orWhere('place_ar', '%' . $hospital . '%')->orWhere('contact1', '%' . $hospital . '%')->orWhere('contact2', '%' . $hospital . '%')->orWhere('email', '%' . $hospital . '%')->orWhere('address', '%' . $hospital . '%')->orWhere('address_ar', '%' . $hospital . '%')->orWhere('website', '%' . $hospital . '%')->orWhere('category_id', '%' . $hospital . '%')->get();
         return view('hospital_directory', compact('hospital_search', 'hospital'));
 
 

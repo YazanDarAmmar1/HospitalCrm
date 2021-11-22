@@ -9,6 +9,8 @@ use App\Package_type;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Notifications\AgendamentoPendente;
@@ -32,6 +34,14 @@ class CardProfile extends Controller
         $user = User::all();
         $card_type = Card_type::all();
         $package = Package_type::all();
+
+        // notification read
+        foreach (auth()->user()->unreadNotifications as $notification){
+            if ($notification->data['id'] == $id){
+                $notification->delete();
+            }
+        }
+
         return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father','count1'));
     }
 
@@ -124,7 +134,13 @@ class CardProfile extends Controller
         $new->price = $request->prices;
         $new->delivery = $request->delivery;
         $new->total = $request->total;
-        $new->balance = $request->balance;
+        if ($request->status == 'done'){
+            $new->balance = 0;
+
+        }else{
+            $new->balance = $request->balance;
+
+        }
         if (!($request->customer_img == null)) {
             $image = $request->file('customer_img');
             $file_name = $image->getClientOriginalName();

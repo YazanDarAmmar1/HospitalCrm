@@ -52,9 +52,19 @@ class ApplyCardController extends Controller
             Notification::send($user, new AddCardNotification($card));
 
 
+
         }
 
         session()->flash('add', 'Data has been Added successfully');
         return back();
+    }
+
+    public function readAllNotification(Request $request)
+    {
+        $userUnreadNotification = \auth()->user()->unreadNotifications;
+        if ($userUnreadNotification) {
+            $userUnreadNotification->markAsRead();
+            return back();
+        }
     }
 }

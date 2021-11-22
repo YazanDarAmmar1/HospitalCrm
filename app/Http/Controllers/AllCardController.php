@@ -9,6 +9,7 @@ use App\Imports\HospitalImport;
 use App\Package_type;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AllCardController extends Controller
@@ -34,10 +35,12 @@ class AllCardController extends Controller
     public function update(Request $request)
     {
         $id = $request->id_inp;
-        $card = Card::find($id);
-        $card->update([
-            'status' => $request->status,
-        ]);
+
+       DB::table('cards')->where('father_id',$id)->orWhere('cpr_no',$id)->update([
+           'status' => $request->status,
+
+       ]);
+
         session()->flash('add', 'Data has been updated successfully');
         return back();
 

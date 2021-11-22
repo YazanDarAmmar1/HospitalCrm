@@ -56,15 +56,8 @@
             </div>
 
 
-            @if($card->cpr_no == $card->father_id)
-            <div class="btn-group">
-                <a href="{{route('profile_invoice_show_all',$card->cpr_no)}}" title="print all invoice " class="btn btn-outline-danger">
-                    <i class="fas fa-print"></i>
-                    Print All
-                </a>
-            </div>
-            @else
-            @endif
+
+
             @if($card->cpr_no == $card->father_id)
             <div class="btn-group">
                 <a class="modal-effect btn  btn-outline-indigo"
@@ -84,7 +77,7 @@
             @endif
 
             <div class="btn-group">
-                <button type="submit" title="update" class="btn btn-outline-dark btn-lg"><i class="far fa-edit"></i></button>
+                <button type="submit" title="update" class="btn btn-outline-dark "><i class="far fa-edit"></i>  Update</button>
             </div>
 
 
@@ -172,6 +165,7 @@
                                         class="hidden-xs">ABOUT CUSTOMER</span>
                                 </a>
                             </li>
+
                             @if($card->cpr_no == $card->father_id)
                             <li class="">
                                 <a href="#profile" data-toggle="tab" aria-expanded="false"> <span
@@ -454,8 +448,9 @@
 
                                                 <div class="col-lg-3  mg-t-10 mg-md-t-0">
                                                     <label class="label mb-1">Balance Due</label>
+
                                                     <input type="text" name="balance" id="total" class="form-control mb-1"
-                                                           value="{{$card->balance ?? ' '}}"    >
+                                                           value="{{$card->balance ?? ' '}}">
                                                 </div>
                                                 <div class="col-lg-12 mg-t-10 mg-md-t-0">
                                                     <label class="label">Image</label>
@@ -469,8 +464,17 @@
                                 </div>
                             </div>
                             <div class="btn-group float-right">
-                                <button type="submit" class="btn btn-outline-indigo">UPDATE</button>
+                                <button type="submit" class="btn btn-outline-indigo ">UPDATE</button>
                             </div>
+                            <div class="btn-group float-left">
+
+                            <a href="{{route('profile_invoice_show_all',$card->cpr_no)}}" title="print all invoice " class="btn btn-outline-danger">
+                                        <i class="fas fa-print"></i>
+                                        Print All
+                                    </a>
+                            </div>
+
+
                         </div>
 
                         {{--profile--}}
@@ -534,7 +538,7 @@
 
                                                                 <a class="modal-effect dropdown-item "
                                                                    data-effect="effect-scale"
-                                                                   data-id="{{$c->id}}" data-name="{{$c->name}}"
+                                                                   data-id="{{$c->cpr_no}}" data-name="{{$c->name}}"
                                                                    data-toggle="modal"
                                                                    href="#modaldem1" title="status"><i class="fe fe-refresh-cw"></i>
 

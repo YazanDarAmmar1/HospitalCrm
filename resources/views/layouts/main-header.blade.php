@@ -35,19 +35,21 @@
 								</form>
 							</div>
 							<div class="dropdown nav-item main-header-message ">
-								<a class="new nav-link " href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span class=" pulse-danger"></span></a>
+								<a class="new nav-link " href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span class="badge badge-purple side-badge">{{ auth()->user()->unreadNotifications->count() }}</span></a>
 								<div class="dropdown-menu ">
 									<div class="menu-header-content bg-purple text-right">
 										<div class="d-flex">
 											<h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">Notifications</h6>
+                                            <a href="{{route('read.all.notification')}}">
 											<span class="badge badge-pill badge-warning mr-auto my-auto float-left ml-2">Mark All Read</span>
+                                            </a>
 										</div>
-										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">You have {{ auth()->user()->unreadNotifications->count() }} unread messages</p>
+										<p id="notifications_count" class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">You have {{ auth()->user()->unreadNotifications->count() }} unread messages</p>
 									</div>
-									<div class="main-message-list chat-scroll">
+									<div class="main-message-list chat-scroll" id="unreadNotifications">
                                         @foreach (auth()->user()->unreadNotifications as $notification)
 
-                                        <a href="#" class="p-3 d-flex border-bottom">
+                                        <a href="{{route('profile_show',$notification->data['id'])}}" class="p-3 d-flex border-bottom">
                                             <div class="card-chart bg-pink-transparent brround mr-auto mt-0">
                                                 <i class="typcn typcn-group-outline text-primary tx-24"></i>
                                             </div>
@@ -63,7 +65,7 @@
 
                                     </div>
 									<div class="text-center dropdown-footer">
-										<a href="text-center">VIEW ALL</a>
+										<a href="#">VIEW ALL</a>
 									</div>
 								</div>
 							</div>

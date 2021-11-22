@@ -32,7 +32,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 Route::get('/m', function () {
-    return view('demo.tags');
+    return view('demo.popover');
 });
 
 
@@ -149,6 +149,9 @@ Route::group(
     // Search Card
     Route::get('public/search/card',[SearchCardController::class,'index'])->name('search.card');
     Route::post('public/search/card/cpr',[SearchCardController::class,'search'])->name('search.card.cpr');
+
+    // Read All Notification  Card
+        Route::get('read_all_notification',[ApplyCardController::class,'readAllNotification'])->name('read.all.notification');
 });
 
 
