@@ -77,19 +77,14 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>{{$invoice->Type->name ?? ' '}}</td>
-													<td class="tx-12">SHC222 - {{$invoice->id}}</td>
-													<td class="tx-center">1</td>
-													<td class="tx-right">{{$invoice->price}} BD</td>
-												</tr>
+
                                                 @if(isset($invoice1))
                                                     @foreach($invoice1 as $invoice1)
 												<tr>
                                                     <td>{{$invoice1->Type->name ?? ' '}}</td>
                                                     <td class="tx-12">SHC222 - {{$invoice1->id}}</td>
                                                     <td class="tx-center">1</td>
-                                                    <td class="tx-right">{{$invoice1->price}} BD</td>
+                                                    <td class="tx-right">{{$invoice1->Package->package_prices}} BD</td>
                                                 </tr>
                                                     @endforeach
                                                 @else

@@ -30,7 +30,7 @@
         <div class="d-flex my-xl-auto right-content">
             @can('add-hospital')
             <div class="pr-1 mb-3 mb-xl-0">
-                <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-super-scaled"
+                <a class="modal-effect btn btn-outline-primary btn-lg btn-block" data-effect="effect-super-scaled"
                    data-toggle="modal" href="#modaldemo8"><i class="fas fa-plus"></i> </a>
             </div>
             @endcan
@@ -730,21 +730,19 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6">
-                                <label class="label mt-2">Category</label>
+                            <div class="col-lg-12">
+                                <label class="label mt-2">Type Of Provider</label>
                                 <select class="form-control select2" name="category">
                                     <option label="Choose one">
                                     </option>
-                                    <option value="Firefox">
-                                        Firefox
+                                    @foreach(\App\Category::all() as $c)
+                                    <option value=" {{$c->id}}">
+                                        {{$c->category}}
                                     </option>
+                                    @endforeach
                                 </select>
                             </div>
 
-                            <div class="col-lg-6">
-                                <label class="label mt-2">*Arabic*</label>
-                                <input class="form-control" id="type_of" name="category_ar" type="text">
-                            </div>
                         </div>
 
                         <div class="row">

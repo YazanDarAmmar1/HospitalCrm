@@ -29,20 +29,8 @@
             <div class="container">
                 <!-- row -->
                 <div class="row">
-                    <div
-                        class="col-lg-3 widget-area sidebar-left ttm-col-bgcolor-yes ttm-bg ttm-left-span ttm-bgcolor-grey">
-                        <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
-                        <aside class="widget widget-nav-menu">
-                            <ul class="widget-menu box-shadow">
-                                <li ><a
-                                        href="{{route('apply.view')}}">{{trans('main_tran.Apply Card')}}</a></li>
-                                <li class="active"><a href="{{route('hospital.directory')}}">{{trans('main_tran.Medical Directory')}}</a></li>
-                                <li><a href="{{route('search.card')}}">{{trans('main_tran.Search e-Card')}}</a></li>
 
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-lg-9 content-area" style="background-color: whitesmoke">
+                    <div class="col-lg-8 content-area" style="background-color: whitesmoke">
                         <!-- ttm-service-single-content-are -->
                         <div class="ttm-service-single-content-area">
                             <div class="row">
@@ -62,58 +50,63 @@
                                             </div>
                                         </form>
                                         @if(!isset($hospital_search))
-                                        @foreach($hospital2 as $h)
-                                        <div class="ttm-box-col-wrapper col-lg-12 col-md-6 col-sm-12">
-                                            <!-- featured-imagebox-post -->
-                                            <div class="featured-imagebox featured-imagebox-post ttm-box-view-left-image box-shadow row">
-                                                <div class="col-lg-5 col-md-12 ttm-featured-img-left">
-                                                    <div class="ttm-post-featured-outer">
-                                                        <div class="ttm-post-thumbnail featured-thumbnail">
-                                                            <img class="img-fluid" src="{{URL::asset('Attachments')}}/{{$h->id ?? ''}}/{{$h->Attachment->url_logo ?? ''}}" alt="logo-hospital">
+                                            @foreach($hospital2 as $h)
+                                                <div class="ttm-box-col-wrapper col-lg-12 col-md-6 col-sm-12">
+                                                    <!-- featured-imagebox-post -->
+                                                    <div class="featured-imagebox featured-imagebox-post ttm-box-view-left-image box-shadow row">
+                                                        <div class="col-lg-5 col-md-12 ttm-featured-img-left">
+                                                            <div class="ttm-post-featured-outer">
+                                                                <div class="ttm-post-thumbnail featured-thumbnail">
+                                                                    <a href="{{route('hospital.directory.profile',$h->id)}}">
+                                                                        <img class="img-fluid" src="{{URL::asset('Attachments')}}/{{$h->id ?? ''}}/{{$h->Attachment->url_logo ?? ''}}" alt="logo-hospital">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-7 col-md-12 featured-content featured-content-post">
-                                                    @if(App::getLocale()== 'en')
-                                                    <div class="post-title featured-title text-dark tx-bold">
-                                                      <b>  <h4 class=""><a href="#">{{$h->name}}</a></h4></b>
-                                                    </div>
-                                                    @else
-                                                        <div class="post-title featured-title text-dark tx-bold">
-                                                           <b> <h4 class=""><a href="#">{{$h->name_ar}}</a></h4></b>
+                                                        <div class="col-lg-7 col-md-12 featured-content featured-content-post">
+                                                            @if(App::getLocale()== 'en')
+                                                                <div class="post-title featured-title text-dark tx-bold">
+                                                                    <b>  <h4 class=""><a href="{{route('hospital.directory.profile',$h->id)}}">{{$h->name}}</a></h4></b>
+                                                                </div>
+                                                            @else
+                                                                <div class="post-title featured-title text-dark tx-bold">
+                                                                    <a href="{{route('hospital.directory.profile',$h->id)}}">
+                                                                        <b> <h4 class=""><a href="{{route('hospital.directory.profile',$h->id)}}">{{$h->name_ar}}</a></h4></b>
+                                                                    </a>
+                                                                </div>
+                                                            @endif
+
+                                                            <div class="post-meta">
+                                                                @if(App::getLocale()== 'en')
+
+                                                                    <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-location-arrow"></i>{{$h->place}}</b></span>
+                                                                @else
+                                                                    <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-location-arrow"></i>{{$h->place_ar}}</b></span>
+                                                                @endif
+                                                                <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-phone"></i>  {{$h->contact1}}</b></span>
+                                                            </div>
+                                                            <div class="post-desc featured-desc">
+                                                                @if(App::getLocale()== 'en')
+
+                                                                    <p>{{ \Illuminate\Support\Str::limit($h->description, 50) }}.</p>
+                                                                @else
+                                                                    <p>{{ \Illuminate\Support\Str::limit($h->description_ar, 50) }}.</p>
+
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                    @endif
-                                                    <div class="post-meta">
-                                                        @if(App::getLocale()== 'en')
-
-                                                        <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-location-arrow"></i>{{$h->place}}</b></span>
-                                                        @else
-                                                            <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-location-arrow"></i>{{$h->place_ar}}</b></span>
-                                                        @endif
-                                                            <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-location-arrow"></i>{{$h->contact1}}</b></span>
-                                                    </div>
-                                                    <div class="post-desc featured-desc">
-                                                        @if(App::getLocale()== 'en')
-
-                                                        <p>{{$h->description}}.</p>
-                                                        @else
-                                                            <p>{{$h->description_ar}}.</p>
-
-                                                        @endif
-                                                    </div>
+                                                    </div><!-- featured-imagebox-post end-->
                                                 </div>
-                                            </div><!-- featured-imagebox-post end-->
-                                        </div>
-                                        @endforeach
+                                            @endforeach
 
-                                        <div class="col-lg-5 float-right justify-content-lg-end">
-                                        </div>
-                                        <div class="col-lg-5 float-right justify-content-lg-end">
-                                        </div>
-                                        <div class="col-lg-2 float-right justify-content-lg-end">
-                                            {{$hospital2->links()}}
+                                            <div class="col-lg-5 float-right justify-content-lg-end">
+                                            </div>
+                                            <div class="col-lg-5 float-right justify-content-lg-end">
+                                            </div>
+                                            <div class="col-lg-2 float-right justify-content-lg-end">
+                                                {{$hospital2->links()}}
 
-                                        </div>
+                                            </div>
                                         @else
                                             @foreach($hospital_search as $h)
                                                 <div class="ttm-box-col-wrapper col-lg-12 col-md-6 col-sm-12">
@@ -122,18 +115,22 @@
                                                         <div class="col-lg-5 col-md-12 ttm-featured-img-left">
                                                             <div class="ttm-post-featured-outer">
                                                                 <div class="ttm-post-thumbnail featured-thumbnail">
-                                                                    <img class="img-fluid" src="{{URL::asset('Attachments')}}/{{$h->id ?? ''}}/{{$h->Attachment->url_logo ?? ''}}" alt="logo-hospital">
+                                                                    <a href="{{route('hospital.directory.profile',$h->id)}}">
+                                                                        <img class="img-fluid" src="{{URL::asset('Attachments')}}/{{$h->id ?? ''}}/{{$h->Attachment->url_logo ?? ''}}" alt="logo-hospital">
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-7 col-md-12 featured-content featured-content-post">
                                                             @if(App::getLocale()== 'en')
                                                                 <div class="post-title featured-title text-dark tx-bold">
-                                                                    <b>  <h4 class=""><a href="#">{{$h->name}}</a></h4></b>
+                                                                    <b>  <h4 class=""><a href="{{route('hospital.directory.profile',$h->id)}}">{{$h->name}}</a></h4></b>
+
                                                                 </div>
                                                             @else
                                                                 <div class="post-title featured-title text-dark tx-bold">
-                                                                    <b> <h4 class=""><a href="#">{{$h->name_ar}}</a></h4></b>
+                                                                    <b> <h4 class=""><a href="{{route('hospital.directory.profile',$h->id)}}">{{$h->name_ar}}</a></h4></b>
+
                                                                 </div>
                                                             @endif
                                                             <div class="post-meta">
@@ -143,14 +140,14 @@
                                                                 @else
                                                                     <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-location-arrow"></i>{{$h->place_ar}}</b></span>
                                                                 @endif
-                                                                <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-location-arrow"></i>{{$h->contact1}}</b></span>
+                                                                <span class="ttm-meta-line comments-link text-dark tx-bold"><b><i class="fa fa-phone"></i>  {{$h->contact1}}</b></span>
                                                             </div>
                                                             <div class="post-desc featured-desc">
                                                                 @if(App::getLocale()== 'en')
 
-                                                                    <p>{{$h->description}}.</p>
+                                                                    <p>{{ \Illuminate\Support\Str::limit($h->description, 50) }}.</p>
                                                                 @else
-                                                                    <p>{{$h->description_ar}}.</p>
+                                                                    <p>{{ \Illuminate\Support\Str::limit($h->description_ar, 50) }}}.</p>
 
                                                                 @endif
                                                             </div>
@@ -167,6 +164,30 @@
                         </div>
                         <!-- ttm-service-single-content-are end -->
                     </div>
+                    <div class="col-lg-4 widget-area sidebar-left ml-15 ">
+                        <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
+                        <aside class="widget widget-nav-menu">
+                            <ul class="widget-menu box-shadow">
+                                <li ><a
+                                        href="{{route('apply.view')}}">{{trans('main_tran.Apply Card')}}</a></li>
+                                <li class="active"><a href="{{route('hospital.directory')}}">{{trans('main_tran.Medical Directory')}}</a></li>
+                                <li><a href="{{route('search.card')}}">{{trans('main_tran.Search e-Card')}}</a></li>
+
+                            </ul>
+                        </aside>
+
+
+                        <aside class="widget tagcloud-widget">
+                            <h3 class="ml-1">Tags</h3>
+                            <div class="tagcloud">
+                                @foreach(\App\Category::all() as $c)
+                                <a href="{{route('hospital.category.show',$c->id)}}" class="tag-cloud-link">{{$c->category}}</a>
+                                @endforeach
+
+                            </div>
+                        </aside>
+                    </div>
+
                 </div><!-- row end -->
             </div>
         </div>

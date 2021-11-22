@@ -19,7 +19,16 @@ class AllCardController extends Controller
         $card_type = Card_type::all();
         $user = User::all();
         $card = Card::all();
-        return view('cards.all', compact('card','package','card_type','user'));
+        return view('cards.all', compact('card', 'package', 'card_type', 'user'));
+    }
+
+    public function index_draft()
+    {
+        $package = Package_type::all();
+        $card_type = Card_type::all();
+        $user = User::all();
+        $card = Card::where('status','draft')->get();
+        return view('cards.all_draft', compact('card','package','card_type','user'));
     }
 
     public function update(Request $request)
@@ -27,7 +36,7 @@ class AllCardController extends Controller
         $id = $request->id_inp;
         $card = Card::find($id);
         $card->update([
-           'status' => $request->status,
+            'status' => $request->status,
         ]);
         session()->flash('add', 'Data has been updated successfully');
         return back();

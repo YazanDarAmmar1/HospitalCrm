@@ -56,12 +56,14 @@
 
 						</div>
 					</div>
+
 					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-danger-gradient">
 							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 								<div class="">
-									<h6 class="mb-3 tx-12 text-white">Total Draft Cards</h6>
-								</div>
+                                    <a href="{{route('show_cards_draft')}}"><h6 class="mb-3 tx-12 text-white">Total Draft Cards</h6></a>
+
+                                </div>
 								<div class="pb-0 mt-0">
 									<div class="d-flex">
 										<div class="">

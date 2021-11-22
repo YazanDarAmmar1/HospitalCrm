@@ -34,7 +34,7 @@
                         <path
                             d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/>
                     </svg>
-                    <span class="side-menu__label">Index</span><span class="badge badge-success side-badge">1</span></a>
+                    <span class="side-menu__label">Home</span><span class="badge badge-success side-badge">1</span></a>
             </li>
 
 
@@ -53,6 +53,7 @@
                     <ul class="slide-menu">
                         <li><a class="slide-item" href="{{ route('add_cards') }}">Add Cards</a></li>
                         <li><a class="slide-item" href="{{ route('show_cards') }}">Customers Cards</a></li>
+                        <li><a class="slide-item" href="{{ route('show_cards_draft') }}">Draft Cards</a></li>
                     </ul>
                 </li>
 

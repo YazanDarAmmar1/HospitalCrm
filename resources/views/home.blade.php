@@ -191,20 +191,21 @@
                                         </div>
                                     </div><!-- featured-icon-box end-->
                                 </div>
+
                                 <div class="col-lg">
                                     <!-- featured-icon-box -->
                                     <div class="featured-icon-box top-icon style4 text-center">
                                         <div class="featured-icon-box-inner">
                                             <div class="ttm-icon ttm-icon_element-color-skincolor ttm-icon_element-size-lg">
-                                                <i class="flaticon-heart-3"></i>
+                                                <i class="flaticon-eye"></i>
                                             </div>
                                             <div class="featured-content">
                                                 <div class="featured-title">
-                                                    <h5>{{trans('main_tran.Be A Partner')}}</h5>
+                                                    <h5>{{trans('main_tran.Search e-Card')}}</h5>
                                                 </div>
 
                                                 <div class="ttm-di_links">
-                                                    <a href="#" class="di_link">
+                                                    <a href="{{route('search.card')}}" class="di_link">
                                                         <i class="fa fa-angle-right"></i>
                                                     </a>
                                                 </div>
@@ -212,6 +213,7 @@
                                         </div>
                                     </div><!-- featured-icon-box end-->
                                 </div>
+
                                 <div class="col-lg">
                                     <!-- featured-icon-box -->
                                     <div class="featured-icon-box top-icon style4 text-center">
@@ -239,15 +241,15 @@
                                     <div class="featured-icon-box top-icon style4 text-center">
                                         <div class="featured-icon-box-inner">
                                             <div class="ttm-icon ttm-icon_element-color-skincolor ttm-icon_element-size-lg">
-                                                <i class="flaticon-eye"></i>
+                                                <i class="flaticon-heart-3"></i>
                                             </div>
                                             <div class="featured-content">
                                                 <div class="featured-title">
-                                                    <h5>{{trans('main_tran.Search e-Card')}}</h5>
+                                                    <h5>{{trans('main_tran.Be A Partner')}}</h5>
                                                 </div>
 
                                                 <div class="ttm-di_links">
-                                                    <a href="{{route('search.card')}}" class="di_link">
+                                                    <a href="#" class="di_link">
                                                         <i class="fa fa-angle-right"></i>
                                                     </a>
                                                 </div>

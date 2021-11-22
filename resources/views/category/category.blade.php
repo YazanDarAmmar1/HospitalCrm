@@ -63,31 +63,24 @@
                                             <td>{{$c->category_ar}}</td>
                                             <td>{{$c->description}}</td>
                                             <td>
-<<<<<<< HEAD
-=======
+
                                                 @can('provider-delete')
->>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
                                                 <a class="modal-effect btn btn-sm btn-danger"
                                                    data-effect="effect-scale"
                                                    data-id="{{$c->id}}" data-name="{{$c->category}}"
                                                    data-toggle="modal"
                                                    href="#modaldem" title="delete"><i class="las la-trash"></i></a>
-<<<<<<< HEAD
 
-=======
                                                 @endcan
                                                 @can('provider-edit')
->>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
                                                 <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                                    data-id="{{$c->id}}" data-name="{{$c->category}}" data-name_ar="{{$c->category_ar}}"
                                                    data-description="{{$c->description}}"
                                                    data-toggle="modal"
                                                    href="#modaldemlo1245"
                                                    title="edit"><i class="las la-pen"></i></a>
-<<<<<<< HEAD
-=======
+
                                                     @endcan
->>>>>>> b2bf4d45ef4737b251c956056590cc8df1e27056
                                             </td>
                                         </tr>
                                         @endforeach

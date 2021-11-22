@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Card;
+use App\Notifications\AddCardNotification;
 use App\Package_type;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Notification;
 
 class ApplyCardController extends Controller
 {
@@ -20,9 +24,8 @@ class ApplyCardController extends Controller
             'name' => 'required',
             'cpr' => 'required|unique:cards,cpr_no',
         ]);
+
         foreach ($request->input('name') as $key => $name) {
-
-
             $card = new Card();
             $card->name = $request->input('name')[$key];
             $card->cpr_no = $request->input('cpr')[$key];
@@ -45,7 +48,12 @@ class ApplyCardController extends Controller
             $card->agent_id = 1;
             $card->save();
 
+            $user = Auth::user();
+            Notification::send($user, new AddCardNotification($card));
+
+
         }
+
         session()->flash('add', 'Data has been Added successfully');
         return back();
     }

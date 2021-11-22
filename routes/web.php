@@ -31,6 +31,9 @@ use App\Http\Controllers\SearchCardController;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/m', function () {
+    return view('demo.tags');
+});
 
 
 
@@ -97,9 +100,11 @@ Route::post('card/Package/delete',[PackageTypeController::class,'destroy'])->nam
 //AddCard Route
 Route::get('add_cards',[CardController::class,'index'])->name('add_cards');
 Route::post('add_cards_user',[CardController::class,'store'])->name('add_cards_user');
+Route::post('add_cards_user_more',[CardController::class,'store_more'])->name('add_cards_user_more');
 
 //AllCard Route
 Route::get('show_cards',[AllCardController::class,'index'])->name('show_cards');
+Route::get('show_cards_draft',[AllCardController::class,'index_draft'])->name('show_cards_draft');
 Route::post('delete/card',[AllCardController::class,'destroy'])->name('delete_card');
 Route::post('status/card/update',[AllCardController::class,'update'])->name('update_status');
 Route::post('card/import/customer',[AllCardController::class,'importCustomer'])->name('card_customer_import');
@@ -132,11 +137,12 @@ Route::group(
     });
     // Hospital Directory
     Route::get('hospital/directory',[HospitalDirectoryController::class,'index'])->name('hospital.directory');
+    Route::get('hospital/category/{id}',[HospitalDirectoryController::class,'hospital_category'])->name('hospital.category.show');
     Route::post('hospital/directory/search',[HospitalDirectoryController::class,'hospital_search'])->name('hospital.directory.search');
     //search ajax
     Route::get('/typeahead_autocomplete/action', [HospitalDirectoryController::class, 'action'])->name('typeahead_autocomplete.action');
     //Hospital Profile
-    Route::get('hospital/directory/profile',[HospitalDirectoryController::class,'hospital_profile'])->name('hospital.directory.profile');
+    Route::get('hospital/directory/profile/{id}',[HospitalDirectoryController::class,'hospital_profile'])->name('hospital.directory.profile');
     // Apply Card
     Route::get('public/apply',[ApplyCardController::class,'index'])->name('apply.view');
     Route::post('public/apply/add',[ApplyCardController::class,'store'])->name('apply.add');

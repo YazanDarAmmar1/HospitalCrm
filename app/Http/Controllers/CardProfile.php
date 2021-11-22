@@ -20,13 +20,19 @@ class CardProfile extends Controller
     {
         $father = DB::table('cards')->where('cpr_no', $id)->pluck('father_id')->first();
         $father_name = Card::where('cpr_no', $father)->first();
+        $count = Card::where('father_id',$id)->count();
+        if ($count > 0){
+            $count1 = $count;
+        }else{
+            $count1 =1;
+        }
 
         $card = Card::where('cpr_no', $id)->first();
         $card_father = Card::where('father_id', $id)->get();
         $user = User::all();
         $card_type = Card_type::all();
         $package = Package_type::all();
-        return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father'));
+        return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father','count1'));
     }
 
 
@@ -164,15 +170,11 @@ class CardProfile extends Controller
         return redirect('/profile/' . $new->cpr_no);
     }
 
-    public function invoice_index($id)
-    {
-        $invoice = Card::where('id', $id)->first();
-        return view('cards.invoice', compact('invoice'));
-    }
+
 
     public function all_invoice_index($id)
     {
-        $invoice = Card::where('id', $id)->first();
+        $invoice = Card::where('cpr_no', $id)->first();
         $invoice1 = Card::where('father_id', $id)->get();
         return view('cards.invoice', compact('invoice', 'invoice1'));
     }

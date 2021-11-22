@@ -55,15 +55,10 @@
                 </a>
             </div>
 
-            <div class="btn-group">
-                <a href="{{route('profile_invoice_show',$card->id)}}" title="print invoice" class="btn btn-outline-danger">
-                    <i class="fas fa-print"></i>
-                    Print Invoice
-                </a>
-            </div>
+
             @if($card->cpr_no == $card->father_id)
             <div class="btn-group">
-                <a href="{{route('profile_invoice_show_all',$card->id)}}" title="print all invoice " class="btn btn-outline-danger">
+                <a href="{{route('profile_invoice_show_all',$card->cpr_no)}}" title="print all invoice " class="btn btn-outline-danger">
                     <i class="fas fa-print"></i>
                     Print All
                 </a>
@@ -441,7 +436,7 @@
                                                 <div class="col-lg-3  mg-t-10 mg-md-t-0">
                                                     <label class="label mb-1">Prices-Card</label>
                                                     <input type="text" onchange="sum();" name="prices" id="prices" class="form-control mb-1"
-                                                           value="{{$card->price ?? $card->Package->package_prices ?? ' '}}">
+                                                           value="{{($card->price ?? $card->Package->package_prices * $count1 ?? ' ') }}">
                                                 </div>
 
                                                 <div class="col-lg-3  mg-t-10 mg-md-t-0">
@@ -811,7 +806,7 @@
             <button aria-label="Close" class="close" data-dismiss="modal"
                     type="button"><span aria-hidden="true">&times;</span></button>
         </div>
-        <form action="{{route('add_cards_user')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('add_cards_user_more')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="modal-body" style="background-color: whitesmoke">
                 <input type="hidden" readonly name="id_inp" id="id_inp">
