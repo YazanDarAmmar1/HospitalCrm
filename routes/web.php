@@ -120,6 +120,9 @@ Route::get('/single/card/{id}{id2}', [CardProfile::class, 'printToPDF'])->name('
 Route::get('/single/card/invoices/{id}', [CardProfile::class, 'printToPDF_invoices'])->name('single_invoice_pdf');
 
 
+Route::get('profile/package_prices/{id}',[CardProfile::class,'package_prices'])->name('package.prices.profile');
+
+
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');

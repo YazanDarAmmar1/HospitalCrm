@@ -16,17 +16,18 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App\Notifications\AgendamentoPendente;
 use Illuminate\Support\Facades\Mail;
 use Storage;
+
 class CardProfile extends Controller
 {
     public function index($id)
     {
         $father = DB::table('cards')->where('cpr_no', $id)->pluck('father_id')->first();
         $father_name = Card::where('cpr_no', $father)->first();
-        $count = Card::where('father_id',$id)->count();
-        if ($count > 0){
+        $count = Card::where('father_id', $id)->count();
+        if ($count > 0) {
             $count1 = $count;
-        }else{
-            $count1 =1;
+        } else {
+            $count1 = 1;
         }
 
 
@@ -37,22 +38,23 @@ class CardProfile extends Controller
         $package = Package_type::all();
 
         // notification read
-        foreach (auth()->user()->unreadNotifications as $notification){
-            if ($notification->data['id'] == $id){
+        foreach (auth()->user()->unreadNotifications as $notification) {
+            if ($notification->data['id'] == $id) {
                 $notification->delete();
             }
         }
 
-        return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father','count1'));
+        return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father', 'count1'));
     }
 
 
-    public function printToPDF($id,$id2){
+    public function printToPDF($id, $id2)
+    {
         $desin = $id2;
         $card_father = Card::where('father_id', $id)->get();
         $card = Card::where('cpr_no', $id)->first();
 
-        $data["email"] =$card->email;
+        $data["email"] = $card->email;
         $data["title"] = "From SAMA CARDS";
         $data["body"] = "To add more members, please click below";
         $data["name"] = $card->name;
@@ -64,23 +66,24 @@ class CardProfile extends Controller
                     ->subject($data["title"])
                     ->attachData($pdf->output(), "Your Card.pdf");
             });
-        }else{
+        } else {
 
         }
 
-        return $pdf->download($id.'.pdf');
+        return $pdf->download($id . '.pdf');
     }
 
-    public function printToPDF_invoices($id){
+    public function printToPDF_invoices($id)
+    {
         $invoice = Card::where('id', $id)->first();
         $invoice1 = Card::where('father_id', $id)->get();
 
 
-        $data["email"] =$invoice->email;
+        $data["email"] = $invoice->email;
         $data["title"] = "From SAMA CARDS";
         $data["body"] = "To Add More Members, Please Click Below";
         $data["name"] = $invoice->name;
-        $pdf = PDF::loadView('cards.invoice_pdf', compact('invoice','invoice1'));
+        $pdf = PDF::loadView('cards.invoice_pdf', compact('invoice', 'invoice1'));
         $pdf->setPaper("A3", "portrait");
 
 
@@ -88,10 +91,10 @@ class CardProfile extends Controller
             Mail::send('cards.email_desing2', $data, function ($message) use ($data, $pdf) {
                 $message->to($data["email"], $data["email"])
                     ->subject($data["title"])
-                   ->attachData($pdf->output(), "Your invoice.pdf");
+                    ->attachData($pdf->output(), "Your invoice.pdf");
             });
-        }else{
-       }
+        } else {
+        }
         return back();
     }
 
@@ -135,10 +138,10 @@ class CardProfile extends Controller
         $new->price = $request->prices;
         $new->delivery = $request->delivery;
         $new->total = $request->total;
-        if ($request->status == 'done'){
+        if ($request->status == 'done') {
             $new->balance = 0;
 
-        }else{
+        } else {
             $new->balance = $request->balance;
 
         }
@@ -188,7 +191,6 @@ class CardProfile extends Controller
     }
 
 
-
     public function all_invoice_index($id)
     {
         $invoice = Card::where('cpr_no', $id)->first();
@@ -196,4 +198,9 @@ class CardProfile extends Controller
         return view('cards.invoice', compact('invoice', 'invoice1'));
     }
 
+    public function package_prices($id)
+    {
+        $prices = DB::table('cards')->where('id',$id)->pluck('price');
+        return json_encode($prices);
+    }
 }

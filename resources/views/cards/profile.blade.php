@@ -720,6 +720,8 @@
             </div>
         </div>
     </div>
+</form>
+
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -735,9 +737,11 @@
                         <table class="table text-md-nowrap" id="example1">
                             <thead>
                             <tr>
+                                <th class="wd-15p border-bottom-0">Package Name</th>
                                 <th class="wd-15p border-bottom-0">Name</th>
                                 <th class="wd-15p border-bottom-0">CPR No.</th>
                                 <th class="wd-20p border-bottom-0">Phone No.</th>
+                                <th class="wd-20p border-bottom-0">Status</th>
                                 <th class="wd-15p border-bottom-0">Amount / Paid</th>
 
                             </tr>
@@ -746,10 +750,44 @@
                             @foreach($card_father as $c)
 
                                 <tr>
-                                <td>{{$c->name}}</td>
+                                    <td>
+                                        <select class="form-control select1 mb-1" name="status_ajax{{$c->id}}" onchange="editData('package_prices',{{$c->id}})">
+                                            <option selected value="{{$c->id}}" label="{{$p->name}}">
+                                            </option>
+                                            @foreach(\App\Package_type::all() as $p)
+                                                <option value="{{$c->id}}">
+                                                    {{$p->name}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>{{$c->name}}</td>
                                 <td>{{$c->cpr_no}}</td>
                                 <td>{{$c->phone}}</td>
-                                <td><input type="text" onchange="sum1();" value="{{$c->Package->package_prices}}" name="package" id="package[]" class="form-control"></td>
+                                    <td><select class="form-control select1 mb-1" name="status">
+                                            <option label="{{$c->status}}">
+                                            </option>
+                                            <option value="draft">
+                                                draft
+                                            </option>
+                                            <option value="pending">
+                                                pending
+                                            </option>
+                                            <option value="expired">
+                                                expired
+                                            </option>
+                                            <option value="done">
+                                                done
+                                            </option>
+                                            <option value="paid">
+                                                paid
+                                            </option>
+                                            <option value="print">
+                                                print
+                                            </option>
+
+                                        </select></td>
+                                <td><input type="text" value="" name="package_prices{{$c->id}}" class="form-control" id="package_prices"></td>
                             </tr>
                             @endforeach
                             </tbody>
@@ -765,7 +803,6 @@
     <!-- Container closed -->
     </div>
     <!-- main-content closed -->
-</form>
 
 {{--delete--}}
 <div class="modal" id="modaldem">
@@ -1230,6 +1267,27 @@ notif_confirm({
     'message': 'What\'s your pet\'s name?',
     'callback': myCallback
 })
+</script>
+<script>
+    function editData(var a , var b){
+            var statusId = document.getElementById('package_prices');
+            if (statusId) {
+                $.ajax({
+                    url: "{{ URL::to('profile/package_prices') }}/" + statusId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('input[name="package_prices"]'[b]).empty();
+                        $.each(data, function(key, value) {
+                            $('input[name="package_prices"]'[b]).val(value);
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
 </script>
 
 @endsection
