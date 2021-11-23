@@ -29,6 +29,7 @@ class CardProfile extends Controller
             $count1 =1;
         }
 
+
         $card = Card::where('cpr_no', $id)->first();
         $card_father = Card::where('father_id', $id)->get();
         $user = User::all();

@@ -37,10 +37,16 @@
                                     <h5 class="main-profile-name">{{$hospital->name ?? ''}}</h5>
                                 </div>
                             </div>
-                            <h6>Description</h6>
+                            <h6><b>Description_EN</b></h6>
                             <div class="main-profile-bio">
                                 {{$hospital->description ?? ''}}
-                            </div><!-- main-profile-bio -->
+                            </div>
+                            <hr/>
+                            <h6><b>Description_AR</b></h6>
+                            <div class="main-profile-bio">
+                                {{$hospital->description_ar ?? ''}}
+                            </div>
+                            <!-- main-profile-bio -->
 
                             <hr class="mg-y-30">
                             <label class="main-content-label tx-13 mg-b-20">Social</label>
@@ -377,6 +383,7 @@
                                                     <tr>
                                                         <th class="border-bottom-0">Id</th>
                                                         <th class="border-bottom-0">name</th>
+                                                        <th class="border-bottom-0">name_ar</th>
                                                         <th class="border-bottom-0">discount</th>
                                                         <th class="border-bottom-0">price</th>
                                                         <th class="border-bottom-0"></th>
@@ -387,6 +394,7 @@
                                                     <tr>
                                                         <td>{{$services->id ?? ' '}}</td>
                                                         <td>{{$services->name ?? ' '}}</td>
+                                                        <td>{{$services->name_ar ?? ' '}}</td>
                                                         <td>{{$services->discount ?? ' '}}</td>
                                                         <td>{{$services->price ?? ' '}}</td>
                                                         <td>

@@ -161,15 +161,15 @@
                                     <li><a href="#">{{trans('main_tran.Medical Program')}}</a>
                                         <ul>
                                             <li><a href="aboutus-1.html">{{trans('main_tran.Sama Health Saver Card')}}</a></li>
-                                            <li><a href="aboutus-2.html">{{trans('main_tran.Medical Directory')}}</a></li>
+                                            <li><a href="{{route('hospital.directory')}}">{{trans('main_tran.Medical Directory')}}</a></li>
                                             <li><a href="services.html">{{trans('main_tran.Our Services')}}</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">{{trans('main_tran.Join us')}}</a>
                                         <ul>
-                                            <li><a href="research-style-1.html">{{trans('main_tran.Apply For the Card')}}</a></li>
+                                            <li><a href="{{route('apply.view')}}">{{trans('main_tran.Apply For the Card')}}</a></li>
                                             <li><a href="research-style-2.html">{{trans('main_tran.Be A Partner')}}</a></li>
-                                            <li><a href="research-style-2.html">{{trans('main_tran.Search Your Card')}}</a></li>
+                                            <li><a href="{{route('search.card')}}">{{trans('main_tran.Search Your Card')}}</a></li>
 
                                         </ul>
                                     </li>

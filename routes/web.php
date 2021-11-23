@@ -32,7 +32,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 Route::get('/m', function () {
-    return view('demo.popover');
+    return view('contact-us');
 });
 
 

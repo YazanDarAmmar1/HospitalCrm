@@ -720,6 +720,45 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="card-title mg-b-0">SIMPLE TABLE</h4>
+                        <i class="mdi mdi-dots-horizontal text-gray"></i>
+                    </div>
+                    <p class="tx-12 tx-gray-500 mb-2">Example of Valex Simple Table. <a href="">Learn more</a></p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table text-md-nowrap" id="example1">
+                            <thead>
+                            <tr>
+                                <th class="wd-15p border-bottom-0">Name</th>
+                                <th class="wd-15p border-bottom-0">CPR No.</th>
+                                <th class="wd-20p border-bottom-0">Phone No.</th>
+                                <th class="wd-15p border-bottom-0">Amount / Paid</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($card_father as $c)
+
+                                <tr>
+                                <td>{{$c->name}}</td>
+                                <td>{{$c->cpr_no}}</td>
+                                <td>{{$c->phone}}</td>
+                                <td><input type="text" onchange="sum1();" value="{{$c->Package->package_prices}}" name="package" id="package[]" class="form-control"></td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- row closed -->
     </div>
@@ -1192,4 +1231,5 @@ notif_confirm({
     'callback': myCallback
 })
 </script>
+
 @endsection

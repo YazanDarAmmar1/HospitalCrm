@@ -62,7 +62,7 @@
                                 @if(isset($card))
 
                                     <a href="{{route('single_card',['id'=>$card->cpr_no,'id2'=>1])}}" onclick="" class="btn btn-danger float-left mt-3 mr-2">
-                                        Print & Send Mail
+                                        Download & Mail
                                     </a>
                                 @endif
                             </div>
@@ -72,8 +72,8 @@
                             <div class="col-lg-3 col-md-3 col-md-3"></div>
                             <div class="col-lg-6 col-md-6 col-sm-6 mt-30" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:contain; background-repeat: no-repeat; height:330px; ">
                                 <div class="row">
-                                    <div class="col-lg-4 header" style="margin-top: 18%;"> </div>
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-2 header" style="margin-top: 18%;"> </div>
+                                    <div class="col-lg-8 mt-80">
                                         <b>
                                             <table  class="table-hover" style="color: black;" >
                                                 <tr>
@@ -93,7 +93,7 @@
                                         </b>
 
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-2">
 
                                     </div>
                                 </div>

@@ -19,7 +19,7 @@ class SearchCardController extends Controller
 
         ]);
         $cpr = $request->cpr;
-        $card = Card::where('cpr_no', $cpr)->first();
+        $card = Card::where('cpr_no', $cpr)->where('status','done')->orWhere('status','paid')->first();
         return view('search_card',compact('card'));
     }
 }
