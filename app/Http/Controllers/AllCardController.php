@@ -36,22 +36,43 @@ class AllCardController extends Controller
     {
         $id = $request->id_inp;
 
-       DB::table('cards')->where('father_id',$id)->orWhere('cpr_no',$id)->update([
-           'status' => $request->status,
+        DB::table('cards')->where('father_id',$id)->orWhere('cpr_no',$id)->update([
+            'status' => $request->status,
 
-       ]);
+        ]);
 
         session()->flash('add', 'Data has been updated successfully');
         return back();
 
     }
 
+    public function update_status_just(Request $request)
+    {
+        $id = $request->id;
+
+        DB::table('cards')->where('id',$id)->update([
+            'status' => $request->value1,
+
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Data has been updated successfully',
+            'id' =>  $request->id,
+        ]);
+
+    }
+
     public function destroy(Request $request)
     {
-        $id = $request->id_inp;
+        $id = $request->id;
         Card::destroy($id);
         session()->flash('add', 'Data has been deleted successfully');
-        return back();
+        return response()->json([
+            'status' => true,
+            'msg' => 'Data has been deleted successfully',
+            'id' =>  $request->id,
+        ]);
     }
 
     public function importCustomer(Request $request)

@@ -108,6 +108,7 @@ Route::get('show_cards_draft',[AllCardController::class,'index_draft'])->name('s
 Route::post('delete/card',[AllCardController::class,'destroy'])->name('delete_card');
 Route::post('status/card/update',[AllCardController::class,'update'])->name('update_status');
 Route::post('card/import/customer',[AllCardController::class,'importCustomer'])->name('card_customer_import');
+Route::post('update_status_just',[AllCardController::class,'update_status_just'])->name('update_status_just');
 
 
 //ProfileCard Route

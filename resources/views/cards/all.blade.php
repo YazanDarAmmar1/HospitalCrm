@@ -78,7 +78,7 @@
                             </thead>
                             <tbody>
                             @foreach($card as $c)
-                                <tr>
+                                <tr class="cardRow{{$c->id}}">
                                     <td>{{$c->id}}</td>
                                     <td>{{$c->name}}</td>
                                     <td>{{$c->cpr_no}}</td>
@@ -116,12 +116,11 @@
                                            data-effect="effect-scale"
                                            title="edit"><i class="far fa-edit"></i> Edit</a>
 
-                                        <a class="modal-effect btn btn-sm btn-danger"
+                                        <a class=" delete_card modal-effect btn btn-sm btn-danger"
                                            data-effect="effect-scale"
-                                           data-id="{{$c->id}}" data-name="{{$c->name}}"
-                                           data-toggle="modal"
-                                           href="#modaldem" title="delete"><i class="las la-trash"></i> Delete</a>
-                                        @if($c->father_id == null)
+                                           data-id="{{$c->id}}"
+                                            ><i class="las la-trash"></i> Delete</a>
+                                        @if($c->father_id == $c->cpr_no)
 
                                             <a class="modal-effect btn btn-sm btn-primary"
                                                data-effect="effect-scale"
@@ -623,5 +622,36 @@
         $(function () {
             $('.selectpicker').selectpicker();
         });
+    </script>
+    <script>
+        $(document).on('click','.delete_card',function (e){
+            e.preventDefault();
+            var data_id =  $(this).attr('data-id');
+            $.ajax({
+                type : 'post',
+                url : "{{route('delete_card')}}",
+                data : {
+                    '_token' : "{{csrf_token()}}",
+                    'id' : data_id,
+
+                },
+                success :function (data) {
+                    if (data.status == true){
+                        swal("Good Job", data.msg , {
+                            button: "Okay",
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    }
+                    $('.cardRow' + data.id).remove();
+
+                }, error :function (reject) {
+
+                }
+            })
+        })
+
     </script>
 @endsection
