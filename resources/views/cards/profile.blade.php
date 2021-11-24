@@ -208,10 +208,14 @@
                          style="background-color: whitesmoke">
                         <div class="tab-pane active" id="home">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <label class="label mb-1">Email</label>
                                     <input type="email" name="email" class="form-control mb-2"
                                            value="{{$card->email ?? ' '}}">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="label mb-1">First Issue Date</label>
+                                    <input type="date" name="email" class="form-control mb-2" value="{{$card->first_issue_date}}">
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="label mb-1">Issue Date</label>
@@ -752,7 +756,8 @@
                                 <tr>
                                     <td>
                                         <select class="form-control select1 mb-1" name="status_ajax{{$c->id}}" onchange="editData('package_prices',{{$c->id}})">
-                                            <option selected value="{{$c->id}}" label="{{$p->name}}">
+                                            <option selected disabled value="{{$c->package_type}}">
+                                                {{$c->Package->name}}
                                             </option>
                                             @foreach(\App\Package_type::all() as $p)
                                                 <option value="{{$c->id}}">
@@ -764,29 +769,32 @@
                                     <td>{{$c->name}}</td>
                                 <td>{{$c->cpr_no}}</td>
                                 <td>{{$c->phone}}</td>
-                                    <td><select class="form-control select1 mb-1" name="status">
-                                            <option label="{{$c->status}}">
+                                    <td>
+                                        <select class="form-control select1 mb-1" name="status">
+                                            <option  value="{{$c->status}}" disabled selected>
+                                                {{$c->status}}
                                             </option>
-                                            <option value="draft">
+                                            <option value="draft" class="text-danger">
                                                 draft
                                             </option>
-                                            <option value="pending">
+                                            <option value="pending" class="text-danger">
                                                 pending
                                             </option>
-                                            <option value="expired">
+                                            <option value="expired" class="text-danger">
                                                 expired
                                             </option>
-                                            <option value="done">
+                                            <option value="done" class="text-danger">
                                                 done
                                             </option>
-                                            <option value="paid">
+                                            <option value="paid" class="text-danger">
                                                 paid
                                             </option>
-                                            <option value="print">
+                                            <option value="print" class="text-danger">
                                                 print
                                             </option>
 
-                                        </select></td>
+                                        </select>
+                                    </td>
                                 <td><input type="text" value="" name="package_prices{{$c->id}}" class="form-control" id="package_prices"></td>
                             </tr>
                             @endforeach
