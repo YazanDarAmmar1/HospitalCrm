@@ -16,6 +16,20 @@
 
                     </div>
                 </div><!-- /.col-md-12 -->
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-lg-2 mb-3">
+                    <a href="{{route('search.card')}}">
+                        <button class="btn mr-2" style="background-color: white; color: purple;border-radius: 20px;width:150px; ">{{trans('main_tran.Search e-Card')}}</button>
+                    </a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="{{route('apply.view')}}">
+
+                        <button class="btn" href="{{route('hospital.directory')}}" style="background-color: white; color: purple;border-radius: 20px; width:150px;">{{trans('main_tran.Apply Card')}}</button>
+                    </a>
+                </div>
             </div><!-- /.row -->
         </div><!-- /.container -->
     </div><!-- page-title end-->

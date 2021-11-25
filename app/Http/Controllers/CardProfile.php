@@ -23,15 +23,15 @@ class CardProfile extends Controller
     {
         $father = DB::table('cards')->where('cpr_no', $id)->pluck('father_id')->first();
         $father_name = Card::where('cpr_no', $father)->first();
-        $count = Card::where('father_id', $id)->count();
-        if ($count > 0) {
-            $count1 = $count;
-        } else {
-            $count1 = 1;
+        $count = DB::table('cards')->where('father_id', $id)->pluck('package_type')->toArray();
+        $total = null;
+        for ($i = 0 ; $i<count($count) ; $i++)
+        {
+            $total += DB::table('package_types')->where('id',$count[$i])->sum('package_prices');
         }
 
 
-        $card = Card::where('cpr_no', $id)->first();
+            $card = Card::where('cpr_no', $id)->first();
         $card_father = Card::where('father_id', $id)->get();
         $user = User::all();
         $card_type = Card_type::all();
@@ -44,7 +44,7 @@ class CardProfile extends Controller
             }
         }
 
-        return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father', 'count1'));
+        return view('cards.profile', compact('card', 'user', 'card_type', 'package', 'father_name', 'card_father', 'total'));
     }
 
 
@@ -54,7 +54,7 @@ class CardProfile extends Controller
         $card_father = Card::where('father_id', $id)->get();
         $card = Card::where('cpr_no', $id)->first();
 
-        $data["email"] = $card->email;
+        $data["email"] = $card->email ?? '';
         $data["title"] = "From SAMA CARDS";
         $data["body"] = "To add more members, please click below";
         $data["name"] = $card->name;
@@ -79,7 +79,7 @@ class CardProfile extends Controller
         $invoice1 = Card::where('father_id', $id)->get();
 
 
-        $data["email"] = $invoice->email;
+        $data["email"] = $invoice->email ??'';
         $data["title"] = "From SAMA CARDS";
         $data["body"] = "To Add More Members, Please Click Below";
         $data["name"] = $invoice->name;
@@ -116,6 +116,7 @@ class CardProfile extends Controller
 
         $new = Card::find($request->id);
         $new->name = $request->name;
+        $new->first_issue_date = $request->firstIssue;
         $new->cpr_no = $request->cpr;
         $new->email = $request->email;
         $new->date = $request->date;
@@ -139,11 +140,13 @@ class CardProfile extends Controller
         $new->delivery = $request->delivery;
         $new->total = $request->total;
         if ($request->status == 'done') {
+            $new->balance = $request->total;
+
+        } elseif($request->status == 'paid' && $request->balance == '') {
             $new->balance = 0;
 
-        } else {
+        }else{
             $new->balance = $request->balance;
-
         }
         if (!($request->customer_img == null)) {
             $image = $request->file('customer_img');
@@ -198,9 +201,11 @@ class CardProfile extends Controller
         return view('cards.invoice', compact('invoice', 'invoice1'));
     }
 
-    public function package_prices($id)
+    public function invoice_index_print($id)
     {
-        $prices = DB::table('cards')->where('id',$id)->pluck('price');
-        return json_encode($prices);
+        $invoice = Card::where('cpr_no', $id)->first();
+        return view('cards.invoice', compact('invoice'));
     }
+
+
 }

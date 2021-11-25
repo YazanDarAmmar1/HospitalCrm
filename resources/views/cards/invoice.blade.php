@@ -82,12 +82,23 @@
                                                     @foreach($invoice1 as $invoice1)
 												<tr>
                                                     <td>{{$invoice1->Type->name ?? ' '}}</td>
-                                                    <td class="tx-12">SHC222 - {{$invoice1->id}}</td>
+                                                    <td class="tx-12">SHC222{{$invoice1->id}}</td>
                                                     <td class="tx-center">1</td>
                                                     <td class="tx-right">{{$invoice1->Package->package_prices}} BD</td>
                                                 </tr>
                                                     @endforeach
+                                                @elseif(isset($invoice))
+
+
+                                                        <tr>
+                                                            <td>{{$invoice->Type->name ?? ' '}}</td>
+                                                            <td class="tx-12">SHC222{{$invoice->id}}</td>
+                                                            <td class="tx-center">1</td>
+                                                            <td class="tx-right">{{$invoice->Package->package_prices}} BD</td>
+                                                        </tr>
+
                                                 @else
+
                                                 @endif
 
 
@@ -107,9 +118,16 @@
 											</thead>
 											<tbody>
 												<tr>
+
                                                     <td class="tx-bold" style="font-weight: bold;font-size: 19px;color: black;text-decoration: underline;text-decoration-style:solid;text-decoration-thickness:0.2em;  "><b>{{$invoice->delivery  ?? ' '}} BD</b></td>
-													<td class="" style="font-weight: bold;font-size: 19px;color: black;text-decoration: underline;text-decoration-style:solid;text-decoration-thickness:0.2em;  ">{{$invoice->total ?? ' '}} BD</td>
+                                                    @if(isset($invoice1))
+													<td class="" style="font-weight: bold;font-size: 19px;color: black;text-decoration: underline;text-decoration-style:solid;text-decoration-thickness:0.2em;  ">{{$invoice->total}} BD</td>
+                                                    @else
+                                                        <td class="" style="font-weight: bold;font-size: 19px;color: black;text-decoration: underline;text-decoration-style:solid;text-decoration-thickness:0.2em;  ">{{$invoice->Package->package_prices + $invoice->delivery ?? ' '}}  BD</td>
+
+                                                    @endif
 													<td class="" style="font-weight: bold;font-size: 19px;color: black;text-decoration: underline;text-decoration-style:solid;text-decoration-thickness:0.2em;  ">{{$invoice->balance}} BD</td>
+
 												</tr>
 											</tbody>
 										</table>

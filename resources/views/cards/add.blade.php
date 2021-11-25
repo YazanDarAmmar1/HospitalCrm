@@ -86,14 +86,12 @@
 
                                 <div class="col-md-3 mg-t-10 mg-md-t-0">
                                     <label class="label">Date</label>
-                                    <input class="form-control mb-1" name="date" type="date">
+                                    <input class="form-control mb-1" name="date" type="date" >
                                 </div>
 
                                 <div class="col-md-3 mg-t-10 mg-md-t-0">
                                     <label class="label">Agent</label>
                                     <select class="form-control select2 mb-1" name="agent">
-                                        <option label="Choose one">
-                                        </option>
                                         @foreach($user as $u)
                                             <option value="{{$u->id}}">
                                                 {{$u->name}}
@@ -105,8 +103,7 @@
                                 <div class="col-md-3 mg-t-10 mg-md-t-0">
                                     <label class="label">Gender</label>
                                     <select class="form-control select2 mb-1" name="gender">
-                                        <option label="Choose one">
-                                        </option>
+
                                         <option value="male">
                                             Male
                                         </option>
@@ -187,8 +184,7 @@
                                                                 <label class="label">Payment Method</label>
                                                                 <select class="form-control select1 mb-1"
                                                                         name="payment_method">
-                                                                    <option label="Choose one">
-                                                                    </option>
+
                                                                     <option value="benefit">
                                                                         Benefit
                                                                     </option>
@@ -203,8 +199,6 @@
                                                                 <label class="label">Contact Method</label>
                                                                 <select class="form-control select1 mb-1"
                                                                         name="contact_method">
-                                                                    <option label="Choose one">
-                                                                    </option>
                                                                     <option value="call">
                                                                         Call
                                                                     </option>
@@ -222,8 +216,7 @@
                                                                 <label class="label">Package Type</label>
                                                                 <select class="form-control select1 mb-1"
                                                                         name="package">
-                                                                    <option label="Choose one">
-                                                                    </option>
+
                                                                     @foreach($package as $c)
                                                                         <option value="{{$c->id}}">
                                                                             {{$c->name}}
@@ -236,7 +229,8 @@
                                                             <div class="col-md-3 mg-t-10 mg-md-t-0">
                                                                 <label class="label">Period</label>
                                                                 <select class="form-control select1 mb-1" name="period">
-                                                                    <option label="Choose one">
+                                                                    <option value="1Year">
+                                                                        1 Year
                                                                     </option>
                                                                     <option value="3Months">
                                                                         3 Months
@@ -247,9 +241,7 @@
                                                                     <option value="5Months">
                                                                         5 Months
                                                                     </option>
-                                                                    <option value="1Year">
-                                                                        1 Year
-                                                                    </option>
+
                                                                     <option value="2Years">
                                                                         2 Years
                                                                     </option>

@@ -59,6 +59,7 @@ class CardController extends Controller
 
         $card = new Card();
         $card->name = $request->name;
+        $card->first_issue_date = $request->date;
         $card->cpr_no = $request->cpr;
         $card->email = $request->email;
         $card->date = $request->date;
@@ -141,6 +142,7 @@ class CardController extends Controller
         $card = new Card();
         $card->name = $request->name;
         $card->cpr_no = $request->cpr;
+        $card->first_issue_date = $request->date;
         $card->email = $request->email;
         $card->date = $request->date;
         $card->agent_id = $user;

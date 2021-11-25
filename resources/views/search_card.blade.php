@@ -14,8 +14,23 @@
                         </div><!-- /.page-title-captions -->
 
                     </div>
-                </div><!-- /.col-md-12 -->
-            </div><!-- /.row -->
+                </div>
+                <!-- /.col-md-12 -->
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-lg-2 mb-3">
+                    <a href="{{route('apply.view')}}">
+                    <button class="btn mr-2" style="background-color: white; color: purple;border-radius: 20px; width:150px;">{{trans('main_tran.Apply Card')}}</button>
+                    </a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="{{route('hospital.directory')}}">
+
+                    <button class="btn" href="{{route('hospital.directory')}}" style="background-color: white; color: purple;border-radius: 20px; ">{{trans('main_tran.Medical Directory')}}</button>
+                    </a>
+                </div>
+            </div> <!-- /.row -->
         </div><!-- /.container -->
     </div><!-- page-title end-->
 
@@ -30,19 +45,7 @@
             <div class="container" >
                 <!-- row -->
                 <div class="row" >
-                    <div
-                        class="col-lg-3 widget-area sidebar-left ttm-col-bgcolor-yes ttm-bg ttm-left-span ttm-bgcolor-grey">
-                        <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
-                        <aside class="widget widget-nav-menu">
-                            <ul class="widget-menu box-shadow">
-                                <li><a
-                                        href="{{route('apply.view')}}">{{trans('main_tran.Apply Card')}}</a></li>
-                                <li><a href="{{route('hospital.directory')}}">{{trans('main_tran.Medical Directory')}}</a></li>
-                                <li class="active"><a href="{{route('search.card')}}">{{trans('main_tran.Search e-Card')}}</a></li>
 
-                            </ul>
-                        </aside>
-                    </div>
                     <div class="col-lg-9 content-area" style="background-color: whitesmoke">
                         <!-- ttm-service-single-content-are -->
                         <div class="row">
@@ -73,7 +76,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 mt-30" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:contain; background-repeat: no-repeat; height:330px; ">
                                 <div class="row">
                                     <div class="col-lg-2 header" style="margin-top: 18%;"> </div>
-                                    <div class="col-lg-8 mt-80">
+                                    <div class="col-lg-8 mt-lg-5 pt-lg-4">
                                         <b>
                                             <table  class="table-hover" style="color: black;" >
                                                 <tr>
@@ -104,6 +107,18 @@
                         <!-- ttm-service-single-content-are end -->
                     </div>
                 </div><!-- row end -->
+                    <div class="col-lg-3 widget-area sidebar-left    ttm-bgcolor-grey bg-white">
+                        <div class="ttm-col-wrapper-bg-layer"></div>
+                        <aside class="widget widget-nav-menu">
+                            <ul class="widget-menu box-shadow">
+                                <li><a
+                                        href="{{route('apply.view')}}">{{trans('main_tran.Apply Card')}}</a></li>
+                                <li><a href="{{route('hospital.directory')}}">{{trans('main_tran.Medical Directory')}}</a></li>
+                                <li class="active"><a href="{{route('search.card')}}">{{trans('main_tran.Search e-Card')}}</a></li>
+
+                            </ul>
+                        </aside>
+                    </div>
             </div>
         </div>
             </form>

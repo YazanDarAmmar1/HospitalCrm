@@ -218,7 +218,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label class="label mb-1">First Issue Date</label>
-                                            <input type="date" name="email" class="form-control mb-2"
+                                            <input type="date" name="firstIssue" class="form-control mb-2"
                                                    value="{{$card->first_issue_date}}">
                                         </div>
                                         <div class="col-lg-6">
@@ -433,13 +433,21 @@
 
                                                             </select>
                                                         </div>
-
+                                                        @if($card->cpr_no == $card->father_id)
                                                         <div class="col-lg-3  mg-t-10 mg-md-t-0">
                                                             <label class="label mb-1">Prices-Card</label>
                                                             <input type="text" onchange="sum();" name="prices"
                                                                    id="prices" class="form-control mb-1"
-                                                                   value="{{($card->price ?? $card->Package->package_prices * $count1 ?? ' ') }}">
+                                                                   value="{{(   $total ?? $card->price ?? $card->Package->package_prices ??' ') }}">
                                                         </div>
+                                                        @else
+                                                            <div class="col-lg-3  mg-t-10 mg-md-t-0">
+                                                                <label class="label mb-1">Prices-Card</label>
+                                                                <input type="text" onchange="sum();" name="prices"
+                                                                       id="prices" class="form-control mb-1"
+                                                                       value="{{( $card->price ??  $total ?? $card->Package->package_prices ??' ') }}">
+                                                            </div>
+                                                        @endif
 
                                                         <div class="col-lg-3  mg-t-10 mg-md-t-0">
                                                             <label class="label mb-1">Delivery-Charge</label>
@@ -480,11 +488,19 @@
                                         <button type="submit" class="btn btn-outline-indigo ">UPDATE</button>
                                     </div>
                                     <div class="btn-group float-left">
+                                        @if($card->cpr_no == $card->father_id)
 
                                         <a href="{{route('profile_invoice_show_all',$card->cpr_no)}}"
                                            title="print all invoice " class="btn btn-outline-danger">
                                             <i class="fas fa-print"></i>
                                             Print All
+                                        </a>
+                                        @endif
+
+                                        <a href="{{route('invoice_index_print',$card->cpr_no)}}"
+                                           title="print invoice " class="btn btn-outline-primary ml-2">
+                                            <i class="fas fa-file-archive"></i>
+                                            Print
                                         </a>
                                     </div>
 
@@ -514,7 +530,7 @@
                                                     @foreach($card_father as $c)
                                                         <tr>
                                                             <td>{{$c->id}}</td>
-                                                            <td>{{$c->name}}</td>
+                                                            <td><a href="{{route('profile_show',$c->cpr_no)}}">{{$c->name}}</a></td>
                                                             <td>{{$c->cpr_no}}</td>
                                                             <td>
                                                                 <select  data-id="{{$c->id}}"
@@ -604,7 +620,7 @@
                                                     <p class="mb-1 tx-bold "> Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span>
                                                     </p>
                                                     <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/></p>
-                                                    <p class="mb-1 tx-bold"> ID No. : SHC222 - {{$card->id ?? ''}}<br/>
+                                                    <p class="mb-1 tx-bold"> ID No. : SHC222{{$card->id ?? ''}}<br/>
                                                     </p>
                                                     <p class="mb-3 tx-bold"> Expiry Date : {{$card->expiry ?? ''}}<br/>
                                                     </p>
@@ -615,7 +631,7 @@
 
                                         </div>
                                         <div class="col-lg-2">
-                                            <a href="{{route('single_card',['id'=>$card->id,'id2'=>0])}}"
+                                            <a href="{{route('single_card',['id'=>$card->cpr_no,'id2'=>0])}}"
                                                class="btn btn-danger float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print
                                             </a>
@@ -643,7 +659,7 @@
                                                     <p class="mb-1 tx-bold "> Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span>
                                                     </p>
                                                     <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/></p>
-                                                    <p class="mb-1 tx-bold"> ID No. : SHC222 - {{$card->id ?? ''}}<br/>
+                                                    <p class="mb-1 tx-bold"> ID No. : SHC222{{$card->id ?? ''}}<br/>
                                                     </p>
                                                     <p class="mb-3 tx-bold"> Expiry Date : {{$card->expiry ?? ''}}<br/>
                                                     </p>
@@ -670,7 +686,7 @@
                                 <div class="tab-pane" id="allcard">
                                     <div class="row">
                                         <div class="col-lg-4"><a
-                                                href="{{route('single_card',['id'=>$card->id,'id2'=>2])}}"
+                                                href="{{route('single_card',['id'=>$card->cpr_no,'id2'=>2])}}"
                                                 class="btn btn-primary float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print All
                                             </a>
@@ -692,7 +708,7 @@
                                                         <p class="mb-1 tx-bold "> Name : <span class="tx-uppercase"> {{$f->name ?? ''}}<br/> </span>
                                                         </p>
                                                         <p class="mb-1 tx-bold"> CPR : {{$f->cpr_no ?? ''}}<br/></p>
-                                                        <p class="mb-1 tx-bold"> ID No. : SHC222 - {{$f->id ?? ''}}<br/>
+                                                        <p class="mb-1 tx-bold"> ID No. : SHC222{{$f->id ?? ''}}<br/>
                                                         </p>
                                                         <p class="mb-3 tx-bold"> Expiry Date : {{$f->expiry ?? ''}}<br/>
                                                         </p>
@@ -705,7 +721,7 @@
                                             </div>
 
                                             <div class="col-lg-2">
-                                                <a href="{{route('single_card',['id'=>$f->id,'id2'=>0])}}"
+                                                <a href="{{route('single_card',['id'=>$f->cpr_no,'id2'=>0])}}"
                                                    class="btn btn-danger float-left mt-3 mr-2">
                                                     <i class="mdi mdi-printer ml-1"></i>Print
                                                 </a>
@@ -721,7 +737,7 @@
                                 <div class="tab-pane" id="allcarddesing">
                                     <div class="row">
                                         <div class="col-lg-4"><a
-                                                href="{{route('single_card',['id'=>$card->id,'id2'=>3])}}"
+                                                href="{{route('single_card',['id'=>$card->cpr_no,'id2'=>3])}}"
                                                 class="btn btn-primary float-left mt-3 mr-2">
                                                 <i class="mdi mdi-printer ml-1"></i>Print All
                                             </a>
@@ -743,7 +759,7 @@
                                                         <p class="mb-1 tx-bold "> Name : <span class="tx-uppercase"> {{$f->name ?? ''}}<br/> </span>
                                                         </p>
                                                         <p class="mb-1 tx-bold"> CPR : {{$f->cpr_no ?? ''}}<br/></p>
-                                                        <p class="mb-1 tx-bold"> ID No. : SHC222 - {{$f->id ?? ''}}<br/>
+                                                        <p class="mb-1 tx-bold"> ID No. : SHC222{{$f->id ?? ''}}<br/>
                                                         </p>
                                                         <p class="mb-3 tx-bold"> Expiry Date : {{$f->expiry ?? ''}}<br/>
                                                         </p>
@@ -756,7 +772,7 @@
                                             </div>
 
                                             <div class="col-lg-2">
-                                                <a href="{{route('single_card',['id'=>$f->id,'id2'=>1])}}"
+                                                <a href="{{route('single_card',['id'=>$f->cpr_no,'id2'=>1])}}"
                                                    class="btn btn-danger float-left mt-3 mr-2">
                                                     <i class="mdi mdi-printer ml-1"></i>Print
                                                 </a>
@@ -806,7 +822,7 @@
                                         <select class="form-control select1 mb-1" name="status_ajax{{$c->id}}"
                                                 onchange="editData('package_prices',{{$c->id}})">
                                             <option selected disabled value="{{$c->package_type}}">
-                                                {{$c->Package->name}}
+                                                {{$c->Package->name ?? ''}}
                                             </option>
                                             @foreach(\App\Package_type::all() as $p)
                                                 <option value="{{$c->id}}">
@@ -963,19 +979,18 @@
                             <div class="col-md-3 mg-t-10 mg-md-t-0">
                                 <label class="label">Email</label>
                                 <input class="form-control mb-1" placeholder="Enter your email" name="email"
-                                       type="email">
+                                       type="email" value="{{$card->email}}">
                             </div>
 
                             <div class="col-md-4 mg-t-10 mg-md-t-0">
                                 <label class="label">Date</label>
-                                <input class="form-control mb-1" name="date" type="date">
+                                <input class="form-control mb-1" name="date" value="{{date('mm-dd-YYY')}}" type="date">
                             </div>
 
                             <div class="col-md-3 mg-t-10 mg-md-t-0">
                                 <label class="label">Gender</label>
                                 <select class="form-control select2 mb-1" name="gender">
-                                    <option label="Choose one">
-                                    </option>
+
                                     <option value="male">
                                         Male
                                     </option>
@@ -1056,8 +1071,7 @@
                                                             <label class="label">Payment Method</label>
                                                             <select class="form-control select1 mb-1"
                                                                     name="payment_method">
-                                                                <option label="Choose one">
-                                                                </option>
+
                                                                 <option value="benefit">
                                                                     Benefit
                                                                 </option>
@@ -1072,13 +1086,11 @@
                                                             <label class="label">Contact Method</label>
                                                             <select class="form-control select1 mb-1"
                                                                     name="contact_method">
-                                                                <option label="Choose one">
+                                                                <option value="whatsapp">
+                                                                    Whatsapp
                                                                 </option>
                                                                 <option value="call">
                                                                     Call
-                                                                </option>
-                                                                <option value="whatsapp">
-                                                                    Whatsapp
                                                                 </option>
                                                                 <option value="online">
                                                                     Online
@@ -1091,8 +1103,6 @@
                                                             <label class="label">Package Type</label>
                                                             <select class="form-control select1 mb-1"
                                                                     name="package">
-                                                                <option label="Choose one">
-                                                                </option>
                                                                 @foreach($package as $c)
                                                                     <option value="{{$c->id}}">
                                                                         {{$c->name}}
@@ -1105,7 +1115,8 @@
                                                         <div class="col-md-4 mg-t-10 mg-md-t-0">
                                                             <label class="label">Period</label>
                                                             <select class="form-control select1 mb-1" name="period">
-                                                                <option label="Choose one">
+                                                                <option value="1Year">
+                                                                    1 Year
                                                                 </option>
                                                                 <option value="3Months">
                                                                     3 Months
@@ -1115,9 +1126,6 @@
                                                                 </option>
                                                                 <option value="5Months">
                                                                     5 Months
-                                                                </option>
-                                                                <option value="1Year">
-                                                                    1 Year
                                                                 </option>
                                                                 <option value="2Years">
                                                                     2 Years
@@ -1352,30 +1360,7 @@
 
 
     </script>
-    <script>
-        $(function(){
-            $('select[type=text]').keyup(function(){
-                var elem = $(this);
-                clearTimeout($(this).data('timer'));
-                $(this).data('timer', setTimeout(function(){
-                    sendValue(elem.attr('id'), elem.val());
-                }, 300));
-            });
-            $('input[type=text]').change(function(){
-                sendValue($(this).attr('id'), $(this).val());
-            });
-        });
 
-        function sendValue(key, value) {
-            $.post('path/to/script.php', {key: key, value: value}, function(data, result){
-                if(result == 'success') {
-                    console.log('Data was sent');
-                } else {
-                    console.log('AJAX post failed');
-                }
-            });
-        }
-    </script>
 
 
 
