@@ -19,19 +19,25 @@ use Storage;
 
 class CardProfile extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index($id)
     {
         $father = DB::table('cards')->where('cpr_no', $id)->pluck('father_id')->first();
         $father_name = Card::where('cpr_no', $father)->first();
         $count = DB::table('cards')->where('father_id', $id)->pluck('package_type')->toArray();
         $total = null;
-        for ($i = 0 ; $i<count($count) ; $i++)
-        {
-            $total += DB::table('package_types')->where('id',$count[$i])->sum('package_prices');
+        for ($i = 0; $i < count($count); $i++) {
+            $total += DB::table('package_types')->where('id', $count[$i])->sum('package_prices');
         }
 
 
-            $card = Card::where('cpr_no', $id)->first();
+        $card = Card::where('cpr_no', $id)->first();
         $card_father = Card::where('father_id', $id)->get();
         $user = User::all();
         $card_type = Card_type::all();
@@ -79,7 +85,7 @@ class CardProfile extends Controller
         $invoice1 = Card::where('father_id', $id)->get();
 
 
-        $data["email"] = $invoice->email ??'';
+        $data["email"] = $invoice->email ?? '';
         $data["title"] = "From SAMA CARDS";
         $data["body"] = "To Add More Members, Please Click Below";
         $data["name"] = $invoice->name;
@@ -142,10 +148,10 @@ class CardProfile extends Controller
         if ($request->status == 'done') {
             $new->balance = $request->total;
 
-        } elseif($request->status == 'paid' && $request->balance == '') {
+        } elseif ($request->status == 'paid' && $request->balance == '') {
             $new->balance = 0;
 
-        }else{
+        } else {
             $new->balance = $request->balance;
         }
         if (!($request->customer_img == null)) {
@@ -205,6 +211,56 @@ class CardProfile extends Controller
     {
         $invoice = Card::where('cpr_no', $id)->first();
         return view('cards.invoice', compact('invoice'));
+    }
+
+    public function package_prices($id, $id2)
+    {
+        $prices = DB::table('package_types')->where('id', $id)->pluck('package_prices');
+        DB::table('cards')->where('id', $id2)->update([
+            'package_type' => $id,
+            'price' => $prices[0],
+        ]);
+        return response()->json($prices);
+    }
+
+    public function package_name($id, $id2)
+    {
+        $package = DB::table('cards')->where('id', $id)->update([
+            'status' => $id2,
+        ]);
+        return response()->json($package);
+    }
+
+    public function balance($id, $id2)
+    {
+        DB::table('cards')->where('id', $id2)->update([
+            'balance' => $id,
+        ]);
+        return response()->json($id);
+    }
+
+    public function delivery($id, $id2, $id3)
+    {
+        $total = Card::where('father_id', $id3)->sum('price', 'delivery');
+        $total += $id;
+
+        DB::table('cards')->where('id', $id2)->update([
+            'delivery' => $id,
+            'total' => $total,
+
+        ]);
+
+
+        return response()->json($total);
+    }
+
+
+    public function editPackagePrice($id, $id2)
+    {
+        DB::table('cards')->where('id', $id2)->update([
+            'price' => $id,
+        ]);
+        return response()->json($id);
     }
 
 

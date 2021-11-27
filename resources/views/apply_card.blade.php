@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-lg-6 mb-4">
                                     <label class="label tx-bold text-dark">Gender :</label>
-                                    <select style="border:solid 2px #761193;border-radius: 20px; " class="form-control" name="gender[]" required>
+                                    <select style="border:solid 2px #761193;border-radius: 20px; " class="form-control" name="gender[]" >
                                         <option label="select one"></option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="col-lg-6 mb-4">
                                     <label class="label tx-bold text-dark">Mobile No. :</label>
-                                    <input style="border:solid 2px #761193;border-radius: 20px; " class="form-control" type="text" name="mobile" placeholder="Mobile" required>
+                                    <input style="border:solid 2px #761193;border-radius: 20px; " class="form-control" type="text" name="mobile" placeholder="Mobile" >
                                 </div>
                                 <div class="col-lg-6 mb-4">
                                     <label class="label tx-bold text-dark">Phone No. :</label>
@@ -267,7 +267,7 @@
 
     @if (Session::has('add'))
         <script>
-            swal("Good Job", "{!! Session::get('add') !!}", {
+            swal("شكرا لك", "{!! Session::get('add') !!}", {
                 button: "Okay",
                 position: 'top-end',
                 icon: 'success',

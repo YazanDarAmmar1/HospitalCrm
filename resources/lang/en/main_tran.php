@@ -3,11 +3,16 @@
 return [
 
     'Home' => 'Home',
+    'WHAT WE DO' => 'WHAT WE DO',
+    'Our Mission' => 'Our Mission',
+    'providing2' => 'Providing distinguished health care at the best prices within the reach of the largest sector of health service seekers through partnership with a group of the best service providers from medical authorities and bodies in order to achieve the maximum health, service and material return for those wishing to health service and medical care',
+    'We offer' => 'We offer extensive medical procedures to outbound and inbound patients what it is and we are very proud of achievement of our stpatients for recovery',
     'Medical Program' => 'Medical Program',
     'Sama Health Saver Card' => 'Sama Health Saver Card',
     'Medical Directory' => 'Medical Directory',
     'Our Services' => 'Our Services',
     'Join us' => 'Join us',
+    'Clients' => 'Clients',
     'Apply For the Card' => 'Apply For the Card',
     'Be A Partner' => 'Be A Partner',
     'Search Your Card' => 'Search Your Card',
@@ -47,4 +52,6 @@ return [
     'Bahrain' => 'Bahrain Specialist Hospital',
     'Since' => 'Since its founding Sama has been providing its patients with the full medical care, encompassing outpatients services, is neurology, laboratory, imaging diagnostics and more',
     'aboutinfo' => 'Sama Bahrain card is the first leading company who’s specialized in offering a Comprehensive Medical Discount programs under Name Health Saver Card since Nov 2015  . Our Main Program is the  Sama HealthSaver Card which is designed and implement to Support and serve all the Society in the kingdom of Bahrain ',
+
+
 ];

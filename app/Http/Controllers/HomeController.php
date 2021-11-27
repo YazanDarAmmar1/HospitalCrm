@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Hospital;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
@@ -24,5 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         return view('index');
+    }
+
+    public function about(){
+        $hospital2 = DB::table('hospitals')->paginate(4);
+        return view('aboutus',compact('hospital2'));
     }
 }

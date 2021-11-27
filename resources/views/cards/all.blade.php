@@ -11,6 +11,8 @@
     <link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
     <!---Internal Fancy uploader css-->
     <link href="{{URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet"/>
+    <!--Internal   Notify -->
+    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -83,19 +85,34 @@
                                     <td><a href="{{route('profile_show',$c->cpr_no)}}"> {{$c->name}}</a></td>
                                     <td>{{$c->cpr_no}}</td>
                                     <td>{{$c->mobile}}</td>
-                                    @if($c->status == 'draft')
-                                        <td> Draft <i class="fas fa-circle" style="color: red"></i></td>
-                                    @elseif($c->status == 'pending')
-                                        <td>Pending <i class="fas fa-circle" style="color: orange"></i></td>
-                                    @elseif($c->status == 'expired')
-                                        <td>Expired <i class="fas fa-circle" style="color: darkred"></i></td>
-                                    @elseif($c->status == 'done')
-                                        <td>Done <i class="fas fa-circle" style="color: blue"></i></td>
-                                    @elseif($c->status == 'paid')
-                                        <td>Paid <i class="fas fa-circle" style="color: dodgerblue"></i></td>
-                                    @else
-                                        <td>Print <i class="fas fa-circle" style="color: teal"></i></td>
-                                    @endif
+                                    <td>
+                                        <select onchange="editStatus(this,{{$c->id}})"
+                                                class="form-control select1 mb-1"
+                                                name="status_change">
+                                            <option selected disabled value="{{$c->status ?? ' '}}">
+                                                {{$c->status ?? ' '}}
+                                            </option>
+                                            <option value="draft">
+                                                draft
+                                            </option>
+                                            <option value="pending">
+                                                pending
+                                            </option>
+                                            <option value="expired">
+                                                expired
+                                            </option>
+                                            <option value="done">
+                                                done
+                                            </option>
+                                            <option value="paid">
+                                                paid
+                                            </option>
+                                            <option value="print">
+                                                print
+                                            </option>
+
+                                        </select>
+                                    </td>
 
                                     @if($c->cpr_no == $c->father_id)
                                         <td>Father  <i class="fas fa-circle" style="color: dodgerblue"></i></td>
@@ -532,6 +549,35 @@
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <!--Internal  Datatable js -->
     <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+    <!--Internal  Notify js -->
+    <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
+    {{--ajax status update--}}
+    <script>
+
+        function editStatus(a, c) {
+            var mySelect = a.value;
+            var user_id = c;
+
+
+            $.ajax({
+                type: 'get',
+                url: "{{url::to('profile/package_name')}}" + '/'+ user_id + '/' + mySelect,
+
+                success: function (data) {
+                    notif({
+                        msg: "Data has been changed",
+                        position: "left",
+                        bgcolor: "#8500ff",
+                        color: "#fff"
+                    });
+                }, error: function (reject) {
+
+                }
+            })
+        }
+
+    </script>
 
     <!-- SWEET Alert-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
@@ -625,6 +671,14 @@
         $(function () {
             $('.selectpicker').selectpicker();
         });
+    </script>
+    <script>
+        notif_confirm({
+            'textaccept': 'That\'s it!',
+            'textcancel': 'I don\'t have a pet :(',
+            'message': 'What\'s your pet\'s name?',
+            'callback': myCallback
+        })
     </script>
 
 @endsection

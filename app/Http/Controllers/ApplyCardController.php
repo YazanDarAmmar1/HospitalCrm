@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Card;
+use App\Notifications\AddCard;
 use App\Notifications\AddCardNotification;
 use App\Package_type;
 use http\Client\Curl\User;
@@ -46,16 +47,17 @@ class ApplyCardController extends Controller
             $card->date = date('Y-m-d');
             $card->card_type_id = 1;
             $card->agent_id = 1;
+            $card->price = $card->Package->package_prices ?? '';
             $card->save();
 
             $user = Auth::user();
-            Notification::send($user, new AddCardNotification($card));
+            Notification::send($user,new AddCardNotification($card));
 
 
 
         }
 
-        session()->flash('add', 'Data has been Added successfully');
+        session()->flash('add', 'سوف يتم الاتصال بك بعد قليل ');
         return back();
     }
 

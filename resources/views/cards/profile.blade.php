@@ -364,7 +364,7 @@
 
                                                         <div class="col-md-3 mg-t-10 mg-md-t-0">
                                                             <label class="label">Package Type</label>
-                                                            <select class="form-control select2 mb-1" name="package">
+                                                            <select class="form-control select2 mb-1" name="package"  onchange="editData(this,prices,{{$card->id}})">
                                                                 <option value="{{$card->package_type ?? ' '}}">
                                                                     {{$card->Package->name ?? ' '}}
                                                                 </option>
@@ -381,7 +381,7 @@
 
                                                         <div class="col-md-6 mg-t-10 mg-md-t-0">
                                                             <label class="label">Period</label>
-                                                            <select class="form-control select1 mb-1" name="period">
+                                                            <select  class="form-control select1 mb-1" name="period">
                                                                 <option selected value="{{$card->period ?? ' '}}">
                                                                     {{$card->period ?? ''}}
                                                                 </option>
@@ -408,7 +408,7 @@
 
                                                         <div class="col-md-6 mg-t-10 mg-md-t-0">
                                                             <label class="label">Status</label>
-                                                            <select class="form-control select1 mb-1" name="status">
+                                                            <select onchange="editStatus(this,{{$card->id}})" class="form-control select1 mb-1" name="status">
                                                                 <option selected value="{{$card->status ?? ' '}}">
                                                                     {{$card->status ?? ' '}}
                                                                 </option>
@@ -433,21 +433,13 @@
 
                                                             </select>
                                                         </div>
-                                                        @if($card->cpr_no == $card->father_id)
-                                                        <div class="col-lg-3  mg-t-10 mg-md-t-0">
-                                                            <label class="label mb-1">Prices-Card</label>
-                                                            <input type="text" onchange="sum();" name="prices"
-                                                                   id="prices" class="form-control mb-1"
-                                                                   value="{{(   $total ?? $card->price ?? $card->Package->package_prices ??' ') }}">
-                                                        </div>
-                                                        @else
+
                                                             <div class="col-lg-3  mg-t-10 mg-md-t-0">
                                                                 <label class="label mb-1">Prices-Card</label>
-                                                                <input type="text" onchange="sum();" name="prices"
+                                                                <input type="text" onchange="editPackagePrice(this,{{$card->id}});sum();" name="prices"
                                                                        id="prices" class="form-control mb-1"
                                                                        value="{{( $card->price ??  $total ?? $card->Package->package_prices ??' ') }}">
                                                             </div>
-                                                        @endif
 
                                                         <div class="col-lg-3  mg-t-10 mg-md-t-0">
                                                             <label class="label mb-1">Delivery-Charge</label>
@@ -457,14 +449,9 @@
                                                         </div>
 
 
-                                                        <div class="col-lg-3  mg-t-10 mg-md-t-0">
-                                                            <label class="label mb-1">Total</label>
-                                                            <input type="text" name="total" id="total"
-                                                                   class="form-control mb-1"
-                                                                   value="{{$card->total ?? ' '}}">
-                                                        </div>
 
-                                                        <div class="col-lg-3  mg-t-10 mg-md-t-0">
+
+                                                        <div class="col-lg-6  mg-t-10 mg-md-t-0">
                                                             <label class="label mb-1">Balance Due</label>
 
                                                             <input type="text" name="balance" id="total"
@@ -488,14 +475,7 @@
                                         <button type="submit" class="btn btn-outline-indigo ">UPDATE</button>
                                     </div>
                                     <div class="btn-group float-left">
-                                        @if($card->cpr_no == $card->father_id)
 
-                                        <a href="{{route('profile_invoice_show_all',$card->cpr_no)}}"
-                                           title="print all invoice " class="btn btn-outline-danger">
-                                            <i class="fas fa-print"></i>
-                                            Print All
-                                        </a>
-                                        @endif
 
                                         <a href="{{route('invoice_index_print',$card->cpr_no)}}"
                                            title="print invoice " class="btn btn-outline-primary ml-2">
@@ -530,13 +510,16 @@
                                                     @foreach($card_father as $c)
                                                         <tr>
                                                             <td>{{$c->id}}</td>
-                                                            <td><a href="{{route('profile_show',$c->cpr_no)}}">{{$c->name}}</a></td>
+                                                            <td>
+                                                                <a href="{{route('profile_show',$c->cpr_no)}}">{{$c->name}}</a>
+                                                            </td>
                                                             <td>{{$c->cpr_no}}</td>
                                                             <td>
-                                                                <select  data-id="{{$c->id}}"
-                                                                        class="statusqq form-control select1 mb-1"
+                                                                <select onchange="editStatus(this,{{$c->id}})"
+                                                                        class="form-control select1 mb-1"
                                                                         name="status_change">
-                                                                    <option selected value="{{$c->status ?? ' '}}">
+                                                                    <option selected disabled
+                                                                            value="{{$c->status ?? ' '}}">
                                                                         {{$c->status ?? ' '}}
                                                                     </option>
                                                                     <option value="draft">
@@ -789,6 +772,7 @@
                 </div>
             </div>
     </form>
+    @if($card->father_id == $card->cpr_no)
 
     <div class="row">
         <div class="col-xl-12">
@@ -812,6 +796,8 @@
                                 <th class="wd-20p border-bottom-0">Status</th>
                                 <th class="wd-15p border-bottom-0">Amount / Paid</th>
 
+
+
                             </tr>
                             </thead>
                             <tbody>
@@ -820,12 +806,12 @@
                                 <tr>
                                     <td>
                                         <select class="form-control select1 mb-1" name="status_ajax{{$c->id}}"
-                                                onchange="editData('package_prices',{{$c->id}})">
-                                            <option selected disabled value="{{$c->package_type}}">
-                                                {{$c->Package->name ?? ''}}
+                                                onchange="editData(this,package_prices{{$c->id}},{{$c->id}})">
+                                            <option value="{{$c->package_type}}">
+                                                {{$c->Package->name ??''}}
                                             </option>
                                             @foreach(\App\Package_type::all() as $p)
-                                                <option value="{{$c->id}}">
+                                                <option value="{{$p->id}}">
                                                     {{$p->name}}
                                                 </option>
                                             @endforeach
@@ -835,10 +821,9 @@
                                     <td>{{$c->cpr_no}}</td>
                                     <td>{{$c->phone}}</td>
                                     <td>
-                                        <select class="form-control select1 mb-1" name="status">
-                                            <option value="{{$c->status}}" disabled selected>
-                                                {{$c->status}}
-                                            </option>
+                                        <select class="form-control select1 mb-1" name="status"
+                                                onchange="editStatus(this,{{$c->id}})">
+                                            <option value="{{$c->status}}" selected disabled>{{$c->status}}</option>
                                             <option value="draft" class="text-danger">
                                                 draft
                                             </option>
@@ -860,10 +845,46 @@
 
                                         </select>
                                     </td>
-                                    <td><input type="text" value="" name="package_prices{{$c->id}}" class="form-control"
-                                               id="package_prices"></td>
+                                    <td><input type="text" value="{{$c->price}}" class="form-control" onchange="editPackagePrice(this,{{$c->id}});"
+                                               id="package_prices{{$c->id}}"></td>
+
                                 </tr>
+
                             @endforeach
+
+                            <tr>
+                                <td class="tx-bold">Balance</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="3"><input onchange="balance(this,{{$card->id}})" style="border: solid 1px #8500ff" type="text" class="form-control"
+                                                       name="balance" value="{{$card->balance}}"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="tx-bold">Delivery</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="3"><input value="{{$card->delivery}}" onchange="delivery(this,{{$card->id}},{{$card->cpr_no}});" style="border: solid 1px #8500ff" type="text" class="form-control"
+                                                       name="delivery" id="delivery"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="tx-bold">Total</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><a href="{{route('profile_invoice_show_all',$card->cpr_no)}}"
+                                       title="print all invoice " class="btn btn-outline-danger">
+                                        <i class="fas fa-print"></i>
+                                        Print All
+                                    </a></td>
+                                <td colspan="3"><input style="border: solid 1px #8500ff" type="text" value="{{$card->total}}"
+                                                       class="form-control" id="total_price"></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -871,6 +892,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <!-- row closed -->
     </div>
@@ -1191,8 +1213,10 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
+
     <!-- Internal Data tables -->
     <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
@@ -1214,6 +1238,132 @@
     <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
     <!-- Internal Select2 js-->
     <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script>
+
+        function editStatus(a, c) {
+            var mySelect = a.value;
+            var user_id = c;
+
+
+            $.ajax({
+                type: 'get',
+                url: "{{url::to('profile/package_name')}}" + '/' + user_id + '/' + mySelect,
+
+                success: function (data) {
+                    notif({
+                        msg: "Status has been changed",
+                        position: "left",
+                        bgcolor: "#8500ff",
+                        color: "#fff"
+                    });
+                }, error: function (reject) {
+
+                }
+            })
+        }
+
+    </script>
+
+    <script>
+
+        function editData(a, b, c) {
+            var mySelect = a.value;
+            var myInput = document.getElementById(b);
+            var user_id = c;
+            $.ajax({
+                type: 'get',
+                url: "{{url::to('profile/package_prices')}}" + '/' + mySelect + '/' + user_id,
+                success: function (data) {
+                    b.value = data;
+                    notif({
+                        msg: "Package has been changed",
+                        position: "left",
+                        bgcolor: "#8500ff",
+                        color: "#fff"
+                    });
+                }, error: function (reject) {
+
+                }
+            })
+        }
+
+    </script>
+
+    <script>
+
+        function balance(a, c) {
+            var mySelect = a.value;
+            var user_id = c;
+            $.ajax({
+                type: 'get',
+                url: "{{url::to('profile/balance')}}" + '/' + mySelect + '/' + user_id,
+                success: function (data) {
+                    a.value = data;
+                    notif({
+                        msg: "Balance has been changed",
+                        position: "left",
+                        bgcolor: "#8500ff",
+                        color: "#fff"
+                    });
+                }, error: function (reject) {
+
+                }
+            })
+        }
+
+    </script>
+
+    <script>
+
+        function delivery(a, c ,b) {
+            var mySelect = a.value;
+            var user_id = c;
+            var cpr_no = b;
+            var total = document.getElementById('total_price');
+            $.ajax({
+                type: 'get',
+                url: "{{url::to('profile/delivery')}}" + '/' + mySelect + '/' + user_id +'/' + cpr_no,
+                success: function (data) {
+                    total.value = data;
+                    notif({
+                        msg: "Delivery has been changed",
+                        position: "left",
+                        bgcolor: "#8500ff",
+                        color: "#fff"
+                    });
+                }, error: function (reject) {
+
+                }
+            })
+        }
+
+    </script>
+
+    <script>
+
+        function editPackagePrice(a, c) {
+            var mySelect = a.value;
+            var user_id = c;
+            $.ajax({
+                type: 'get',
+                url: "{{url::to('profile/editPackagePrice')}}" + '/' + mySelect + '/' + user_id,
+                success: function (data) {
+                    a.value = data;
+                    notif({
+                        msg: "Price has been changed",
+                        position: "left",
+                        bgcolor: "#8500ff",
+                        color: "#fff"
+                    });
+                }, error: function (reject) {
+
+                }
+            })
+        }
+
+    </script>
+
+
     <!--Internal  Form-elements js-->
     <script src="{{URL::asset('assets/js/advanced-form-elements.js')}}"></script>
     <script src="{{URL::asset('assets/js/select2.js')}}"></script>
@@ -1255,6 +1405,7 @@
 
         }
     </script>
+
 
     {{--status--}}
     <script type="text/javascript">
@@ -1334,34 +1485,5 @@
             'callback': myCallback
         })
     </script>
-
-    <script>
-        $(document).ready(function() {
-            $('select[name="status_change"]').on('change', function(e) {
-            e.preventDefault();
-            var data_id = $(this).attr('data-id');
-            var val_data = $(this).val();
-            $.ajax({
-                type: 'get',
-                url: "{{route('update_status_just')}}",
-                data: {
-                    'id': data_id,
-                    'value1': val_data,
-
-                },
-                success: function (data) {
-                    console.log('good');
-                }
-
-        },
-
-        })
-        }
-
-
-    </script>
-
-
-
 
 @endsection

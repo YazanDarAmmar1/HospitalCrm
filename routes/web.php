@@ -31,8 +31,10 @@ use App\Http\Controllers\SearchCardController;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/m', function () {
-    return view('contact-us');
+
+// livewire
+Route::get('/m',function (){
+    return view('aboutus');
 });
 
 
@@ -108,7 +110,6 @@ Route::get('show_cards_draft',[AllCardController::class,'index_draft'])->name('s
 Route::post('delete/card',[AllCardController::class,'destroy'])->name('delete_card');
 Route::post('status/card/update',[AllCardController::class,'update'])->name('update_status');
 Route::post('card/import/customer',[AllCardController::class,'importCustomer'])->name('card_customer_import');
-Route::post('update_status_just',[AllCardController::class,'update_status_just'])->name('update_status_just');
 
 
 //ProfileCard Route
@@ -121,8 +122,12 @@ Route::get('/export-pdf', [CardProfile::class, 'exportPdf'])->name('pdf');
 Route::get('/single/card/{id}{id2}', [CardProfile::class, 'printToPDF'])->name('single_card');
 Route::get('/single/card/invoices/{id}', [CardProfile::class, 'printToPDF_invoices'])->name('single_invoice_pdf');
 
-
-Route::get('profile/package_prices/{id}',[CardProfile::class,'package_prices'])->name('package.prices.profile');
+//ajax update
+Route::get('profile/package_prices/{id}/{id2}',[CardProfile::class,'package_prices'])->name('package.prices.profile');
+Route::get('profile/package_name/{id}/{id2}',[CardProfile::class,'package_name'])->name('package.prices.name');
+Route::get('profile/balance/{id}/{id2}',[CardProfile::class,'balance'])->name('package.prices.balance');
+Route::get('profile/delivery/{id}/{id2}/{id3}',[CardProfile::class,'delivery'])->name('package.prices.delivery');
+Route::get('profile/editPackagePrice/{id}/{id2}',[CardProfile::class,'editPackagePrice'])->name('package.prices.editPackagePrice');
 
 
 Route::group(['middleware' => ['auth']], function() {
@@ -154,7 +159,7 @@ Route::group(
     // Search Card
     Route::get('public/search/card',[SearchCardController::class,'index'])->name('search.card');
     Route::post('public/search/card/cpr',[SearchCardController::class,'search'])->name('search.card.cpr');
-
+    Route::get('/about-us',[\App\Http\Controllers\HomeController::class,'about'])->name('about-us');
     // Read All Notification  Card
         Route::get('read_all_notification',[ApplyCardController::class,'readAllNotification'])->name('read.all.notification');
 });
@@ -163,5 +168,6 @@ Route::group(
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('index');
 Route::get('/{page}', 'AdminController@index');
+
 
 

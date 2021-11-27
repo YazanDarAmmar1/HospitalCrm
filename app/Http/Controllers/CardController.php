@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CardController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -76,6 +81,7 @@ class CardController extends Controller
         $card->payment_method = $request->payment_method;
         $card->contact_method = $request->contact_method;
         $card->package_type = $request->package;
+        $card->price = $card->Package->package_prices;
         $card->period = $request->period;
         $card->status = $request->status;
         $card->comment = $request->comment;
@@ -162,6 +168,8 @@ class CardController extends Controller
         $card->status = $request->status;
         $card->comment = $request->comment;
         $card->father_id = $request->id_inp;
+        $card->price = $card->Package->package_prices;
+
         if (!($request->customer_img == null)) {
             $image = $request->customer_img;
             $file_name = $image->getClientOriginalName();
