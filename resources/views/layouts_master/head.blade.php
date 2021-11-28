@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Sama Card &#8211; Medical, Health and Hospital Card</title>
     <!-- favicon icon -->
-    <link rel="shortcut icon" href="{{URL::asset('assets/home/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{URL::asset('assets/home/images/sama-card.png')}}" />
 
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{URL::asset('assets/home/css/bootstrap.min.css')}}"/>

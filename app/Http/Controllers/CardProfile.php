@@ -60,7 +60,7 @@ class CardProfile extends Controller
         $card_father = Card::where('father_id', $id)->get();
         $card = Card::where('cpr_no', $id)->first();
 
-        $data["email"] = $card->email ?? '';
+        $data["email"] = $card->email ?? 'nomail22200@gmail.com';
         $data["title"] = "From SAMA CARDS";
         $data["body"] = "To add more members, please click below";
         $data["name"] = $card->name;

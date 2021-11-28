@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="title-box ttm-textcolor-white">
                         <div class="page-title-heading">
-                            <h1 class="title">{{trans('main_tran.Apply Card')}}</h1>
+                            <h1 class="title">{{trans('main_tran.About Us')}}</h1>
                         </div><!-- /.page-title-captions -->
 
                     </div>
@@ -62,30 +62,52 @@
                                     <div class="section-title with-desc clearfix">
                                         <div class="title-header">
                                             <h5>{{trans('main_tran.WHAT WE DO')}}</h5>
-                                            <h2 class="title">{{trans('We Have 10 Years Experience')}}</h2>
+                                            <h2 class="title">{{trans('main_tran.We Have 10 Years Experience')}}</h2>
                                         </div>
-                                        <div class="title-desc">{{trans('We offer')}}</div>
+                                        <div class="title-desc">{{trans('main_tran.We offer')}}</div>
                                     </div><!-- section title end -->
                                     <!-- acadion -->
                                     <div class="accordion">
                                         <!-- toggle -->
                                         <div class="toggle">
-                                            <div class="toggle-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" >{{trans('Our Mission')}}</a></div>
+                                            <div class="toggle-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" >{{trans('main_tran.Our Mission')}}</a></div>
                                             <div class="toggle-content">
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <div class="toggle-figure res-991-mb-15">
-                                                            <img class="img-fluid" src="images/portfolio/post-one-1200x800.jpg" alt="image">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-9">
                                                         <p>
-                                                            {{trans('Providing2')}}
+                                                            {{trans('main_tran.providing2')}}
+                                                            <hr/>
+                                                        {{trans('main_tran.Raising')}}
+
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div><!-- toggle end -->
+
+                                        <div class="toggle">
+                                            <div class="toggle-title"><a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2" >{{trans('main_tran.Our Vision')}}</a></div>
+                                            <div class="toggle-content">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <div class="toggle-figure res-991-mb-15">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <p>
+                                                            {{trans('main_tran.pursuit')}}
+                                                            <hr/>
+                                                        {{trans('main_tran.Contribute')}}
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div><!-- acadion end-->
                                 </div>
@@ -108,16 +130,16 @@
                             <div class="ttm-fid-contents">
                                 <h4><span   data-appear-animation = "animateDigits"
                                             data-from             = "0"
-                                            data-to               = "3215"
+                                            data-to               = "45100"
                                             data-interval         = "10"
                                             data-before           = ""
                                             data-before-style     = "sup"
                                             data-after            = ""
                                             data-after-style      = "sub"
-                                    >3215
+                                    >45100
                                     </span>
                                 </h4>
-                                <h3 class="ttm-fid-title"><span>Clients<br></span></h3>
+                                <h3 class="ttm-fid-title"><span>{{trans('main_tran.Clients')}}<br></span></h3>
                             </div><!-- ttm-fid-contents end -->
                         </div>
                     </div>
@@ -133,10 +155,10 @@
                                             data-before-style     = "sup"
                                             data-after            = ""
                                             data-after-style      = "sub"
-                                    >152
+                                    >152+
                                     </span>
                                 </h4>
-                                <h3 class="ttm-fid-title"><span>Hospitals Rooms<br></span></h3>
+                                <h3 class="ttm-fid-title"><span>{{trans('main_tran.Hospitals')}}<br></span></h3>
                             </div><!-- ttm-fid-contents end -->
                         </div>
                     </div>
@@ -146,16 +168,16 @@
                             <div class="ttm-fid-contents">
                                 <h4><span   data-appear-animation = "animateDigits"
                                             data-from             = "0"
-                                            data-to               = "30"
+                                            data-to               = "6"
                                             data-interval         = "10"
                                             data-before           = ""
                                             data-before-style     = "sup"
                                             data-after            = ""
                                             data-after-style      = "sub"
-                                    >30
+                                    >6
                                     </span>
                                 </h4>
-                                <h3 class="ttm-fid-title"><span>Years of Experiance<br></span></h3>
+                                <h3 class="ttm-fid-title"><span>{{trans('main_tran.Years of Experiance')}}<br></span></h3>
                             </div><!-- ttm-fid-contents end-->
                         </div>
                     </div>
@@ -165,16 +187,16 @@
                             <div class="ttm-fid-contents">
                                 <h4><span   data-appear-animation = "animateDigits"
                                             data-from             = "0"
-                                            data-to               = "124"
+                                            data-to               = "45050"
                                             data-interval         = "10"
                                             data-before           = ""
                                             data-before-style     = "sup"
                                             data-after            = ""
                                             data-after-style      = "sub"
-                                    >124
+                                    >45050
                                     </span>
                                 </h4>
-                                <h3 class="ttm-fid-title"><span>Qualified Staffs<br></span></h3>
+                                <h3 class="ttm-fid-title"><span>{{trans('main_tran.Happy Customers')}}<br></span></h3>
                             </div><!-- ttm-fid-contents end-->
                         </div>
                     </div>
@@ -192,10 +214,9 @@
                         <!-- section-title -->
                         <div class="section-title with-desc clearfix">
                             <div class="title-header">
-                                <h5>MEET OUR EXPERIENCED TEAM</h5>
-                                <h2 class="title">Our Dedicated Doctors Team</h2>
+                                <h2 class="title">{{trans('main_tran.Hospital')}}</h2>
                             </div>
-                            <div class="title-desc">We offer extensive medical procedures to outbound and inbound patients what it is and we are very proud of achievement of our staff, We are all work together to help our all patients for recovery</div>
+
                         </div><!-- section-title end -->
                     </div>
                     <div class="col-lg-2 col-md-2"></div>
@@ -206,93 +227,59 @@
                         <!-- featured-imagebox-team -->
                         <div class="featured-imagebox featured-imagebox-team ttm-team-box-view-overlay">
                             <div class="featured-thumbnail">
-                                <img class="img-fluid" src="images/team-member/team-img01.jpg" alt="image">
+                                <img class="img-fluid" src="{{URL::asset('assets/home/images/hos1.jpg')}}" alt="image">
                             </div>
-                            <div class="ttm-box-view-overlay">
-                                <div class="featured-iconbox ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="spring-renovation" href="images/portfolio/05.jpg" data-rel="prettyPhoto"><i class="ti ti-plus"></i></a>
-                                </div>
-                            </div>
+
                             <div class="featured-content featured-content-team">
-                                <div class="ttm-team-position">Senior Dr. at Delmont</div>
                                 <div class="featured-title">
-                                    <h5><a href="team-details.html">Dr. Metthew Wood</a></h5>
+                                    <h5><a href="team-details.html">{{trans('main_tran.Bahrain')}}</a></h5>
                                 </div>
                             </div>
                         </div><!-- featured-imagebox-team end-->
+
                         <!-- featured-imagebox-team -->
                         <div class="featured-imagebox featured-imagebox-team ttm-team-box-view-overlay">
                             <div class="featured-thumbnail">
-                                <img class="img-fluid" src="images/team-member/team-img02.jpg" alt="image">
+                                <img class="img-fluid" src="{{URL::asset('assets/home/images/hos2.jpg')}}" alt="image">
                             </div>
-                            <div class="ttm-box-view-overlay">
-                                <div class="featured-iconbox ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="spring-renovation" href="images/portfolio/05.jpg" data-rel="prettyPhoto"><i class="ti ti-plus"></i></a>
-                                </div>
-                            </div>
+
                             <div class="featured-content featured-content-team">
-                                <div class="ttm-team-position">Cardiologist Specialist</div>
                                 <div class="featured-title">
-                                    <h5><a href="team-details.html">Dr. Roy Coleman</a></h5>
+                                    <h5><a href="team-details.html">{{trans('main_tran.Bahrain')}}</a></h5>
                                 </div>
                             </div>
                         </div><!-- featured-imagebox-team end-->
+
                         <!-- featured-imagebox-team -->
                         <div class="featured-imagebox featured-imagebox-team ttm-team-box-view-overlay">
                             <div class="featured-thumbnail">
-                                <img class="img-fluid" src="images/team-member/team-img03.jpg" alt="image">
+                                <img class="img-fluid" src="{{URL::asset('assets/home/images/hos3.jpg')}}" alt="image">
                             </div>
-                            <div class="ttm-box-view-overlay">
-                                <div class="featured-iconbox ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="spring-renovation" href="images/portfolio/05.jpg" data-rel="prettyPhoto"><i class="ti ti-plus"></i></a>
-                                </div>
-                            </div>
+
                             <div class="featured-content featured-content-team">
-                                <div class="ttm-team-position">Neurology Specialist</div>
                                 <div class="featured-title">
-                                    <h5><a href="team-details.html">Dr. Andrew Bert</a></h5>
+                                    <h5><a href="team-details.html">{{trans('main_tran.Bahrain')}}</a></h5>
                                 </div>
                             </div>
                         </div><!-- featured-imagebox-team end-->
+
                         <!-- featured-imagebox-team -->
                         <div class="featured-imagebox featured-imagebox-team ttm-team-box-view-overlay">
                             <div class="featured-thumbnail">
-                                <img class="img-fluid" src="images/team-member/team-img04.jpg" alt="image">
+                                <img class="img-fluid" src="{{URL::asset('assets/home/images/hos1.jpg')}}" alt="image">
                             </div>
-                            <div class="ttm-box-view-overlay">
-                                <div class="featured-iconbox ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="spring-renovation" href="images/portfolio/05.jpg" data-rel="prettyPhoto"><i class="ti ti-plus"></i></a>
-                                </div>
-                            </div>
+
                             <div class="featured-content featured-content-team">
-                                <div class="ttm-team-position">Senior Рathologist</div>
                                 <div class="featured-title">
-                                    <h5><a href="team-details.html">Dr. Teresa Mayer</a></h5>
+                                    <h5><a href="team-details.html">{{trans('main_tran.Bahrain')}}</a></h5>
                                 </div>
                             </div>
                         </div><!-- featured-imagebox-team end-->
-                        <!-- featured-imagebox-team -->
-                        <div class="featured-imagebox featured-imagebox-team ttm-team-box-view-overlay">
-                            <div class="featured-thumbnail">
-                                <img class="img-fluid" src="images/team-member/team-img05.jpg" alt="image">
-                            </div>
-                            <div class="ttm-box-view-overlay">
-                                <div class="featured-iconbox ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="spring-renovation" href="images/portfolio/05.jpg" data-rel="prettyPhoto"><i class="ti ti-plus"></i></a>
-                                </div>
-                            </div>
-                            <div class="featured-content featured-content-team">
-                                <div class="ttm-team-position">Senior Dr. at Delmont</div>
-                                <div class="featured-title">
-                                    <h5><a href="team-details.html">Dr. Robert Burton</a></h5>
-                                </div>
-                            </div>
-                        </div><!-- featured-imagebox-team end-->
+
                     </div>
                 </div><!-- row end -->
             </div>
-        </section>
-        <!--team-section end-->
+        </section>        <!--team-section end-->
 
     <!-- sidebar end -->
 

@@ -144,7 +144,7 @@ Route::group(
     Route::get('/', function()
     {
         return View::make('home');
-    });
+    })->name('home_page');
     // Hospital Directory
     Route::get('hospital/directory',[HospitalDirectoryController::class,'index'])->name('hospital.directory');
     Route::get('hospital/category/{id}',[HospitalDirectoryController::class,'hospital_category'])->name('hospital.category.show');
@@ -160,6 +160,8 @@ Route::group(
     Route::get('public/search/card',[SearchCardController::class,'index'])->name('search.card');
     Route::post('public/search/card/cpr',[SearchCardController::class,'search'])->name('search.card.cpr');
     Route::get('/about-us',[\App\Http\Controllers\HomeController::class,'about'])->name('about-us');
+    Route::get('/contact-us',[\App\Http\Controllers\HomeController::class,'contact'])->name('contact-us');
+    Route::get('/services',[\App\Http\Controllers\HomeController::class,'services'])->name('services.home');
     // Read All Notification  Card
         Route::get('read_all_notification',[ApplyCardController::class,'readAllNotification'])->name('read.all.notification');
 });

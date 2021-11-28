@@ -31,7 +31,12 @@ class HomeController extends Controller
     }
 
     public function about(){
-        $hospital2 = DB::table('hospitals')->paginate(4);
-        return view('aboutus',compact('hospital2'));
+        return view('aboutus');
+    }
+    public function contact(){
+        return view('contact-us');
+    }
+    public function services(){
+        return view('services');
     }
 }

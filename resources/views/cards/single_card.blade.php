@@ -72,7 +72,7 @@
                             </tr>
                             <tr>
                                 <td><b>ID No. </b></td>
-                                <td>: SHC222 - {{$card->id ?? ''}}</td>
+                                <td>: SHC222{{$card->id ?? ''}}</td>
                             </tr>
                             <tr>
                                 <td><b>Valid till </b></td>
@@ -108,7 +108,7 @@
                             </tr>
                             <tr>
                                 <td><b>ID No. </b></td>
-                                <td>: SHC222 - {{$card->id ?? ''}}</td>
+                                <td>: SHC222{{$card->id ?? ''}}</td>
                             </tr>
                             <tr>
                                 <td><b>Valid till </b></td>
@@ -149,7 +149,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>ID No. </b></td>
-                                    <td>: SHC222 - {{$f->id ?? ''}}</td>
+                                    <td>: SHC222{{$f->id ?? ''}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Valid till </b></td>
