@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="featured-title">
-                                <h5>Sun – Thu 09:00 – 2:00</h5>
+                                <h5>Sun – Thu 09:00 – 4:00</h5>
                                 <h4>We are open on</h4>
                             </div>
                         </div><!-- featured-icon-box end-->
@@ -65,8 +65,8 @@
                             <br><br>
                             <div class="social-icons social-hover">
                                 <ul class="list-inline">
-                                    <li class="social-facebook"><a class="tooltip-top" target="_blank" href="#" data-tooltip="Instagram"><i style="color: white" class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li class="social-facebook"><a class="tooltip-top" target="_blank" href="#" data-tooltip="whatsapp"><i style="color: white" class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+                                    <li class="social-facebook"><a class="tooltip-top" target="_blank" href="https://www.instagram.com/sama.solution/" data-tooltip="Instagram"><i style="color: white" class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li class="social-facebook"><a class="tooltip-top" target="_blank" href="https://wa.link/j43ido" data-tooltip="whatsapp"><i style="color: white" class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
 
                                 </ul>
                             </div>
@@ -77,10 +77,10 @@
                     <div class="widget widget_nav_menu clearfix">
                         <h3 class="widget-title">{{trans('main_tran.Quick')}}</h3>
                         <ul id="menu-footer-quick-links" >
-                            <li><a href="index.html">{{trans('main_tran.Apply Card')}}</a></li>
-                            <li><a href="services-1.html">{{trans('main_tran.Be A Partner')}}</a></li>
-                            <li><a href="about-1.html">{{trans('main_tran.Hospital Directory')}}</a></li>
-                            <li><a href="single-style-1.html">{{trans('main_tran.Search e-Card')}}</a></li>
+                            <li><a href="{{route('apply.view')}}">{{trans('main_tran.Apply Card')}}</a></li>
+                            <li><a href="#">{{trans('main_tran.Be A Partner')}}</a></li>
+                            <li><a href="{{route('hospital.directory')}}">{{trans('main_tran.Hospital Directory')}}</a></li>
+                            <li><a href="{{route('search.card')}}">{{trans('main_tran.Search e-Card')}}</a></li>
                         </ul>
                     </div>
                 </div>

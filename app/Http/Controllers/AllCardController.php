@@ -28,12 +28,12 @@ class AllCardController extends Controller
         return view('cards.all', compact('card', 'package', 'card_type', 'user'));
     }
 
-    public function index_draft()
+    public function index_draft($status)
     {
         $package = Package_type::all();
         $card_type = Card_type::all();
         $user = User::all();
-        $card = Card::where('status','draft')->get();
+        $card = Card::where('status',$status)->orWhere('online',$status)->get();
         return view('cards.all_draft', compact('card','package','card_type','user'));
     }
 

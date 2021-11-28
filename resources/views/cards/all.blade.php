@@ -128,6 +128,7 @@
 
                                     <td>{{$c->expiry}}</td>
                                     <td>{{$c->comment}}</td>
+
                                     <td>
                                         <a class=" btn btn-sm btn-info" href="{{route('profile_show',$c->cpr_no)}}"
                                            data-effect="effect-scale"

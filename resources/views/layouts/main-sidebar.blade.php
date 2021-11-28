@@ -53,7 +53,6 @@
                     <ul class="slide-menu">
                         <li><a class="slide-item" href="{{ route('add_cards') }}">Add Cards</a></li>
                         <li><a class="slide-item" href="{{ route('show_cards') }}">Customers Cards</a></li>
-                        <li><a class="slide-item" href="{{ route('show_cards_draft') }}">Draft Cards</a></li>
                     </ul>
                 </li>
 

@@ -29,14 +29,4 @@ class HomeController extends Controller
     {
         return view('index');
     }
-
-    public function about(){
-        return view('aboutus');
-    }
-    public function contact(){
-        return view('contact-us');
-    }
-    public function services(){
-        return view('services');
-    }
 }

@@ -64,14 +64,13 @@
                                style="background-color:#761193;">
                             <thead>
                             <tr>
-                                <th class="border-bottom-0">#</th>
+                                <th class="border-bottom-0">issue date</th>
                                 <th class="border-bottom-0 text-white">Name</th>
                                 <th class="border-bottom-0 text-white">CPR</th>
                                 <th class="border-bottom-0 text-white">Mobile</th>
                                 <th class="border-bottom-0 text-white">Status</th>
                                 <th class="border-bottom-0 text-white">Mem</th>
                                 <th class="border-bottom-0 text-white">Online</th>
-                                <th class="border-bottom-0 text-white">Expiry</th>
                                 <th class="border-bottom-0 text-white">Comment</th>
                                 <th class="border-bottom-0 text-white"></th>
 
@@ -80,7 +79,7 @@
                             <tbody>
                             @foreach($card as $c)
                                 <tr>
-                                    <td>{{$c->id}}</td>
+                                    <td>{{$c->date}}</td>
                                     <td>{{$c->name}}</td>
                                     <td>{{$c->cpr_no}}</td>
                                     <td>{{$c->mobile}}</td>
@@ -110,7 +109,6 @@
                                         <td>Manually  <i class="fas fa-circle" style="color: green"></i></td>
                                     @endif
 
-                                    <td>{{$c->expiry}}</td>
                                     <td>{{$c->comment}}</td>
                                     <td>
                                         <a class=" btn btn-sm btn-info" href="{{route('profile_show',$c->cpr_no)}}"

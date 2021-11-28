@@ -73,12 +73,12 @@
                          data-paddingtop="[0,0,0,0]"
                          data-paddingright="[0,0,0,0]"
                          data-paddingbottom="[0,0,0,0]"
-                         data-paddingleft="[0,0,0,0]">Quality <strong class="ttm-textcolor-skincolor">Healthcare</strong> </div>
+                         data-paddingleft="[0,0,0,0]">Quality <strong class="">Healthcare</strong> </div>
 
 
 
 
-                    <a class="tp-caption shape-round tp-resizeme ttm_prettyphoto" style="background-color: #761193" href="https://youtu.be/e13TGGccvT4" target="_self" id="slide-7-layer-15" data-x="['left','left','left','left']" data-hoffset="['55','45','35','-436']" data-y="['middle','middle','middle','middle']" data-voffset="['215','240','130','107']"
+                    <a class="tp-caption shape-round tp-resizeme ttm_prettyphoto" style="background-color: #761193" href="##" target="_self" id="slide-7-layer-15" data-x="['left','left','left','left']" data-hoffset="['55','45','35','-436']" data-y="['middle','middle','middle','middle']" data-voffset="['215','240','130','107']"
                        data-width="['54','54','54','60']"
                        data-height="['54','54','54','60']"
                        data-fontsize="['20','20','20','20']"
@@ -119,7 +119,7 @@
 
 
 
-                    <a class="tp-caption skin-flat-button tp-resizeme" style="background-color:white;color:  #761193;" href="#" target="_self" id="slide-7-layer-6" data-x="['center','center','center','center']" data-hoffset="['449','361','256','0']" data-y="['top','top','top','top']" data-voffset="['432','425','226','235']"
+                    <a class="tp-caption skin-flat-button tp-resizeme" style="background-color:white;color:  #761193;" href="/public/apply" target="_self" id="slide-7-layer-6" data-x="['center','center','center','center']" data-hoffset="['449','361','256','0']" data-y="['top','top','top','top']" data-voffset="['432','425','226','235']"
                        data-fontsize="['13','13','13','12']"
                        data-lineheight="['18','18','16','12']"
                        data-fontweight="['600','600','600','600']"
@@ -137,7 +137,7 @@
                        data-paddingbottom="[17,17,17,15]"
                        data-paddingleft="[30,30,23,20]">{{trans('main_tran.Apply For the Card')}}</a>
 
-                    <a class="tp-caption  tp-resizeme" style="background-color:white;color:  #761193;" href="#" target="_self" id="slide-7-layer-13" data-x="['center','center','center','center']" data-hoffset="['195','125','36','0']" data-y="['top','top','top','top']" data-voffset="['432','425','225','180']"
+                    <a class="tp-caption  tp-resizeme" style="background-color:white;color:  #761193;" href="hospital/directory" target="_self" id="slide-7-layer-13" data-x="['center','center','center','center']" data-hoffset="['195','125','36','0']" data-y="['top','top','top','top']" data-voffset="['432','425','225','180']"
                        data-fontsize="['13','13','13','12']"
                        data-lineheight="['16','16','16','12']"
                        data-fontweight="['600','600','600','600']"
@@ -299,8 +299,8 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mt-25 res-991-mt-0 res-991-mb-40">
-                                        <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-border ttm-btn-color-black mr-15 mt-15" href="#">VIEW MORE</a>
-                                        <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor mt-15" href="#">CONTACT US!</a>
+                                        <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-border ttm-btn-color-black mr-15 mt-15" href="{{route('services.home')}}">VIEW MORE</a>
+                                        <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor mt-15" href="{{route('contact-us')}}">CONTACT US!</a>
                                     </div>
                                 </div>
                             </div>
@@ -309,7 +309,7 @@
                     <div class="col-lg-6 col-xs-12">
                         <!-- ttm_single_image-wrapper -->
                         <div class="ttm_single_image-wrapper text-right">
-                            <img class="img-fluid" src="{{URL::asset('assets/home/images/home3.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{URL::asset('assets/home/images/index1.png')}}" alt="">
                         </div>
                         <div class="about-overlay-shape">
                             <div class="row">
@@ -345,7 +345,7 @@
                         </div><!-- section-title end -->
                     </div>
                     <div class="col-lg-3 col-md-12">
-                        <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-border ttm-btn-color-white mb-30 mt-45 res-991-mt-0 float-right" href="#">{{trans('main_tran.More')}}</a>
+                        <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-border ttm-btn-color-white mb-30 mt-45 res-991-mt-0 float-right" href="{{route('services.home')}}">{{trans('main_tran.More')}}</a>
                     </div>
                 </div><!-- row end -->
                 <div class="row">
@@ -431,7 +431,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="mt-50 mb-50 text-center res-991-mt-30 res-991-mb-0">
-                            <strong>{{trans('main_tran.hesitate')}} <a href="#"> <span class="ttm-textcolor-white"><u>{{trans('main_tran.started')}} </u></span></a></strong>
+                            <strong>{{trans('main_tran.hesitate')}} <a href="{{route('contact-us')}}"> <span class="ttm-textcolor-white"><u>{{trans('main_tran.started')}} </u></span></a></strong>
                         </div>
                     </div>
                 </div>
@@ -466,7 +466,7 @@
 
                             <div class="featured-content featured-content-team">
                                 <div class="featured-title">
-                                    <h5><a href="team-details.html">{{trans('main_tran.Bahrain')}}</a></h5>
+                                    <h5><a href="#">{{trans('main_tran.Bahrain')}}</a></h5>
                                 </div>
                             </div>
                         </div><!-- featured-imagebox-team end-->
@@ -479,7 +479,7 @@
 
                             <div class="featured-content featured-content-team">
                                 <div class="featured-title">
-                                    <h5><a href="team-details.html">{{trans('main_tran.Bahrain')}}</a></h5>
+                                    <h5><a href="#">{{trans('main_tran.Bahrain')}}</a></h5>
                                 </div>
                             </div>
                         </div><!-- featured-imagebox-team end-->
@@ -492,7 +492,7 @@
 
                             <div class="featured-content featured-content-team">
                                 <div class="featured-title">
-                                    <h5><a href="team-details.html">{{trans('main_tran.Bahrain')}}</a></h5>
+                                    <h5><a href="#">{{trans('main_tran.Bahrain')}}</a></h5>
                                 </div>
                             </div>
                         </div><!-- featured-imagebox-team end-->
@@ -505,7 +505,7 @@
 
                             <div class="featured-content featured-content-team">
                                 <div class="featured-title">
-                                    <h5><a href="team-details.html">{{trans('main_tran.Bahrain')}}</a></h5>
+                                    <h5><a href="#">{{trans('main_tran.Bahrain')}}</a></h5>
                                 </div>
                             </div>
                         </div><!-- featured-imagebox-team end-->

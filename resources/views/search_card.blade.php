@@ -73,24 +73,27 @@
 
 
                             <div class="col-lg-3 col-md-3 col-md-3"></div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 mt-30" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:contain; background-repeat: no-repeat; height:330px; ">
+                            <div class="col-lg-6 col-md-6 col-sm-6 mt-20" style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:contain; background-repeat: no-repeat; height:350px; ">
                                 <div class="row">
-                                    <div class="col-lg-2 header" style="margin-top: 18%;"> </div>
-                                    <div class="col-lg-8 mt-lg-5 pt-lg-4">
+                                    <div class="col-lg-2 header" style="margin-top: 17%;"> </div>
+                                    <div class="col-lg-8  mt-lg-5 pt-lg-4">
                                         <b>
-                                            <table  class="table-hover" style="color: black;" >
-                                                <tr>
-                                                    <td><b>Name   :{{$card->name ?? ' XXXXXX'}} </b></td>
+                                            <table   class="table-hover" style="color: black; border: " >
+                                                <tr style="border: 0">
+                                                    <td ><b>Name &nbsp &nbsp &nbsp : {{$card->name ?? ' XXXXXX'}} </b></td>
                                                 </tr>
-                                                <tr>
-                                                    <td><b>CPR No.  : {{$card->cpr_no ?? ' XXXXXX'}}</b></td>
+                                                <tr style="border: 0">
+                                                    <td><b>CPR No.  &nbsp : {{$card->cpr_no ?? ' XXXXXX'}}</b></td>
                                                 </tr>
-                                                <tr>
-                                                    <td><b>ID No.  : SHC222 - {{$card->id ?? ' XXXXXX'}}</b></td>
+                                                <tr style="border: 0">
+                                                    <td><b>ID No. &nbsp &nbsp &nbsp   : SHC222{{$card->id ?? ' XXXXXX'}}</b></td>
                                                 </tr>
-                                                <tr>
-                                                    <td><b>Valid till  : {{$card->expiry ?? ' XXXXXX'}}</b></td>
+                                                <tr style="border: 0">
+                                                    <td><b>Valid till &nbsp    : {{$card->expiry ?? ' XXXXXX'}}</b></td>
+
                                                 </tr>
+
+
 
                                             </table>
                                         </b>

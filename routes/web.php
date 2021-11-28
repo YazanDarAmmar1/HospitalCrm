@@ -106,7 +106,7 @@ Route::post('add_cards_user_more',[CardController::class,'store_more'])->name('a
 
 //AllCard Route
 Route::get('show_cards',[AllCardController::class,'index'])->name('show_cards');
-Route::get('show_cards_draft',[AllCardController::class,'index_draft'])->name('show_cards_draft');
+Route::get('show_cards_draft/{status?}',[AllCardController::class,'index_draft'])->name('show_cards_draft');
 Route::post('delete/card',[AllCardController::class,'destroy'])->name('delete_card');
 Route::post('status/card/update',[AllCardController::class,'update'])->name('update_status');
 Route::post('card/import/customer',[AllCardController::class,'importCustomer'])->name('card_customer_import');
@@ -159,16 +159,22 @@ Route::group(
     // Search Card
     Route::get('public/search/card',[SearchCardController::class,'index'])->name('search.card');
     Route::post('public/search/card/cpr',[SearchCardController::class,'search'])->name('search.card.cpr');
-    Route::get('/about-us',[\App\Http\Controllers\HomeController::class,'about'])->name('about-us');
-    Route::get('/contact-us',[\App\Http\Controllers\HomeController::class,'contact'])->name('contact-us');
-    Route::get('/services',[\App\Http\Controllers\HomeController::class,'services'])->name('services.home');
+    Route::get('/about-us',function (){
+        return view('aboutus');
+    })->name('about-us');
+    Route::get('/contact-us',function (){
+        return view('contact-us');
+    })->name('contact-us');
+    Route::get('/services',function (){
+        return view('services');
+    })->name('services.home');
     // Read All Notification  Card
         Route::get('read_all_notification',[ApplyCardController::class,'readAllNotification'])->name('read.all.notification');
 });
 
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('index');
+Route::get('/dashboard/login', 'HomeController@index')->name('index');
 Route::get('/{page}', 'AdminController@index');
 
 
