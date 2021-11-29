@@ -168,15 +168,13 @@
                                         </a>
                                     </li>
 
-                                    @if($card->cpr_no == $card->father_id)
+
                                         <li class="">
                                             <a href="#profile" data-toggle="tab" aria-expanded="false"> <span
                                                     class="visible-xs"><i class="fas fa-users"></i></span> <span
                                                     class="hidden-xs">MEMBER SHIP</span> </a>
                                         </li>
-                                    @else
 
-                                    @endif
 
                                     <li class="">
                                         <a href="#card" data-toggle="tab" aria-expanded="false"> <span

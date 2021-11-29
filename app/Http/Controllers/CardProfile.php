@@ -38,7 +38,7 @@ class CardProfile extends Controller
 
 
         $card = Card::where('cpr_no', $id)->first();
-        $card_father = Card::where('father_id', $id)->get();
+        $card_father = Card::where('father_id', $father)->get();
         $user = User::all();
         $card_type = Card_type::all();
         $package = Package_type::all();

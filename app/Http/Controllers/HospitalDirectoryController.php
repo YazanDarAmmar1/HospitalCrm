@@ -12,7 +12,7 @@ class HospitalDirectoryController extends Controller
     public function index(Request $request)
     {
 
-        $hospital2 = Hospital::where('on_off', 1)->paginate(2);
+        $hospital2 = Hospital::where('on_off', 1)->paginate(4);
         return view('hospital_directory', compact('hospital2'));
 
     }
