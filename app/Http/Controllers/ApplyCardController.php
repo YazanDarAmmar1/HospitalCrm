@@ -13,10 +13,10 @@ use Notification;
 
 class ApplyCardController extends Controller
 {
-    public function index()
+    public function index($id = null)
     {
         $package = Package_type::where('status', 1)->get();
-        return view('apply_card', compact('package'));
+        return view('apply_card', compact('package','id'));
     }
 
     public function store(Request $request)
@@ -45,8 +45,9 @@ class ApplyCardController extends Controller
             $card->status = 'draft';
             $card->online = 1;
             $card->date = date('Y-m-d');
+            $card->first_issue_date = date('Y-m-d');
             $card->card_type_id = 1;
-            $card->agent_id = 1;
+            $card->agent_id = $request->input('agent');
             $card->price = $card->Package->package_prices ?? '';
             $card->save();
 

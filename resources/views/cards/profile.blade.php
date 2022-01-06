@@ -44,16 +44,27 @@
                 <div class="mb-3 mb-xl-0">
 
                     @csrf
+                    @can('all card')
                     <div class="btn-group">
                         <a href="{{route('show_cards')}}" class="btn btn-outline-success btn-lg" title="all card"><i
                                 class="far fa-address-card"></i></a>
                     </div>
+                    @endcan
+                    @can('add card')
 
                     <div class="btn-group">
                         <a href="{{route('add_cards')}}" title="add card" class="btn btn-outline-primary btn-lg">
                             <i class="fas fa-user-plus"></i>
                         </a>
                     </div>
+                    @endcan
+                    @can('online card')
+                    <div class="btn-group">
+                        <a href="{{route('show_cards_draft',1)}}" title="add card" class="btn btn-outline-danger">
+                            Online Cards
+                        </a>
+                    </div>
+                    @endcan
 
 
                     @if($card->cpr_no == $card->father_id)
@@ -110,11 +121,6 @@
 
                                         </div>
                                     </div>
-                                    <h6>Comment</h6>
-                                    <div class="main-profile-bio">
-<textarea row="3" class="form-control"
-          name="comment">{{$card->comment ?? ' '}}</textarea>
-                                    </div><!-- main-profile-bio -->
                                     <hr class="mg-y-30">
                                     <label class="main-content-label tx-13 mg-b-20">Social</label>
                                     <div class="main-profile-social-list">
@@ -124,29 +130,44 @@
                                                 <i class="far fa-id-card"></i>
                                             </div>
                                             <div class="media-body">
-                                                <span>CPR NO.</span><input type="number" class="form-control" name="cpr"
+                                                <span>CPR NO.</span><input type="text" class="form-control" name="cpr"
                                                                            value="{{$card->cpr_no ?? ' '}}">
                                             </div>
                                         </div>
-
                                         <div class="media">
-                                            <div class="media-icon bg-primary-transparent text-primary">
-                                                <i class="fas fa-phone-square-alt"></i></div>
-                                            <div class="media-body">
-                                                <span>Phone</span><input class="form-control" type="text" name="phone"
-                                                                         value="{{$card->phone ?? ' '}}">
-                                            </div>
-                                        </div>
-                                        <div class="media">
+                                            <a href="https://api.whatsapp.com/send?phone=973{{$card->mobile ?? ' '}}" target="_blank">
                                             <div class="media-icon bg-success-transparent text-success">
-                                                <i class="fas fa-mobile-alt"></i></div>
+                                                <i class="fas fa-mobile-alt"></i>
+                                            </div>
+                                            </a>
                                             <div class="media-body">
                                                 <span>Mobile</span><input class="form-control" type="text" name="mobile"
                                                                           value="{{$card->mobile ?? ' '}}">
                                             </div>
                                         </div>
 
+                                        <div class="media">
+                                            <a href="https://api.whatsapp.com/send?phone=973{{$card->phone ?? ' '}}" target="_blank">
+                                            <div class="media-icon bg-primary-transparent text-primary">
+                                                <i class="fas fa-phone-square-alt"></i>
+                                            </div>
+                                            </a>
+                                            <div class="media-body">
+                                                <span>Phone</span><input class="form-control" type="text" name="phone"
+                                                                         value="{{$card->phone ?? ' '}}">
+                                            </div>
+                                        </div>
+
+
                                     </div>
+                                    <hr class="mg-y-30">
+
+                                    <h6>Comment</h6>
+                                    <div class="main-profile-bio">
+<textarea row="3" class="form-control"
+          name="comment">{{$card->comment ?? ' '}}</textarea>
+                                    </div><!-- main-profile-bio -->
+
 
                                 </div><!-- main-profile-overview -->
                             </div>
@@ -174,13 +195,10 @@
                                                     class="visible-xs"><i class="fas fa-users"></i></span> <span
                                                     class="hidden-xs">MEMBER SHIP</span> </a>
                                         </li>
+                                    @can('print invoices & card')
 
+                                    @if($card->status == 'paid' || $card->status == 'done')
 
-                                    <li class="">
-                                        <a href="#card" data-toggle="tab" aria-expanded="false"> <span
-                                                class="visible-xs"><i class="fas fa-id-badge"></i></span> <span
-                                                class="hidden-xs">Card</span> </a>
-                                    </li>
                                     @if($card->cpr_no == $card->father_id)
 
                                         <li class="">
@@ -203,6 +221,8 @@
                                     @else
 
                                     @endif
+                                    @endif
+                                    @endcan
                                 </ul>
                             </div>
                             <div class="tab-content border-left border-bottom border-right border-top-0 p-4"
@@ -230,6 +250,63 @@
                                                    value="{{$card->expiry ?? ' '}}">
                                         </div>
 
+                                        <div class="col-md-6 mg-t-10 mg-md-t-0">
+                                            <label class="label">Period</label>
+                                            <select  class="form-control select1 mb-1" name="period">
+                                                <option selected value="{{$card->period ?? ' '}}">
+                                                    {{$card->period ?? ''}}
+                                                </option>
+                                                <option value="3Months">
+                                                    3 Months
+                                                </option>
+                                                <option value="4Months">
+                                                    4 Months
+                                                </option>
+                                                <option value="5Months">
+                                                    5 Months
+                                                </option>
+                                                <option value="1Year">
+                                                    1 Year
+                                                </option>
+                                                <option value="2Years">
+                                                    2 Years
+                                                </option>
+                                                <option value="5Years">
+                                                    5 Years
+                                                </option>
+                                            </select>
+                                        </div>
+                                        @can('card status')
+
+                                        <div class="col-md-6 mg-t-10 mg-md-t-0">
+                                            <label class="label">Status</label>
+                                            <select onchange="editStatus(this,{{$card->id}})" class="form-control select1 mb-1" name="status">
+                                                <option selected value="{{$card->status ?? ' '}}">
+                                                    {{$card->status ?? ' '}}
+                                                </option>
+                                                <option value="draft">
+                                                    draft
+                                                </option>
+                                                <option value="pending">
+                                                    pending
+                                                </option>
+                                                <option value="expired">
+                                                    expired
+                                                </option>
+                                                <option value="done">
+                                                    done
+                                                </option>
+                                                <option value="paid">
+                                                    paid
+                                                </option>
+                                                <option value="print">
+                                                    print
+                                                </option>
+
+                                            </select>
+                                        </div>
+                                        @endcan
+                                        @can('agent control')
                                         <div class="col-lg-6">
                                             <label class="label mb-2">Agent</label>
                                             <select class="form-control select2" name="agent">
@@ -243,6 +320,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        @endcan
 
                                         <div class="col-lg-6">
                                             <label class="label mb-2">Gender</label>
@@ -377,60 +455,6 @@
                                                         </div>
 
 
-                                                        <div class="col-md-6 mg-t-10 mg-md-t-0">
-                                                            <label class="label">Period</label>
-                                                            <select  class="form-control select1 mb-1" name="period">
-                                                                <option selected value="{{$card->period ?? ' '}}">
-                                                                    {{$card->period ?? ''}}
-                                                                </option>
-                                                                <option value="3Months">
-                                                                    3 Months
-                                                                </option>
-                                                                <option value="4Months">
-                                                                    4 Months
-                                                                </option>
-                                                                <option value="5Months">
-                                                                    5 Months
-                                                                </option>
-                                                                <option value="1Year">
-                                                                    1 Year
-                                                                </option>
-                                                                <option value="2Years">
-                                                                    2 Years
-                                                                </option>
-                                                                <option value="5Years">
-                                                                    5 Years
-                                                                </option>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="col-md-6 mg-t-10 mg-md-t-0">
-                                                            <label class="label">Status</label>
-                                                            <select onchange="editStatus(this,{{$card->id}})" class="form-control select1 mb-1" name="status">
-                                                                <option selected value="{{$card->status ?? ' '}}">
-                                                                    {{$card->status ?? ' '}}
-                                                                </option>
-                                                                <option value="draft">
-                                                                    draft
-                                                                </option>
-                                                                <option value="pending">
-                                                                    pending
-                                                                </option>
-                                                                <option value="expired">
-                                                                    expired
-                                                                </option>
-                                                                <option value="done">
-                                                                    done
-                                                                </option>
-                                                                <option value="paid">
-                                                                    paid
-                                                                </option>
-                                                                <option value="print">
-                                                                    print
-                                                                </option>
-
-                                                            </select>
-                                                        </div>
 
                                                             <div class="col-lg-3  mg-t-10 mg-md-t-0">
                                                                 <label class="label mb-1">Prices-Card</label>
@@ -488,6 +512,24 @@
                                 {{--profile--}}
                                 <div class="tab-pane" id="profile">
                                     <div class="row">
+                                                @if($card->cpr_no == $card->father_id)
+                                                    <div class="btn-group">
+                                                        <a class="modal-effect btn  btn-outline-indigo"
+                                                           data-effect="effect-scale"
+                                                           data-id="{{$card->cpr_no}}" data-name="{{$card->name}}"
+                                                           data-email="{{$card->email}}" data-date="{{$card->date}}"
+                                                           data-mobile="{{$card->mobile}}" data-phone="{{$card->phone}}"
+                                                           data-house="{{$card->house}}" data-road="{{$card->road}}"
+                                                           data-block="{{$card->block}}" data-place="{{$card->place}}"
+                                                           data-country="{{$card->country}}" data-card_type="{{$card->card_type_id}}"
+                                                           data-payment_method="{{$card->payment_method}}"
+                                                           data-contact_method="{{$card->contact_method}}"
+                                                           data-package_type="{{$card->package_type}}"
+                                                           data-toggle="modal"
+                                                           href="#modaldem2" title="add more"><i class="fas fa-users"></i> Add More People</a>
+                                                    </div>
+                                                @else
+                                                @endif
                                         <div class="card-body col-lg-12">
                                             <div class="table-responsive">
                                                 <table class="table text-md-nowrap" id="example1">
@@ -513,6 +555,8 @@
                                                             </td>
                                                             <td>{{$c->cpr_no}}</td>
                                                             <td>
+                                                                @can('card status')
+
                                                                 <select onchange="editStatus(this,{{$c->id}})"
                                                                         class="form-control select1 mb-1"
                                                                         name="status_change">
@@ -540,6 +584,7 @@
                                                                     </option>
 
                                                                 </select>
+                                                                @endcan
                                                             </td>
                                                             <td>{{$c->mobile}}</td>
                                                             <td>{{$c->comment}}</td>
@@ -588,80 +633,7 @@
                                     </div>
                                 </div>
 
-                                {{--card--}}
-                                <div class="tab-pane" id="card">
-                                    <div class="row" id="print">
-                                        <div class="col-lg-2"></div>
-                                        <div class="col-lg-8 col-md-12" style="background-color:white">
 
-                                            <div class="row" style="height:330px;">
-                                                <div class="col-lg-3"></div>
-                                                <div class="col-lg-12 ml-lg-5 pl-lg-5"
-                                                     style="margin-top: 16%;height: 180px;">
-                                                    <p class="mb-1 tx-bold "> Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span>
-                                                    </p>
-                                                    <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/></p>
-                                                    <p class="mb-1 tx-bold"> ID No. : SHC222{{$card->id ?? ''}}<br/>
-                                                    </p>
-                                                    <p class="mb-3 tx-bold"> Expiry Date : {{$card->expiry ?? ''}}<br/>
-                                                    </p>
-                                                    <p class="tx-lg-bold"> This is Not Insurance Card </p>
-                                                </div>
-                                                <div class="col-lg-1"></div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <a href="{{route('single_card',['id'=>$card->cpr_no,'id2'=>0])}}"
-                                               class="btn btn-danger float-left mt-3 mr-2">
-                                                <i class="mdi mdi-printer ml-1"></i>Print
-                                            </a>
-                                        </div>
-
-                                    </div>
-
-                                    <br/>
-                                    <br/>
-
-
-                                    <div class="row" id="print">
-                                        <div class="col-lg-2">
-
-
-                                        </div>
-                                        <div class="col-lg-8 col-md-12"
-                                             style="background-image: url({{URL::asset('assets/img/sama_card.jpg')}});background-size:cover; ">
-
-                                            <div class="row" style="height:330px;">
-                                                <div class="col-lg-3"></div>
-                                                <div class="col-lg-12 ml-lg-5 pl-lg-5"
-                                                     style="margin-top: 16%;height: 180px;">
-
-                                                    <p class="mb-1 tx-bold "> Name : <span class="tx-uppercase"> {{$card->name ?? ''}}<br/> </span>
-                                                    </p>
-                                                    <p class="mb-1 tx-bold"> CPR : {{$card->cpr_no ?? ''}}<br/></p>
-                                                    <p class="mb-1 tx-bold"> ID No. : SHC222{{$card->id ?? ''}}<br/>
-                                                    </p>
-                                                    <p class="mb-3 tx-bold"> Expiry Date : {{$card->expiry ?? ''}}<br/>
-                                                    </p>
-                                                    <p class="tx-lg-bold"> This is Not Insurance Card </p>
-
-                                                </div>
-                                                <div class="col-lg-1"></div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <a href="{{route('single_card',['id'=>$card->cpr_no,'id2'=>1])}}" onclick=""
-                                               class="btn btn-danger float-left mt-3 mr-2">
-                                                <i class="mdi mdi-printer ml-1"></i>Print
-                                            </a>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
 
                                 {{--Allcard--}}
                                 <div class="tab-pane" id="allcard">
@@ -777,10 +749,7 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">SIMPLE TABLE</h4>
-                        <i class="mdi mdi-dots-horizontal text-gray"></i>
-                    </div>
-                    <p class="tx-12 tx-gray-500 mb-2">Example of Valex Simple Table. <a href="">Learn more</a></p>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -1248,12 +1217,15 @@
                 url: "{{url::to('profile/package_name')}}" + '/' + user_id + '/' + mySelect,
 
                 success: function (data) {
+
                     notif({
                         msg: "Status has been changed",
                         position: "left",
                         bgcolor: "#8500ff",
                         color: "#fff"
                     });
+                    window.setTimeout(function(){location.reload()},1000)
+
                 }, error: function (reject) {
 
                 }

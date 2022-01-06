@@ -19,6 +19,9 @@
 @yield('content')
 @include('layouts_master.footer')
 @yield('js')
+<script>
+
+</script>
 <script src="{{URL::asset('assets/home/js/jquery.min.js')}}"></script>
 <script src="{{URL::asset('assets/home/js/tether.min.js')}}"></script>
 <script src="{{URL::asset('assets/home/js/bootstrap.min.js')}}"></script>

@@ -22,10 +22,12 @@
 					</div>
 
                     <div class="d-flex my-xl-auto right-content">
+                        @can('add card type')
                         <div class="pr-1 mb-3 mb-xl-0">
                             <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-super-scaled"
                                data-toggle="modal" href="#modaldemlo124"><i class="fas fa-plus"></i> </a>
                         </div>
+                        @endcan
 
                     </div>
 				</div>
@@ -55,14 +57,14 @@
                                             <td>{{$c->name}}</td>
                                             <td>{{$c->description}}</td>
                                             <td>
-                                                @can('provider-delete')
+                                                @can('delete card type')
                                                 <a class="modal-effect btn btn-sm btn-danger"
                                                    data-effect="effect-scale"
                                                    data-id="{{$c->id}}" data-name="{{$c->name}}"
                                                    data-toggle="modal"
                                                    href="#modaldem" title="delete"><i class="las la-trash"></i></a>
                                                 @endcan
-                                                @can('provider-edit')
+                                                @can('edit card type')
                                                 <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                                    data-id="{{$c->id}}" data-name="{{$c->name}}"
                                                    data-description="{{$c->description}}"

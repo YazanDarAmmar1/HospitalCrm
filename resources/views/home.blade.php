@@ -1,5 +1,10 @@
 @extends('layouts_master.master')
 @section('css')
+    <script>
+        if (screen.width <= 700) {
+            document.location = "home_mobile";
+        }
+    </script>
 @endsection
 @section('content')
 <!--page start-->
@@ -21,7 +26,7 @@
 
                 <li data-index="rs-7" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="images/slides/slider-mainbg-002.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
 
-                    <img src="{{URL::asset('assets/home/images/slides/slide1.jpg')}}" alt="" title="mainslider-bg002" width="1920" height="750" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+                    <img src="{{URL::asset('assets/home/images/slides/slide1.jpg')}}" style="width: 500px;height: 2000px;" alt="" title="mainslider-bg002"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 
                     <div class="tp-caption" id="slide-7-layer-11" data-x="['right','right','right','center']" data-hoffset="['50','40','30','334']" data-y="['middle','middle','middle','top']" data-voffset="['-149','-134','-136','48']"
                          data-fontsize="['65','65','50','55']"

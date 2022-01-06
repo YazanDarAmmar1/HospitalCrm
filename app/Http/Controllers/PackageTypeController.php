@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Card_type;
 use App\Package_type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PackageTypeController extends Controller
 {
@@ -20,9 +21,9 @@ class PackageTypeController extends Controller
      */
     public function index()
     {
-        $package = Package_type::all();
+        $c =  DB::table('package_types')->orderBy('id','desc')->get();
         $card = Card_type::all();
-        return view('category.package_type', compact('package', 'card'));
+        return view('category.package_type', compact('c', 'card'));
     }
 
     /**

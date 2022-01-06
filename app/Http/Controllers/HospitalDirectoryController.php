@@ -52,7 +52,7 @@ class HospitalDirectoryController extends Controller
 
     public function hospital_category($id)
     {
-        $hospital = Hospital::where('category_id',$id)->paginate(3);
+        $hospital = Hospital::where('category_id',$id)->paginate(30);
         return view('hospital_category',compact('hospital'));
     }
 }

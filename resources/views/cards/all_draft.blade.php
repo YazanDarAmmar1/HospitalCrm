@@ -79,7 +79,7 @@
                             <tbody>
                             @foreach($card as $c)
                                 <tr>
-                                    <td>{{$c->date}}</td>
+                                    <td style="">{{$c->date}}</td>
                                     <td>{{$c->name}}</td>
                                     <td>{{$c->cpr_no}}</td>
                                     <td>{{$c->mobile}}</td>

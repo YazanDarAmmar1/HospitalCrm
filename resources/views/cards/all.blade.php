@@ -24,16 +24,26 @@
         </div>
         <div class="d-flex my-xl-auto right-content">
             <div class="mb-3 mb-xl-0">
+                @can('import card')
                 <div class="btn-group">
-
                     <a class="modal-effect btn btn-outline-danger btn-block btn-lg" data-effect="effect-super-scaled"
                        data-toggle="modal" href="#modaldemlo12234"><i class="fas fa-file-import"></i></a>
                 </div>
+                @endcan
+                @can('add card')
                 <div class="btn-group">
                     <a href="{{route('add_cards')}}" class="btn btn-outline-primary btn-lg" title="add card">
                         <i class="fas fa-user-plus"></i>
                     </a>
                 </div>
+                    @endcan
+                    @can('online card')
+                <div class="btn-group">
+                    <a href="{{route('show_cards_draft',1)}}" class="btn btn-success" title="online card">
+                        Online Cards
+                    </a>
+                </div>
+                    @endcan
 
                 <div class="btn-group dropdown">
                     <button type="button" class="btn text-white"
@@ -65,7 +75,7 @@
                                style="background-color:#761193;">
                             <thead>
                             <tr>
-                                <th class="border-bottom-0">#</th>
+                                <th class="border-bottom-0"></th>
                                 <th class="border-bottom-0 text-white">Name</th>
                                 <th class="border-bottom-0 text-white">CPR</th>
                                 <th class="border-bottom-0 text-white">Mobile</th>
@@ -79,9 +89,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($card as $c)
+                            @foreach($c as $c)
                                 <tr>
-                                    <td>{{$c->id}}</td>
+                                    <td></td>
+
                                     <td><a href="{{route('profile_show',$c->cpr_no)}}"> {{$c->name}}</a></td>
                                     <td>{{$c->cpr_no}}</td>
                                     <td>{{$c->mobile}}</td>
@@ -130,10 +141,12 @@
                                     <td>{{$c->comment}}</td>
 
                                     <td>
+                                        @can('edit card')
                                         <a class=" btn btn-sm btn-info" href="{{route('profile_show',$c->cpr_no)}}"
                                            data-effect="effect-scale"
                                            title="edit"><i class="far fa-edit"></i> Edit</a>
-
+                                        @endcan
+                                        @can('delete card')
                                         <a class="modal-effect btn btn-sm btn-danger"
                                            data-effect="effect-scale"
                                            data-id="{{$c->id}}" data-name="{{$c->name}}"
@@ -141,6 +154,8 @@
                                            href="#modaldem"
                                            data-effect="effect-scale"
                                             ><i class="las la-trash"></i> Delete</a>
+                                            @endcan
+                                            @can('add more')
                                         @if($c->father_id == $c->cpr_no)
 
                                             <a class="modal-effect btn btn-sm btn-primary"
@@ -159,11 +174,14 @@
                                                 People</a>
                                         @else
                                         @endif
+                                            @endcan
+                                            @can('card status')
                                         <a class="modal-effect btn btn-sm btn-success"
                                            data-effect="effect-scale"
                                            data-id="{{$c->id}}" data-name="{{$c->name}}"
                                            data-toggle="modal"
                                            href="#modaldem1" title="status"><i class="fas fa-sync"></i> Status</a>
+                                            @endcan
 
 
                                     </td>

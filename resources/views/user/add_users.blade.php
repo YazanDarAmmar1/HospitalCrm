@@ -28,7 +28,7 @@
                     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <strong>خطا</strong>
+                    <strong>Error</strong>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -47,7 +47,7 @@
                     <br>
                     <form class="parsley-style-1" id="selectForm2" autocomplete="off" name="selectForm2"
                           action="{{route('users.store','test')}}" method="post">
-                        {{csrf_field()}}
+                        @csrf
 
                         <div class="">
 
@@ -93,7 +93,15 @@
                                     <option value="notActive">Not Active</option>
                                 </select>
                             </div>
+
+                            <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0">
+                                <label>Per capita ratio: <span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20"
+                                       data-parsley-class-handler="#lnWrapper" name="rate"
+                                       type="number">
+                            </div>
                         </div>
+
 
                         <div class="row mg-b-20">
                             <div class="col-xs-12 col-md-12">

@@ -30,11 +30,12 @@
             </div>
         </div>
         <div class="d-flex my-xl-auto right-content">
-
+            @can('all card')
             <div class="btn-group">
                 <a href="{{route('show_cards')}}" class="btn btn-outline-success" title="all card"><i
                         class="far fa-address-card"></i></a>
             </div>
+            @endcan
 
             <div class="pr-1 mb-3 mb-xl-0">
                 <button onclick="location.reload();" type="button" class="btn btn-warning  btn-icon ml-2"><i

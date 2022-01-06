@@ -50,7 +50,7 @@ class ServiceController extends Controller
         Service::create([
             'name' => $request->service,
             'name_ar' => $request->service_ar,
-            'hospital_id' => $request->hospital_id,
+            'hospital_id' => $request->id_id,
             'discount' => $request->discount,
             'price' => $request->price,
         ]);

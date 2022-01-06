@@ -66,15 +66,15 @@ class CardProfile extends Controller
         $data["name"] = $card->name;
         $pdf = PDF::loadView('cards.single_card', compact('card', 'desin', 'card_father'));
         $pdf->setPaper(array(30, -30, 450, 240));
-        if ($card->status == 'paid') {
-            Mail::send('cards.email_desing', $data, function ($message) use ($data, $pdf) {
-                $message->to($data["email"], $data["email"])
-                    ->subject($data["title"])
-                    ->attachData($pdf->output(), "Your Card.pdf");
-            });
-        } else {
-
-        }
+//        if ($card->status == 'paid') {
+//            Mail::send('cards.email_desing', $data, function ($message) use ($data, $pdf) {
+//                $message->to($data["email"], $data["email"])
+//                    ->subject($data["title"])
+//                    ->attachData($pdf->output(), "Your Card.pdf");
+//            });
+//        } else {
+//
+//        }
 
         return $pdf->download($id . '.pdf');
     }

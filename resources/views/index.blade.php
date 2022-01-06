@@ -16,20 +16,25 @@
 						</div>
 					</div>
                     <div class="d-flex my-xl-auto right-content">
+                        @can('add card')
                         <div class="pr-1 mb-3 mb-xl-0">
                             <a class="  btn btn-primary-gradient btn-block" href="{{ route('add_cards') }}" title="card register" ><i class="fas fa-user-plus"></i> Card Register</a>
                         </div>
+                        @endcan
+                        @can('add-hospital')
 
                         <div class="pr-1 mb-3 mb-xl-0">
                             <a class="  btn btn-danger-gradient btn-block" href="{{ route('show') }}" title="hospital register" ><i class="fas fa-hospital"></i> Provider Register</a>
                         </div>
+                            @endcan
                     </div>
                     </div>
 				<!-- /breadcrumb -->
 @endsection
 @section('content')
+@can('home')
 				<!-- row -->
-				<div class="row row-sm">
+				<div class="row row-sm" >
 					<div class="col-xl-4 col-lg-6 col-md-6 col-xm-12">
 						<div class="card overflow-hidden sales-card bg-primary-gradient">
                             <a href="">
@@ -202,12 +207,12 @@
                                 <div class="pb-0 mt-0">
                                     <div class="d-flex">
                                         <div class="">
-                                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where([['date',date('Y-m-d')],['status','paid']])->count()}}</h4>
+                                            <h4 class="tx-20 font-weight-bold mb-1 text-white">{{\ App\Card::where([['date',date('Y-m-d')],['status','done']])->count() + \ App\Card::where([['date',date('Y-m-d')],['status','paid']])->count()}}</h4>
                                             <p class="mb-0 tx-12 text-white op-7">Total of sum today sales cards</p>
                                         </div>
                                         <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> {{number_format(\App\Card::where([['date',date('Y-m-d')],['status','paid']])->sum('price'),2)}}</span>
+											<span class="text-white op-7"> {{number_format(\App\Card::where([['date',date('Y-m-d')],['status','paid']])->sum('price'),2) + number_format(\App\Card::where([['date',date('Y-m-d')],['status','done']])->sum('price'),2)}}</span>
 										</span>
                                     </div>
                                 </div>
@@ -243,7 +248,7 @@
                     </div>
 				</div>
 				<!-- row closed -->
-
+                @endcan
 
 			</div>
 		</div>

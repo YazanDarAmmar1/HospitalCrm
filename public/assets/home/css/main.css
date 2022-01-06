@@ -697,12 +697,12 @@ a.checkout-button:hover, .coupon button:hover, .ttm-cart-form button:hover, .pla
 }
 
 .ttm-btn.ttm-btn-style-border.ttm-btn-color-skincolor:hover {
-    border-color: rgba(0, 214, 163, 0.75);
+    border-color: #761193;
 }
 .ttm-tabs.ttm-tab-color-grey.ttm-tab-style-classic ul li.active a,
 .ttm-form-coupon-info,
 div.product ul.tabs li.active a:before {
-    border-top-color: #01d6a3;
+    border-top-color: #761193;
 }
 .tp-caption.ttm-video-icon:hover,
 .ttm-video-btn:hover .ttm-btn-play,

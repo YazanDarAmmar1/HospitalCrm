@@ -52,6 +52,7 @@
                                 <th class="wd-10p border-bottom-0">#</th>
                                 <th class="wd-15p border-bottom-0">Name</th>
                                 <th class="wd-20p border-bottom-0">Email</th>
+                                <th class="wd-20p border-bottom-0">URL</th>
                                 <th class="wd-15p border-bottom-0">Status</th>
                                 <th class="wd-15p border-bottom-0">User Type</th>
                                 <th class="wd-10p border-bottom-0">Process</th>
@@ -63,6 +64,7 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>https://samacardsbh.com/en/apply/{{ $user->id }}</td>
                                     <td>
                                         @if ($user->status == 'active')
                                             <span class="label text-success d-flex">
@@ -87,13 +89,13 @@
                                     <td>
                                         @can('edit-user')
                                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                               title="تعديل"><i class="las la-pen"></i></a>
+                                               title="Edit"><i class="las la-pen"></i></a>
                                         @endcan
 
                                         @can('delete-user')
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                               data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                               data-toggle="modal" href="#modaldemo8" title="Delete"><i
                                                     class="las la-trash"></i></a>
                                             @endcan
                                     </td>

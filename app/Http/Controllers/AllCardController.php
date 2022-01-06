@@ -17,6 +17,7 @@ class AllCardController extends Controller
 
     public function __construct()
     {
+
         $this->middleware('auth');
     }
     public function index()
@@ -24,8 +25,9 @@ class AllCardController extends Controller
         $package = Package_type::all();
         $card_type = Card_type::all();
         $user = User::all();
+        $c = DB::table('cards')->orderByDesc('id')->get();
         $card = Card::all();
-        return view('cards.all', compact('card', 'package', 'card_type', 'user'));
+        return view('cards.all', compact('c', 'package', 'card_type', 'user','card'));
     }
 
     public function index_draft($status)

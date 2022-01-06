@@ -16,6 +16,7 @@ use App\Http\Controllers\CardProfile;
 use App\Http\Controllers\HospitalDirectoryController;
 use App\Http\Controllers\ApplyCardController;
 use App\Http\Controllers\SearchCardController;
+use App\Http\Controllers\reportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,6 +130,17 @@ Route::get('profile/balance/{id}/{id2}',[CardProfile::class,'balance'])->name('p
 Route::get('profile/delivery/{id}/{id2}/{id3}',[CardProfile::class,'delivery'])->name('package.prices.delivery');
 Route::get('profile/editPackagePrice/{id}/{id2}',[CardProfile::class,'editPackagePrice'])->name('package.prices.editPackagePrice');
 
+//Report Data
+Route::get('card_report',[reportController::class,'index'])->name('report.card');
+Route::get('agent_customer',[reportController::class,'agentcustomer'])->name('report.agent_customer');
+Route::post('card_report',[reportController::class,'reportCard'])->name('report.card.search');
+
+//Home Slider
+Route::get('/home_slider',[\App\Http\Controllers\HomeController::class,'home_slider'])->name('home.slider');
+Route::post('/home_slider_add',[\App\Http\Controllers\HomeController::class,'slider_store'])->name('home.slider.store');
+Route::post('/home_slider_delete',[\App\Http\Controllers\HomeController::class,'destroy'])->name('home.slider.delete');
+
+
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
@@ -154,7 +166,7 @@ Route::group(
     //Hospital Profile
     Route::get('hospital/directory/profile/{id}',[HospitalDirectoryController::class,'hospital_profile'])->name('hospital.directory.profile');
     // Apply Card
-    Route::get('public/apply',[ApplyCardController::class,'index'])->name('apply.view');
+    Route::get('public/apply/{id?}',[ApplyCardController::class,'index'])->name('apply.view')->where('id', '[0-9]+');
     Route::post('public/apply/add',[ApplyCardController::class,'store'])->name('apply.add');
     // Search Card
     Route::get('public/search/card',[SearchCardController::class,'index'])->name('search.card');
@@ -170,6 +182,10 @@ Route::group(
     })->name('services.home');
     // Read All Notification  Card
         Route::get('read_all_notification',[ApplyCardController::class,'readAllNotification'])->name('read.all.notification');
+        // index - mobile
+        Route::get('home_mobile',function (){
+           return view('index-mobile');
+        });
 });
 
 

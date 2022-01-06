@@ -84,8 +84,10 @@
                                                 </thead>
                                                 <tbody>
                                                 <?php $i = 0; ?>
+                                                @if(App::getLocale()== 'en')
 
-                                                @foreach($service as $h)
+
+                                                    @foreach($service as $h)
                                                 <tr>
 
                                                     <?php $i++?>
@@ -95,6 +97,18 @@
                                                     <td>{{$h->price}} </td>
                                                 </tr>
                                                 @endforeach
+                                                @else
+                                                    @foreach($service as $h)
+                                                        <tr>
+
+                                                            <?php $i++?>
+                                                            <th scope="row">{{$i}}</th>
+                                                            <td>{{$h->name_ar}}</td>
+                                                            <td>{{$h->discount}}</td>
+                                                            <td>{{$h->price}} </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
 
                                                 </tbody>
                                             </table>

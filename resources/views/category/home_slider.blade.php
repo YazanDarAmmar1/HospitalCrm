@@ -17,7 +17,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Setting</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Package Type</span>
+                <h4 class="content-title mb-0 my-auto">Setting</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Slider</span>
             </div>
         </div>
 
@@ -45,50 +45,23 @@
                             <thead>
                             <tr>
 
-                                <th class="wd-15p border-bottom-0 text-black-50"></th>
-                                <th class="wd-15p border-bottom-0 text-black-50">#</th>
-                                <th class="wd-15p border-bottom-0 text-white">name</th>
-                                <th class="wd-15p border-bottom-0 text-white">card</th>
-                                <th class="wd-15p border-bottom-0 text-white">prices</th>
-                                <th class="wd-15p border-bottom-0 text-white">status</th>
-                                <th class="wd-20p border-bottom-0 text-white">process</th>
+                                <th class="wd-15p border-bottom-0 text-white">Image</th>
+                                <th class="wd-20p border-bottom-0 text-white">Process</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @for($i = 0 ; $i<count($c) ; $i++)
+                            @foreach($slider as $a)
                                 <tr>
-                                    <td></td>
-                                    <td>{{$c[$i]->id}}</td>
-                                    <td>{{$c[$i]->name}}</td>
-                                    <td>{{$c[$i]->Card->name ?? ' '}}</td>
-                                    <td>{{$c[$i]->package_prices}}</td>
-
-                                    @if($c[$i]->status == 0)
-                                        <td><i style="background-color: red" class="text-white">Offline</i></td>
-                                    @else
-                                        <td><i style="background-color: blue" class="text-white">Online</i></td>
-                                        @endif
-
-
+                                    <td> <img src="{{URL::asset('slider')}}/{{$a->url_slider}}"style="height: 50px;width: 50px"></td>
                                         <td>
-                                            @can('package delete')
                                                 <a class="modal-effect btn btn-sm btn-danger"
                                                    data-effect="effect-scale"
-                                                   data-id="{{$c[$i]->id}}" data-name="{{$c[$i]->name}}"
+                                                   data-id="{{$a->id}}" data-name="{{$a->url_slider}}"
                                                    data-toggle="modal"
                                                    href="#modaldem" title="delete"><i class="las la-trash"></i></a>
-                                            @endcan
-                                            @can('package edit')
-                                                <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                   data-id="{{$c[$i]->id}}" data-name="{{$c[$i]->name}}"
-                                                   data-description="{{$c[$i]->package_prices}}"
-                                                   data-toggle="modal"
-                                                   href="#modaldemlo1245"
-                                                   title="edit"><i class="las la-pen"></i></a>
-                                            @endcan
                                         </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -105,46 +78,16 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">Add Package Type</h6>
+                    <h6 class="modal-title">Add Image Slider</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal"
                             type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{{route('show_PackageType_add')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('home.slider.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body row form-group">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <label class="label mt-2">Name</label>
-                            <input type="text" class="form-control" name="name"/>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <label class="label mt-2">Card Type</label>
-                            <select class="form-control select2" name="card">
-                                <option label="Choose one">
-                                </option>
-                                @foreach($card as$c)
-                                    <option value="{{$c->id}}">
-                                        {{$c->name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <label class="label mt-2">prices</label>
-                            <input type="text" class="form-control" name="prices"/>
-                        </div>
-
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <label class="label mt-2">Status</label>
-                            <select class="form-control select2" name="status">
-                                <option label="Choose one">
-                                </option>
-                                <option value="0">
-                                    Offline
-                                </option>
-                                <option value="1">
-                                    Online
-                                </option>
-                            </select>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <label class="label mt-2">Image</label>
+                            <input type="file" name="slider" class="form-control"/>
                         </div>
 
                     </div>
@@ -160,63 +103,6 @@
 
 
 
-    {{--edit provider--}}
-    <div class="modal" id="modaldemlo1245">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <h6 class="modal-title">Edit Package</h6>
-                    <button aria-label="Close" class="close" data-dismiss="modal"
-                            type="button"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <form action="{{route('show_PackageType_edit')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body row form-group">
-                        <div class="col-sm-12 col-md-12 col-lg-6">
-                            <label class="label mt-2">Name</label>
-                            <input type="hidden" class="form-control" name="id"/>
-                            <input type="text" class="form-control" name="name"/>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <label class="label mt-2">Card Type</label>
-                            <select class="form-control select2" name="card">
-                                <option label="Choose one">
-                                </option>
-                                @foreach($card as$c)
-                                    <option value="{{$c->id}}">
-                                        {{$c->name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <label class="label mt-2">prices</label>
-                            <input type="text" class="form-control" name="prices"/>
-                        </div>
-
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <label class="label mt-2">Status</label>
-                            <select class="form-control select2" name="status">
-                                <option label="Choose one">
-                                </option>
-                                <option value="0">
-                                    Offline
-                                </option>
-                                <option value="1">
-                                    Online
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
 
 
     {{--delete--}}
@@ -224,11 +110,11 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">Delete Package</h6>
+                    <h6 class="modal-title">Delete Image</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal"
                             type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{{route('show_PackageType_delete')}}" method="post">
+                <form action="{{route('home.slider.delete')}}" method="post">
                     @csrf
                     <div class="modal-body">
                         <p>Are you sure of the deleting process ?</p><br>
@@ -289,19 +175,6 @@
 
             $(e.currentTarget).find('input[id="id_inp"]').val(id);
             $(e.currentTarget).find('input[id="name_inp"]').val(name);
-        });
-    </script>
-    <script type="text/javascript">
-        $('#modaldemlo1245').on('show.bs.modal', function (e) {
-
-            var id = $(e.relatedTarget).data('id');
-            var name = $(e.relatedTarget).data('name');
-            var description = $(e.relatedTarget).data('description');
-
-
-            $(e.currentTarget).find('input[name="id"]').val(id);
-            $(e.currentTarget).find('input[name="name"]').val(name);
-            $(e.currentTarget).find('input[name="prices"]').val(description);
         });
     </script>
 
