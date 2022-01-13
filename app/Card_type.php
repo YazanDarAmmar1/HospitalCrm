@@ -18,4 +18,9 @@ class Card_type extends Model
     {
         return $this->hasMany(Card::class, 'card_type_id');
     }
+
+    public function Card_plus()
+    {
+        return $this->hasMany(card_plus::class, 'agent_id');
+    }
 }

@@ -67,6 +67,27 @@
                         </div>
                         <p class="mg-b-20"></p>
                         <div class="pd-30 pd-sm-40 bg-gray-200">
+                            <div class="row bg-indigo text-white pt-2 mb-1 pb-2" >
+                                <div class="col-md-6 mg-t-10 mg-md-t-0">
+                                    <label class="label">Card Type</label>
+                                    <select class="form-control select1 mb-1"
+                                            name="card_type">
+                                        <option label="Select One" disabled selected>Select One</option>
+
+                                    @foreach($card as $c)
+                                            <option value="{{$c->id}}">
+                                                {{$c->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mg-t-10 mg-md-t-0">
+                                    <label class="label">Package Type</label>
+                                    <select class="form-control select1 mb-1"
+                                            name="package">
+                                    </select>
+                                </div>
+                            </div>
                             <div class="row row-xs">
                                 <div class="col-md-4">
                                     <label class="label">Name</label>
@@ -169,17 +190,7 @@
                                                      style="background-color: white" aria-expanded="false">
                                                     <div class="panel-body border">
                                                         <div class="row">
-                                                            <div class="col-md-3 mg-t-10 mg-md-t-0">
-                                                                <label class="label">Card Type</label>
-                                                                <select class="form-control select1 mb-1"
-                                                                        name="card_type">
-                                                                    @foreach($card as $c)
-                                                                        <option value="{{$c->id}}">
-                                                                            {{$c->name}}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
+
 
                                                             <div class="col-md-3 mg-t-10 mg-md-t-0">
                                                                 <label class="label">Payment Method</label>
@@ -213,19 +224,7 @@
                                                                 </select>
                                                             </div>
 
-                                                            <div class="col-md-3 mg-t-10 mg-md-t-0">
-                                                                <label class="label">Package Type</label>
-                                                                <select class="form-control select1 mb-1"
-                                                                        name="package">
 
-                                                                    @foreach($package as $c)
-                                                                        <option value="{{$c->id}}">
-                                                                            {{$c->name}}
-                                                                        </option>
-                                                                    @endforeach
-
-                                                                </select>
-                                                            </div>
 
                                                             <div class="col-md-3 mg-t-10 mg-md-t-0">
                                                                 <label class="label">Period</label>
@@ -342,6 +341,29 @@
     <!--Internal Fileuploads js-->
     <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('select[name="card_type"]').on('change', function() {
+                var SectionId = $(this).val();
+                if (SectionId) {
+                    $.ajax({
+                        url: "{{url::to('package')}}" + '/'  + SectionId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="package"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="package"]').append('<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    console.log('AJAX load did not work');
+                }
+            });
+        });
+    </script>
 
     <!-- SWEET Alert-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"

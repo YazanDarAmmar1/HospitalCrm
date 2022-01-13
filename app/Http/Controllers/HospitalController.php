@@ -28,9 +28,9 @@ class HospitalController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index($id)
     {
-        $hospitals = Hospital::all();
+        $hospitals = Hospital::where('provider_type',$id)->get();
         $category = Category::all();
         $category1 = Category::all();
         return view('hospital.hospital', compact('hospitals','category','category1'));
@@ -91,6 +91,8 @@ class HospitalController extends Controller
             'description' => $request->description,
             'description_ar' => $request->description_ar,
             'comment' => $request->comment,
+            'provider_type' => $request->provider_name2,
+            'card_type' => $request->card_type,
             'status' => 0,
             'on_off' => 0,
 
@@ -157,6 +159,8 @@ class HospitalController extends Controller
             'category_id' => $request->category,
             'description' => $request->description,
             'description_ar' => $request->description_ar,
+            'provider_type' => $request->provider_name2,
+            'card_type' => $request->card_type,
             'comment' => $request->comment,
 
         ]);

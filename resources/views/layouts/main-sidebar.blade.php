@@ -25,7 +25,6 @@
             </div>
         </div>
         <ul class="side-menu">
-            @can('home')
 
             <li class="side-item side-item-category">Main</li>
             <li class="slide">
@@ -38,9 +37,7 @@
                     </svg>
                     <span class="side-menu__label">Home</span><span class="badge badge-success side-badge">1</span></a>
             </li>
-            @endcan
 
-            @can('card')
                 <li class="side-item side-item-category">Cards</li>
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
@@ -53,18 +50,16 @@
                         <span class="side-menu__label">Cards</span><i class="angle fe fe-chevron-down"></i></a>
 
                     <ul class="slide-menu">
-                        @can('add card')
+
                         <li><a class="slide-item" href="{{ route('add_cards') }}">Add Cards</a></li>
-                        @endcan
-                        @can('all card')
-                        <li><a class="slide-item" href="{{ route('show_cards') }}">Customers Cards</a></li>
-                            @endcan
+
+                        <li><a class="slide-item" href="{{ route('show_cards') }}">Health Cards</a></li>
+                        <li><a class="slide-item" href="{{ route('show_cards_plus') }}">Plus Cards</a></li>
                     </ul>
                 </li>
-            @endcan
 
-            @can('hospital')
-                <li class="side-item side-item-category">Hospitals</li>
+
+                <li class="side-item side-item-category">Providers</li>
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
@@ -73,14 +68,15 @@
                             <path
                                 d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
                         </svg>
-                        <span class="side-menu__label">Hospital</span><i class="angle fe fe-chevron-down"></i></a>
+                        <span class="side-menu__label">Providers</span><i class="angle fe fe-chevron-down"></i></a>
 
                     <ul class="slide-menu">
-                        <li><a class="slide-item" href="{{ route('show') }}">Add Hospital</a></li>
+                        @foreach(\App\Provider::all() as $p)
+                            <li><a class="slide-item" href="{{route('show' , $p->id)}}">{{$p->name}}</a><span class="badge badge-purple side-badge">{{\ App\Hospital::where('provider_type',$p->id)->count()}}</span></li>
+                        @endforeach
                     </ul>
                 </li>
-            @endcan
-            @can('report')
+
                 <li class="side-item side-item-category">Reports</li>
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
@@ -93,20 +89,14 @@
                         <span class="side-menu__label">Reports</span><i class="angle fe fe-chevron-down"></i></a>
 
                     <ul class="slide-menu">
-                        @can('agent customer')
                         <li><a class="slide-item" href="{{ route('report.agent_customer') }}">Agent Customers</a></li>
-                        @endcan
-                        @can('card report')
                         <li><a class="slide-item" href="{{ route('report.card') }}">Card Report</a></li>
-                            @endcan
                     </ul>
                 </li>
-            @endcan
 
 
 
 
-            @can('users')
                 <li class="side-item side-item-category">Users</li>
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}">
@@ -118,18 +108,13 @@
                         </svg>
                         <span class="side-menu__label">Users</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
-                        @can('add-user')
                             <li><a class="slide-item" href="{{ url('/' . ($page = 'users')) }}">All User</a></li>
-                        @endcan
 
-                        @can('show-permission')
                             <li><a class="slide-item" href="{{ url('/' . ($page = 'roles')) }}">Permission</a></li>
-                        @endcan
                     </ul>
                 </li>
-            @endcan
 
-            @can('setting')
+
                 <li class="side-item side-item-category">Setting</li>
                 <li class="slide">
 
@@ -144,21 +129,17 @@
                             <span class="side-menu__label">Setting</span><i class="angle fe fe-chevron-down"></i></a>
 
                         <ul class="slide-menu">
-                            @can('type of provider')
+                            <li><a class="slide-item" href="{{ route('category.provider') }}">Providers</a></li>
                             <li><a class="slide-item" href="{{ url('/' . $page='category') }}">Type of provider</a></li>
-                            @endcan
-                            @can('card type')
                             <li><a class="slide-item" href="{{ route('show_cardType') }}">Card type</a></li>
-                                @endcan
-                                @can('card package')
+
                             <li><a class="slide-item" href="{{ route('show_PackageType') }}">Package type</a></li>
-                                @endcan
+
                                 <li><a class="slide-item" href="{{ route('home.slider') }}">Home Slider</a></li>
 
                         </ul>
 
                 </li>
-            @endcan
 
         </ul>
     </div>

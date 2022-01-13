@@ -29,7 +29,11 @@ class CreateHospitalsTable extends Migration
             $table->longText('address_ar')->nullable();
             $table->string('website')->nullable();
             $table->bigInteger('category_id')->nullable()->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
+            $table->bigInteger('provider_type')->unsigned();
+            $table->foreign('provider_type')->references('id')->on('providers')->cascadeOnDelete();
+            $table->bigInteger('card_type')->unsigned();
+            $table->foreign('card_type')->references('id')->on('card_types')->cascadeOnDelete();
             $table->longText('description')->nullable();
             $table->longText('description_ar')->nullable();
             $table->longText('comment')->nullable();

@@ -19,31 +19,25 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Cards</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ All Card</span>
+                <h4 class="content-title mb-0 my-auto">Cards</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ All Health Cards</span>
             </div>
         </div>
         <div class="d-flex my-xl-auto right-content">
             <div class="mb-3 mb-xl-0">
-                @can('import card')
-                <div class="btn-group">
-                    <a class="modal-effect btn btn-outline-danger btn-block btn-lg" data-effect="effect-super-scaled"
-                       data-toggle="modal" href="#modaldemlo12234"><i class="fas fa-file-import"></i></a>
-                </div>
-                @endcan
-                @can('add card')
-                <div class="btn-group">
-                    <a href="{{route('add_cards')}}" class="btn btn-outline-primary btn-lg" title="add card">
-                        <i class="fas fa-user-plus"></i>
-                    </a>
-                </div>
-                    @endcan
-                    @can('online card')
-                <div class="btn-group">
-                    <a href="{{route('show_cards_draft',1)}}" class="btn btn-success" title="online card">
-                        Online Cards
-                    </a>
-                </div>
-                    @endcan
+                    <div class="btn-group">
+                        <a class="modal-effect btn btn-outline-danger btn-block btn-lg" data-effect="effect-super-scaled"
+                           data-toggle="modal" href="#modaldemlo12234"><i class="fas fa-file-import"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a href="{{route('add_cards')}}" class="btn btn-outline-primary btn-lg" title="add card">
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a href="{{route('show_cards_draft',1)}}" class="btn btn-success" title="online card">
+                            Online Cards
+                        </a>
+                    </div>
 
                 <div class="btn-group dropdown">
                     <button type="button" class="btn text-white"
@@ -75,7 +69,9 @@
                                style="background-color:#761193;">
                             <thead>
                             <tr>
-                                <th class="border-bottom-0"></th>
+                                <th class="border-bottom-0 text-white"></th>
+
+
                                 <th class="border-bottom-0 text-white">Name</th>
                                 <th class="border-bottom-0 text-white">CPR</th>
                                 <th class="border-bottom-0 text-white">Mobile</th>
@@ -89,13 +85,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($c as $c)
+                            @foreach($card as $c)
                                 <tr>
                                     <td></td>
-
                                     <td><a href="{{route('profile_show',$c->cpr_no)}}"> {{$c->name}}</a></td>
                                     <td>{{$c->cpr_no}}</td>
-                                    <td>{{$c->mobile}}</td>
+                                    <td>{{$c->mobile}} {{$c->phone}}</td>
                                     <td>
                                         <select onchange="editStatus(this,{{$c->id}})"
                                                 class="form-control select1 mb-1"
@@ -141,47 +136,41 @@
                                     <td>{{$c->comment}}</td>
 
                                     <td>
-                                        @can('edit card')
-                                        <a class=" btn btn-sm btn-info" href="{{route('profile_show',$c->cpr_no)}}"
-                                           data-effect="effect-scale"
-                                           title="edit"><i class="far fa-edit"></i> Edit</a>
-                                        @endcan
-                                        @can('delete card')
-                                        <a class="modal-effect btn btn-sm btn-danger"
-                                           data-effect="effect-scale"
-                                           data-id="{{$c->id}}" data-name="{{$c->name}}"
-                                           data-toggle="modal"
-                                           href="#modaldem"
-                                           data-effect="effect-scale"
-                                            ><i class="las la-trash"></i> Delete</a>
-                                            @endcan
-                                            @can('add more')
-                                        @if($c->father_id == $c->cpr_no)
+                                            <a class=" btn btn-sm btn-info" href="{{route('profile_show',$c->cpr_no)}}"
+                                               data-effect="effect-scale"
+                                               title="edit"><i class="far fa-edit"></i> Edit</a>
 
-                                            <a class="modal-effect btn btn-sm btn-primary"
+                                            <a class="modal-effect btn btn-sm btn-danger"
                                                data-effect="effect-scale"
                                                data-id="{{$c->id}}" data-name="{{$c->name}}"
-                                               data-email="{{$c->email}}" data-date="{{$c->date}}"
-                                               data-mobile="{{$c->mobile}}" data-phone="{{$c->phone}}"
-                                               data-house="{{$c->house}}" data-road="{{$c->road}}"
-                                               data-block="{{$c->block}}" data-place="{{$c->place}}"
-                                               data-country="{{$c->country}}" data-card_type="{{$c->card_type_id}}"
-                                               data-payment_method="{{$c->payment_method}}"
-                                               data-contact_method="{{$c->contact_method}}"
-                                               data-package_type="{{$c->package_type}}"
                                                data-toggle="modal"
-                                               href="#modaldem2" title="add more"><i class="fas fa-users"></i> Add More
-                                                People</a>
-                                        @else
-                                        @endif
-                                            @endcan
-                                            @can('card status')
-                                        <a class="modal-effect btn btn-sm btn-success"
-                                           data-effect="effect-scale"
-                                           data-id="{{$c->id}}" data-name="{{$c->name}}"
-                                           data-toggle="modal"
-                                           href="#modaldem1" title="status"><i class="fas fa-sync"></i> Status</a>
-                                            @endcan
+                                               href="#modaldem"
+                                               data-effect="effect-scale"
+                                            ><i class="las la-trash"></i> Delete</a>
+                                            @if($c->father_id == $c->cpr_no)
+
+                                                <a class="modal-effect btn btn-sm btn-primary"
+                                                   data-effect="effect-scale"
+                                                   data-id="{{$c->id}}" data-name="{{$c->name}}"
+                                                   data-email="{{$c->email}}" data-date="{{$c->date}}"
+                                                   data-mobile="{{$c->mobile}}" data-phone="{{$c->phone}}"
+                                                   data-house="{{$c->house}}" data-road="{{$c->road}}"
+                                                   data-block="{{$c->block}}" data-place="{{$c->place}}"
+                                                   data-country="{{$c->country}}" data-card_type="{{$c->card_type_id}}"
+                                                   data-payment_method="{{$c->payment_method}}"
+                                                   data-contact_method="{{$c->contact_method}}"
+                                                   data-package_type="{{$c->package_type}}"
+                                                   data-toggle="modal"
+                                                   href="#modaldem2" title="add more"><i class="fas fa-users"></i> Add More
+                                                    People</a>
+                                            @else
+                                            @endif
+
+                                            <a class="modal-effect btn btn-sm btn-success"
+                                               data-effect="effect-scale"
+                                               data-id="{{$c->id}}" data-name="{{$c->name}}"
+                                               data-toggle="modal"
+                                               href="#modaldem1" title="status"><i class="fas fa-sync"></i> Status</a>
 
 
                                     </td>

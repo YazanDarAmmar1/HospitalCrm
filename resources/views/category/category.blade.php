@@ -22,19 +22,16 @@
 					</div>
 
                     <div class="d-flex my-xl-auto right-content">
-                        @can('add type of provider')
                         <div class="pr-1 mb-3 mb-xl-0">
                             <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-super-scaled"
                                data-toggle="modal" href="#modaldemlo124"><i class="fas fa-plus"></i> </a>
                         </div>
-                        @endcan
 
-                        @can('import type provider')
                         <div class="pr-1 mb-3 mb-xl-0">
                             <a class="modal-effect btn btn-outline-danger" data-effect="effect-super-scaled"
                                data-toggle="modal" href="#modaldemlo12234">Import Type</a>
                         </div>
-                        @endcan
+
                     </div>
 				</div>
 				<!-- breadcrumb -->

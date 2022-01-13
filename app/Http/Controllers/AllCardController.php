@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Card;
+use App\card_plus;
 use App\Card_type;
 use App\Imports\CustomerImport;
 use App\Imports\HospitalImport;
@@ -28,6 +29,16 @@ class AllCardController extends Controller
         $c = DB::table('cards')->orderByDesc('id')->get();
         $card = Card::all();
         return view('cards.all', compact('c', 'package', 'card_type', 'user','card'));
+    }
+
+    public function index_plus()
+    {
+        $package = Package_type::all();
+        $card_type = Card_type::all();
+        $user = User::all();
+        $c = DB::table('card_pluses')->orderByDesc('id')->get();
+        $card = card_plus::all();
+        return view('cards.all_plus', compact('c', 'package', 'card_type', 'user','card'));
     }
 
     public function index_draft($status)
@@ -59,7 +70,15 @@ class AllCardController extends Controller
         $id = $request->id_inp;
         Card::destroy($id);
         session()->flash('add', 'Data has been deleted successfully');
-       return back();
+        return back();
+    }
+
+    public function destroy_plus(Request $request)
+    {
+        $id = $request->id_inp;
+        card_plus::destroy($id);
+        session()->flash('add', 'Data has been deleted successfully');
+        return back();
     }
 
     public function importCustomer(Request $request)

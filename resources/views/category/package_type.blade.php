@@ -22,12 +22,10 @@
         </div>
 
         <div class="d-flex my-xl-auto right-content">
-            @can('package add')
             <div class="pr-1 mb-3 mb-xl-0">
                 <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-super-scaled"
                    data-toggle="modal" href="#modaldemlo124"><i class="fas fa-plus"></i> </a>
             </div>
-            @endcan
 
         </div>
     </div>

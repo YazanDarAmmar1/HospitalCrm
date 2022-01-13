@@ -199,8 +199,35 @@
                     <form method="post" action="{{route('hospital_edit')}}">
                         @csrf
                         <div class="modal-body">
+                            <div class="row bg-purple  text-white mb-2" >
+                                <div class="col-lg-6 mb-3 pb-2">
+                                    <label class="label mt-2">Provider Name</label>
+                                    <select class="form-control select2" name="provider_name2">
+                                        <option label="Choose one">
+                                        </option>
+                                        @foreach(\App\Provider::all() as $p)
+                                            <option value="{{$p->id}}">
+                                                {{$p->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 mb-3 pb-2">
+                                    <label class="label mt-2">Card Type</label>
+                                    <select class="form-control select2" name="card_type">
+                                        <option label="Choose one">
+                                        </option>
+                                        @foreach(\App\Card_type::all() as $c)
+                                            <option value="{{$c->id}}">
+                                                {{$c->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="row">
+
                                 <div class="col-lg-6">
                                     <label class="label">Contract Date</label>
                                     <input type="date" class="form-control" name="contract_date">
@@ -641,15 +668,43 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">Add Hospital</h6>
+                    <h6 class="modal-title">Add Provider</h6>
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <form method="post" action="{{route('hospital_add')}}">
                     @csrf
                     <div class="modal-body">
+                        <div class="row bg-purple  text-white mb-2" >
+                            <div class="col-lg-6 mb-3 pb-2">
+                                <label class="label mt-2">Provider Name</label>
+                                <select class="form-control select2" name="provider_name2">
+                                    <option label="Choose one">
+                                    </option>
+                                    @foreach(\App\Provider::all() as $p)
+                                        <option value="{{$p->id}}">
+                                            {{$p->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-6 mb-3 pb-2">
+                                <label class="label mt-2">Card Type</label>
+                                <select class="form-control select2" name="card_type">
+                                    <option label="Choose one">
+                                    </option>
+                                    @foreach(\App\Card_type::all() as $c)
+                                        <option value="{{$c->id}}">
+                                            {{$c->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="row">
+
+
                             <div class="col-lg-6">
                                 <label class="label">Contract Date</label>
                                 <input type="date" class="form-control" name="contract_date">

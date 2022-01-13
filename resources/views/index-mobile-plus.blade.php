@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-6">
                     <!--featured-imagebox-->
-                    <div class="featured-imagebox ttm-box-view-top-image featured-imagebox-case" style="border: #412c89 1px solid;border-radius: 90px;">
+                    <div class="featured-imagebox ttm-box-view-top-image featured-imagebox-case" style="border: goldenrod 1px solid;border-radius: 90px;">
                         <div class="featured-thumbnail">
                             <img class="img-fluid" src="{{URL::asset('assets/img/card.png')}}" alt="case_01">
                         </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-6">
                     <!--featured-imagebox-->
-                    <div class="featured-imagebox ttm-box-view-top-image featured-imagebox-case" style="border: #412c89 1px solid;border-radius: 90px;">
+                    <div class="featured-imagebox ttm-box-view-top-image featured-imagebox-case" style="border: goldenrod 1px solid;border-radius: 90px;">
                         <div class="featured-thumbnail">
                             <img class="img-fluid" src="{{URL::asset('assets/img/search.png')}}" alt="case_02">
                         </div>
@@ -67,14 +67,14 @@
 
                 <div class="col-6">
                     <!--featured-imagebox-->
-                    <div class="featured-imagebox ttm-box-view-top-image featured-imagebox-case" style="border: #412c89 1px solid;border-radius: 90px;">
+                    <div class="featured-imagebox ttm-box-view-top-image featured-imagebox-case" style="border: goldenrod 1px solid;border-radius: 90px;">
                         <div class="featured-thumbnail">
                             <img class="img-fluid"  src="{{URL::asset('assets/img/hospital.png')}}" alt="case_02">
                         </div>
                         <div class="featured-content">
-                            <a href="{{route('hospital.directory')}}">
+                            <a href="{{route('hospital.directory.plus')}}">
                                 <div class="featured-title text-center">
-                                    <h5>Directory </h5>
+                                    <h5>Providers </h5>
                                 </div>
                             </a>
                         </div>
@@ -83,7 +83,7 @@
 
                 <div class="col-6">
                     <!--featured-imagebox-->
-                    <div class="featured-imagebox ttm-box-view-top-image featured-imagebox-case" style="border: #412c89 1px solid;border-radius: 90px;">
+                    <div class="featured-imagebox ttm-box-view-top-image featured-imagebox-case" style="border: goldenrod 1px solid;border-radius: 90px;">
                         <div class="featured-thumbnail">
                             <img class="img-fluid" src="{{URL::asset('assets/img/partner.png')}}" alt="case_02">
                         </div>

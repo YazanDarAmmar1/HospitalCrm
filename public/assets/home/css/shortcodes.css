@@ -833,7 +833,9 @@
 .featured-icon-box.style1 {
     padding: 32px 35px 11px;
     border: 2px solid transparent;
+    border-radius: 20px;
     margin-bottom: 10px;
+    color: white;
 }
 .featured-icon-box.style1 .ttm-icon.ttm-icon_element-size-lg i{
     font-size: 55px!important;
@@ -1199,7 +1201,7 @@ body{ counter-reset: section; }
 }
 .featured-imagebox .featured-content .featured-title h5 {
     font-size: 20px;
-    line-height: 28px;
+    line-height: 30px;
     margin-bottom: 10px;
     position: relative;
 }
@@ -1678,7 +1680,7 @@ body{ counter-reset: section; }
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 5px;
+    border-radius: 90px;
     -webkit-transform: scaleY(0);
     transform: scaleY(0);
     -webkit-transform-origin: 50% 0;

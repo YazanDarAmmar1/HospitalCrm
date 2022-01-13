@@ -32,6 +32,11 @@ class User extends Authenticatable
 
     public function Card()
     {
-       return $this->hasMany(Card::class, 'agent_id');
+        return $this->hasMany(Card::class, 'agent_id');
+    }
+
+    public function Card_plus()
+    {
+        return $this->hasMany(card_plus::class, 'agent_id');
     }
 }

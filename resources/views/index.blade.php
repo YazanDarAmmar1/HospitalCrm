@@ -24,7 +24,7 @@
                         @can('add-hospital')
 
                         <div class="pr-1 mb-3 mb-xl-0">
-                            <a class="  btn btn-danger-gradient btn-block" href="{{ route('show') }}" title="hospital register" ><i class="fas fa-hospital"></i> Provider Register</a>
+                            <a class="  btn btn-danger-gradient btn-block" href="{{ route('show',1) }}" title="hospital register" ><i class="fas fa-hospital"></i> Provider Register</a>
                         </div>
                             @endcan
                     </div>
